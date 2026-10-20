@@ -1,6 +1,16 @@
 # Aqua Cutter releases
 
-Distribution repository for approved Aqua Cutter renderer artifacts. It contains built releases only, with no source history. No `current.json` pointer has been promoted yet.
+Distribution repository for approved Aqua Cutter renderer artifacts. It contains built releases only, with no source history.
+
+## Current release
+
+`current.json` names the selected release. Tools read it once when starting a new walkthrough:
+
+```text
+https://raw.githubusercontent.com/danruto/aqua-cutter-releases/main/current.json
+```
+
+It is cached for up to 5 minutes. Generated pages never load assets through it: they pin a release commit as shown below.
 
 ## Loading a release
 
