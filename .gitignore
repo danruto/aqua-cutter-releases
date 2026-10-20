@@ -1,0 +1,9 @@
+# Incomplete local assembly is not a release.
+.assembly-*/
+.release-*.lock/
+
+# Keep local tooling and credentials out of the public repository.
+.env
+.env.*
+node_modules/
+.DS_Store
