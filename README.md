@@ -14,7 +14,7 @@ It is cached for up to 5 minutes. Generated pages never load assets through it: 
 
 ## Loading a release
 
-Files are served through jsDelivr from this repository. Pin the full commit that added the release, never a branch:
+Files are served through jsDelivr from this repository. Pin a full commit that contains the release, never a branch. Any such commit serves identical bytes, because releases are never changed:
 
 ```text
 https://cdn.jsdelivr.net/gh/danruto/aqua-cutter-releases@<commit>/releases/<version>/renderer.js
