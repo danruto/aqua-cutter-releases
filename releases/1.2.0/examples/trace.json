@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Follow a synthetic request",
+  "lead": "Illustrative authored paths and outcomes, not observed execution or runtime evidence.",
+  "changes": [
+    "Choose a path and advance manually",
+    "Inspect only explicitly authored not-reached work"
+  ],
+  "references": [
+    {
+      "label": "Synthetic example",
+      "value": "Local illustrative request handling"
+    }
+  ],
+  "sections": [
+    {
+      "id": "request-flow",
+      "type": "trace",
+      "title": "Request path",
+      "reason": "An authored request may publish or record rejection.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] -->|check| B[Validate]\nB -->|publish| C[Publish]\nB -->|reject| R[Record outcome]",
+        "description": "Synthetic validation and publication flow."
+      },
+      "paths": [
+        {
+          "id": "admit",
+          "label": "Admit request",
+          "steps": [
+            {
+              "title": "Receive request",
+              "narration": "Begin with an illustrative request.",
+              "node": "A"
+            },
+            {
+              "title": "Validate request",
+              "narration": "Follow the authored check connection.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Publish request",
+              "narration": "Finish at the publisher.",
+              "node": "C",
+              "incoming": {
+                "from": "B",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "The author says this synthetic request reaches publication; no execution is verified."
+        },
+        {
+          "id": "decline",
+          "label": "Reject request",
+          "steps": [
+            {
+              "title": "Receive rejected request",
+              "narration": "Begin another illustrative request.",
+              "node": "A"
+            },
+            {
+              "title": "Check rejected request",
+              "narration": "Reach validation before recording the outcome.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Record rejection",
+              "narration": "Recording the authored outcome is the last step.",
+              "node": "R",
+              "incoming": {
+                "from": "B",
+                "to": "R",
+                "label": "reject",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "reject",
+          "outcomeDescription": "The author declares publication not reached; this is not an observed rejection.",
+          "notReached": {
+            "nodes": [
+              "C"
+            ],
+            "edges": [
+              {
+                "from": "B",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "request-sequence",
+      "type": "trace",
+      "title": "Request messages",
+      "reason": "Exact authored messages can revisit an actor or return a reply.",
+      "diagram": {
+        "kind": "sequence",
+        "source": "sequenceDiagram\nparticipant A as Receiver\nparticipant B as Validator\nparticipant C as Publisher\nalt request route\nA->>+B: check\nNote right of B: Validation context\nB-->>-A: answer\nB->>B: record\nA->>C: publish\nend\nNote right of C: Publication context",
+        "description": "Synthetic checks, replies, self-recording and publication with authored notes, an activation and a branch frame."
+      },
+      "paths": [
+        {
+          "id": "admit",
+          "label": "Admit messages",
+          "steps": [
+            {
+              "title": "Begin messages",
+              "narration": "Start at the receiver.",
+              "node": "A"
+            },
+            {
+              "title": "Check message",
+              "narration": "Ask the validator.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Answer message",
+              "narration": "Return to the receiver.",
+              "node": "A",
+              "incoming": {
+                "from": "B",
+                "to": "A",
+                "label": "answer",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Publish message",
+              "narration": "Finish at the publisher.",
+              "node": "C",
+              "incoming": {
+                "from": "A",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "Authored OK message outcome, not verified execution."
+        },
+        {
+          "id": "decline",
+          "label": "Reject messages",
+          "steps": [
+            {
+              "title": "Begin rejected messages",
+              "narration": "Start at the receiver.",
+              "node": "A"
+            },
+            {
+              "title": "Check rejected messages",
+              "narration": "Reach the validator.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Record rejected messages",
+              "narration": "The validator records the authored outcome.",
+              "node": "B",
+              "incoming": {
+                "from": "B",
+                "to": "B",
+                "label": "record",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "reject",
+          "outcomeDescription": "Only the explicitly declared publication is not reached in this illustrative path.",
+          "notReached": {
+            "nodes": [
+              "C"
+            ],
+            "edges": [
+              {
+                "from": "A",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "admission-diff",
+      "type": "trace-diff",
+      "title": "Compare the authored change",
+      "reason": "TraceDiff describes change, separately from the selected Trace path.",
+      "before": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> C[Publish]",
+        "description": "Illustrative original route.",
+        "steps": [
+          "Receive",
+          "Publish"
+        ],
+        "nodeChanges": [],
+        "edgeChanges": []
+      },
+      "after": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> B[Validate]\nB --> C[Publish]",
+        "description": "Illustrative changed route, not an execution result.",
+        "steps": [
+          "Receive",
+          "Validate",
+          "Publish"
+        ],
+        "nodeChanges": [
+          {
+            "node": "B",
+            "status": "added"
+          }
+        ],
+        "edgeChanges": []
+      }
+    }
+  ]
+}
