@@ -1,0 +1,356 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Read synthetic implementing hunks",
+  "lead": "Curated synthetic snippets, citations and outcomes are unverified: not complete source, a passing gate or execution results.",
+  "changes": [
+    "Select files and hunks manually",
+    "Review authored surfaced and omitted coverage",
+    "Compare independent CodeLens and mixed diagram state"
+  ],
+  "references": [
+    {
+      "label": "Synthetic scope",
+      "value": "Local fictional admission change; identifiers are inert, not fetched or verified."
+    }
+  ],
+  "sections": [
+    {
+      "id": "implementing-code",
+      "type": "code-lens",
+      "title": "Implementing code",
+      "reason": "Inspect why each curated hunk matters, without treating curation as the entire change.",
+      "initialHunk": "guard",
+      "entries": [
+        {
+          "id": "receive",
+          "title": "Normalize the request",
+          "file": "src/admission.ts",
+          "hunk": " const request = read();\n-const name = request.name;\n+const name = request.name.trim();",
+          "oldStart": 10,
+          "newStart": 20,
+          "why": "The synthetic check consumes a normalized name.",
+          "references": [
+            "scenario:normalize-name"
+          ]
+        },
+        {
+          "id": "guard",
+          "title": "Reject before publication",
+          "file": "src/admission.ts",
+          "hunk": " const name = request.name;\n-publish(request);\n+if (!name) return reject();\n+publish(request);\n+",
+          "oldStart": 40,
+          "newStart": 51,
+          "why": "This synthetic guard rejects an empty name before the first publish. A marker-only addition preserves an empty code body.",
+          "references": [
+            "scenario:reject-before-publish",
+            "case:invalid-name"
+          ]
+        },
+        {
+          "id": "cleanup",
+          "title": "Remove late validation",
+          "file": "src/consumer.ts",
+          "hunk": "-if (!event.name) return reject();\r\n-retryValidation(event);",
+          "oldStart": 80,
+          "newStart": 0,
+          "why": "The fictional consumer no longer owns the admission check.",
+          "references": []
+        },
+        {
+          "id": "literal",
+          "title": "Keep literal display text",
+          "file": "examples/literal-<markup>-and-a-deliberately-long-synthetic-folder-name-for-wrapping/admission.ts",
+          "hunk": "+const literal = \"</script><script>not executable</script>\";\r+const note = \"https://example.invalid/ is text, not a link\";\r+const explanation = \"synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; synthetic context; \";\r++literalMarker;\r+-literalMinus;\r+@literalAnnotation;",
+          "oldStart": 0,
+          "newStart": 1,
+          "why": "Literal markup, URL-like text and long source rows remain local text, with no source request.",
+          "references": [
+            "case:<literal-markup>",
+            "https://example.invalid/citation (inert identifier)"
+          ]
+        }
+      ],
+      "coverage": {
+        "total": 9,
+        "omitted": [
+          {
+            "label": "Tests (not execution evidence)",
+            "count": 3
+          },
+          {
+            "label": "Formatting",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "complete-code",
+      "type": "code-lens",
+      "title": "Fully surfaced small scope",
+      "reason": "This independent selection starts at the first entry because initialHunk is omitted.",
+      "entries": [
+        {
+          "id": "create",
+          "title": "Create an inert helper",
+          "file": "examples/helper.ts",
+          "hunk": "+export const label = \"synthetic\";",
+          "oldStart": 0,
+          "newStart": 1,
+          "why": "Pure additions have no old line zero. No references field is supplied."
+        },
+        {
+          "id": "remove",
+          "title": "Remove an obsolete helper",
+          "file": "examples/old/helper.ts",
+          "hunk": "-export const oldLabel = \"illustration\";",
+          "oldStart": 7,
+          "newStart": 0,
+          "why": "Pure deletions have no new line zero. Equal basenames remain separate full identifiers.",
+          "references": []
+        }
+      ],
+      "coverage": {
+        "total": 2,
+        "omitted": []
+      }
+    },
+    {
+      "id": "request-flow",
+      "type": "trace",
+      "title": "Request path",
+      "reason": "An authored request may publish or record rejection.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] -->|check| B[Validate]\nB -->|publish| C[Publish]\nB -->|reject| R[Record outcome]",
+        "description": "Synthetic validation and publication flow."
+      },
+      "paths": [
+        {
+          "id": "admit",
+          "label": "Admit request",
+          "steps": [
+            {
+              "title": "Receive request",
+              "narration": "Begin with an illustrative request.",
+              "node": "A"
+            },
+            {
+              "title": "Validate request",
+              "narration": "Follow the authored check connection.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Publish request",
+              "narration": "Finish at the publisher.",
+              "node": "C",
+              "incoming": {
+                "from": "B",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "The author says this synthetic request reaches publication; no execution is verified."
+        },
+        {
+          "id": "decline",
+          "label": "Reject request",
+          "steps": [
+            {
+              "title": "Receive rejected request",
+              "narration": "Begin another illustrative request.",
+              "node": "A"
+            },
+            {
+              "title": "Check rejected request",
+              "narration": "Reach validation before recording the outcome.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Record rejection",
+              "narration": "Recording the authored outcome is the last step.",
+              "node": "R",
+              "incoming": {
+                "from": "B",
+                "to": "R",
+                "label": "reject",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "reject",
+          "outcomeDescription": "The author declares publication not reached; this is not an observed rejection.",
+          "notReached": {
+            "nodes": [
+              "C"
+            ],
+            "edges": [
+              {
+                "from": "B",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "request-sequence",
+      "type": "trace",
+      "title": "Request messages",
+      "reason": "Exact authored messages can revisit an actor or return a reply.",
+      "diagram": {
+        "kind": "sequence",
+        "source": "sequenceDiagram\nparticipant A as Receiver\nparticipant B as Validator\nparticipant C as Publisher\nA->>B: check\nB-->>A: answer\nB->>B: record\nA->>C: publish",
+        "description": "Synthetic checks, replies, self-recording and publication."
+      },
+      "paths": [
+        {
+          "id": "admit",
+          "label": "Admit messages",
+          "steps": [
+            {
+              "title": "Begin messages",
+              "narration": "Start at the receiver.",
+              "node": "A"
+            },
+            {
+              "title": "Check message",
+              "narration": "Ask the validator.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Answer message",
+              "narration": "Return to the receiver.",
+              "node": "A",
+              "incoming": {
+                "from": "B",
+                "to": "A",
+                "label": "answer",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Publish message",
+              "narration": "Finish at the publisher.",
+              "node": "C",
+              "incoming": {
+                "from": "A",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "Authored OK message outcome, not verified execution."
+        },
+        {
+          "id": "decline",
+          "label": "Reject messages",
+          "steps": [
+            {
+              "title": "Begin rejected messages",
+              "narration": "Start at the receiver.",
+              "node": "A"
+            },
+            {
+              "title": "Check rejected messages",
+              "narration": "Reach the validator.",
+              "node": "B",
+              "incoming": {
+                "from": "A",
+                "to": "B",
+                "label": "check",
+                "occurrence": 0
+              }
+            },
+            {
+              "title": "Record rejected messages",
+              "narration": "The validator records the authored outcome.",
+              "node": "B",
+              "incoming": {
+                "from": "B",
+                "to": "B",
+                "label": "record",
+                "occurrence": 0
+              }
+            }
+          ],
+          "outcome": "reject",
+          "outcomeDescription": "Only the explicitly declared publication is not reached in this illustrative path.",
+          "notReached": {
+            "nodes": [
+              "C"
+            ],
+            "edges": [
+              {
+                "from": "A",
+                "to": "C",
+                "label": "publish",
+                "occurrence": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "admission-diff",
+      "type": "trace-diff",
+      "title": "Compare the authored change",
+      "reason": "TraceDiff describes change, separately from the selected Trace path.",
+      "before": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> C[Publish]",
+        "description": "Illustrative original route.",
+        "steps": [
+          "Receive",
+          "Publish"
+        ],
+        "nodeChanges": [],
+        "edgeChanges": []
+      },
+      "after": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> B[Validate]\nB --> C[Publish]",
+        "description": "Illustrative changed route, not an execution result.",
+        "steps": [
+          "Receive",
+          "Validate",
+          "Publish"
+        ],
+        "nodeChanges": [
+          {
+            "node": "B",
+            "status": "added"
+          }
+        ],
+        "edgeChanges": []
+      }
+    }
+  ]
+}
