@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Validate commands before publication",
+  "lead": "A synthetic example of keeping command admission ahead of publication.",
+  "changes": [
+    "Check each command before it reaches the publication queue.",
+    "Keep rejected commands local and explain the decision."
+  ],
+  "references": [
+    {
+      "label": "Illustrative command handler",
+      "value": "synthetic/command_handler.ts:10-35"
+    },
+    {
+      "label": "Illustrative policy",
+      "value": "synthetic/admission_policy.ts:1-24"
+    }
+  ],
+  "sections": [
+    {
+      "id": "admission-flow",
+      "type": "trace-diff",
+      "title": "Move admission ahead of publication",
+      "reason": "These routes and outcomes are illustrative, not a reviewed PR or passing gate.",
+      "before": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive command] -->|enqueue| B[Publish command]\nB --> C[Check policy]\nD[Rejected command]",
+        "description": "The old illustrative route checks policy after publication.",
+        "steps": [
+          "Receive an incoming command.",
+          "Publish it to the queue.",
+          "Check the policy too late to prevent publication."
+        ],
+        "nodeChanges": [
+          {
+            "node": "A",
+            "status": "same"
+          },
+          {
+            "node": "B",
+            "status": "moved"
+          },
+          {
+            "node": "C",
+            "status": "removed"
+          }
+        ],
+        "edgeChanges": [
+          {
+            "edge": {
+              "from": "A",
+              "to": "B",
+              "label": "enqueue",
+              "occurrence": 0
+            },
+            "status": "removed"
+          }
+        ],
+        "initialFocus": {
+          "kind": "node",
+          "node": "B"
+        }
+      },
+      "after": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive command] -->|check| B[Validate command]\nB -->|allow| C[Publish command]\nB -->|deny| D[Keep local]",
+        "description": "The new illustrative route admits commands before publication.",
+        "steps": [
+          "Receive an incoming command.",
+          "Check its policy before adding it to the queue.",
+          "Publish an admitted command; retain a rejected command locally."
+        ],
+        "nodeChanges": [
+          {
+            "node": "A",
+            "status": "same"
+          },
+          {
+            "node": "B",
+            "status": "added"
+          },
+          {
+            "node": "C",
+            "status": "moved"
+          }
+        ],
+        "edgeChanges": [
+          {
+            "edge": {
+              "from": "B",
+              "to": "C",
+              "label": "allow",
+              "occurrence": 0
+            },
+            "status": "added"
+          }
+        ],
+        "initialFocus": {
+          "kind": "edge",
+          "edge": {
+            "from": "B",
+            "to": "C",
+            "label": "allow",
+            "occurrence": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "admission-sequence",
+      "type": "trace-diff",
+      "title": "Keep the decision before the side effect",
+      "reason": "Synthetic messages show ordering, not an execution result.",
+      "before": {
+        "kind": "sequence",
+        "source": "sequenceDiagram\nparticipant A as Handler\nparticipant B as Queue\nA->>+B: publish\nB-->>-A: queued",
+        "description": "The handler publishes without an admission decision.",
+        "steps": [
+          "Ask the queue to publish the command.",
+          "Receive acknowledgement without checking admission."
+        ],
+        "nodeChanges": [],
+        "edgeChanges": []
+      },
+      "after": {
+        "kind": "sequence",
+        "source": "sequenceDiagram\nparticipant A as Handler\nparticipant G as Admission gate\nparticipant B as Queue\nA->>+G: validate\nG-->>-A: admitted\nA->>+B: publish\nB-->>-A: queued",
+        "description": "The handler waits for admission before contacting the queue.",
+        "steps": [
+          "Request the admission decision.",
+          "Wait for the illustrative admitted response.",
+          "Publish only after that response."
+        ],
+        "nodeChanges": [
+          {
+            "node": "G",
+            "status": "added"
+          }
+        ],
+        "edgeChanges": []
+      }
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "admission-flow",
+        "title": "Move admission ahead of publication",
+        "takeaway": "Move the admission decision ahead of publication.",
+        "inspections": [
+          {
+            "section": "admission-flow",
+            "label": "Inspect Move admission ahead of publication"
+          }
+        ]
+      },
+      {
+        "section": "admission-sequence",
+        "title": "Keep the decision before the side effect",
+        "takeaway": "Keep the decision before the side effect.",
+        "inspections": [
+          {
+            "section": "admission-sequence",
+            "label": "Inspect Keep the decision before the side effect"
+          }
+        ]
+      }
+    ]
+  }
+}

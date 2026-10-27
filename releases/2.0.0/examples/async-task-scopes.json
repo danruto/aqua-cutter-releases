@@ -1,0 +1,583 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic asynchronous task scopes",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "tasks",
+      "type": "lifecycle",
+      "title": "Synthetic asynchronous task scopes",
+      "reason": "Explicit authored events, not measured task execution.",
+      "states": [
+        {
+          "id": "scope",
+          "label": "Scope context",
+          "happened": "Synthetic instrumentation",
+          "readReturns": "No runtime observation claimed"
+        }
+      ],
+      "tasks": {
+        "shortcuts": {
+          "cancellation": {
+            "stream": "request",
+            "seq": 9
+          },
+          "completion": {
+            "stream": "request",
+            "seq": 13
+          }
+        },
+        "streams": [
+          {
+            "id": "request",
+            "clock": "synthetic-task-clock",
+            "unit": "ns",
+            "state": "complete",
+            "exclusions": ["Authored demonstration, not measured runtime"],
+            "issues": [],
+            "events": [
+              {
+                "seq": 1,
+                "ns": "0",
+                "observation": {
+                  "kind": "header",
+                  "clock": "synthetic-task-clock",
+                  "unit": "ns",
+                  "exclusions": ["Authored demonstration, not measured runtime"]
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 2,
+                "ns": "100",
+                "observation": {
+                  "kind": "launch",
+                  "task": "scope",
+                  "label": "Request scope",
+                  "coordinator": true,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 3,
+                "ns": "200",
+                "observation": {
+                  "kind": "launch",
+                  "task": "delayed",
+                  "label": "Worker",
+                  "launcher": "scope",
+                  "owner": "scope",
+                  "cancelParent": "scope",
+                  "tracingParent": "scope",
+                  "coordinator": false,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 4,
+                "ns": "300",
+                "observation": {
+                  "kind": "launch",
+                  "task": "ignores",
+                  "label": "Worker",
+                  "launcher": "scope",
+                  "owner": "scope",
+                  "cancelParent": "scope",
+                  "tracingParent": "scope",
+                  "coordinator": false,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 5,
+                "ns": "400",
+                "observation": {
+                  "kind": "launch",
+                  "task": "completed",
+                  "label": "Completed child",
+                  "launcher": "scope",
+                  "owner": "scope",
+                  "coordinator": false,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 6,
+                "ns": "500",
+                "observation": {
+                  "kind": "settle",
+                  "task": "completed",
+                  "outcome": "fulfilled",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 7,
+                "ns": "600",
+                "observation": {
+                  "kind": "launch",
+                  "task": "audit",
+                  "label": "Detached audit",
+                  "launcher": "scope",
+                  "tracingParent": "scope",
+                  "coordinator": false,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 8,
+                "ns": "700",
+                "observation": {
+                  "kind": "await-start",
+                  "await": "await-audit",
+                  "waiter": "scope",
+                  "target": "audit",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 9,
+                "ns": "800",
+                "observation": {
+                  "kind": "cancel-request",
+                  "request": "stop",
+                  "actor": "scope",
+                  "targets": ["delayed", "ignores"],
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 10,
+                "ns": "900",
+                "observation": {
+                  "kind": "cancel-ignored",
+                  "request": "stop",
+                  "task": "ignores",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 11,
+                "ns": "1000",
+                "observation": {
+                  "kind": "cancel-ack",
+                  "request": "stop",
+                  "task": "delayed",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 12,
+                "ns": "1100",
+                "observation": {
+                  "kind": "settle",
+                  "task": "delayed",
+                  "outcome": "cancelled",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 13,
+                "ns": "1200",
+                "observation": {
+                  "kind": "settle",
+                  "task": "audit",
+                  "outcome": "fulfilled",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 14,
+                "ns": "1300",
+                "observation": {
+                  "kind": "await-end",
+                  "await": "await-audit",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 15,
+                "ns": "1400",
+                "observation": {
+                  "kind": "settle",
+                  "task": "ignores",
+                  "outcome": "rejected",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 16,
+                "ns": "1500",
+                "observation": {
+                  "kind": "settle",
+                  "task": "scope",
+                  "outcome": "fulfilled",
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              },
+              {
+                "seq": 17,
+                "ns": "1600",
+                "observation": {
+                  "kind": "complete"
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-request:0:4981"
+              }
+            ]
+          },
+          {
+            "id": "partial",
+            "clock": "independent-clock",
+            "unit": "ns",
+            "state": "partial",
+            "exclusions": ["No settlement supplied"],
+            "issues": [
+              {
+                "code": "incomplete-protocol",
+                "path": "/events"
+              }
+            ],
+            "events": [
+              {
+                "seq": 1,
+                "ns": "0",
+                "observation": {
+                  "kind": "header",
+                  "clock": "independent-clock",
+                  "unit": "ns",
+                  "exclusions": ["No settlement supplied"]
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-partial:0:474"
+              },
+              {
+                "seq": 2,
+                "ns": "1",
+                "observation": {
+                  "kind": "launch",
+                  "task": "open",
+                  "label": "Unresolved",
+                  "coordinator": false,
+                  "site": {
+                    "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                    "path": "fixture.ts",
+                    "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                    "startByte": 0,
+                    "endByte": 18,
+                    "excerpt": "await operation();",
+                    "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                  }
+                },
+                "evidence": "artifact:de000000000000000000000000000000:tasks-partial:0:474"
+              }
+            ]
+          },
+          {
+            "id": "invalid",
+            "state": "invalid",
+            "issues": [
+              {
+                "code": "invalid-protocol",
+                "path": "/events/0"
+              }
+            ],
+            "events": []
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:de000000000000000000000000000000",
+        "planDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": [
+          "Authored synthetic controls; no native capture, integrity verification or execution is claimed"
+        ],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:de000000000000000000000000000000:original-0:0:18",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:original-1:0:49",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "996a904f4108c7ca68c6b20beb3435ea8d5a0369005a199a0a8d32c11b2d4ccd",
+        "selectedDigest": "996a904f4108c7ca68c6b20beb3435ea8d5a0369005a199a0a8d32c11b2d4ccd",
+        "startByte": 0,
+        "endByte": 49,
+        "body": "Authored synthetic task observations, not capture",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:source-0:0:18",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:tasks-request:0:4981",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "79df9af374416284260e09a0b802475d35b75a23e12265d6390477b655038391",
+        "selectedDigest": "79df9af374416284260e09a0b802475d35b75a23e12265d6390477b655038391",
+        "startByte": 0,
+        "endByte": 4981,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":1,\"ns\":\"0\",\"observation\":{\"kind\":\"header\",\"clock\":\"synthetic-task-clock\",\"unit\":\"ns\",\"exclusions\":[\"Authored demonstration, not measured runtime\"]}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":2,\"ns\":\"100\",\"observation\":{\"kind\":\"launch\",\"task\":\"scope\",\"label\":\"Request scope\",\"coordinator\":true,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":3,\"ns\":\"200\",\"observation\":{\"kind\":\"launch\",\"task\":\"delayed\",\"label\":\"Worker\",\"launcher\":\"scope\",\"owner\":\"scope\",\"cancelParent\":\"scope\",\"tracingParent\":\"scope\",\"coordinator\":false,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":4,\"ns\":\"300\",\"observation\":{\"kind\":\"launch\",\"task\":\"ignores\",\"label\":\"Worker\",\"launcher\":\"scope\",\"owner\":\"scope\",\"cancelParent\":\"scope\",\"tracingParent\":\"scope\",\"coordinator\":false,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":5,\"ns\":\"400\",\"observation\":{\"kind\":\"launch\",\"task\":\"completed\",\"label\":\"Completed child\",\"launcher\":\"scope\",\"owner\":\"scope\",\"coordinator\":false,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":6,\"ns\":\"500\",\"observation\":{\"kind\":\"settle\",\"task\":\"completed\",\"outcome\":\"fulfilled\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":7,\"ns\":\"600\",\"observation\":{\"kind\":\"launch\",\"task\":\"audit\",\"label\":\"Detached audit\",\"launcher\":\"scope\",\"tracingParent\":\"scope\",\"coordinator\":false,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":8,\"ns\":\"700\",\"observation\":{\"kind\":\"await-start\",\"await\":\"await-audit\",\"waiter\":\"scope\",\"target\":\"audit\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":9,\"ns\":\"800\",\"observation\":{\"kind\":\"cancel-request\",\"request\":\"stop\",\"actor\":\"scope\",\"targets\":[\"delayed\",\"ignores\"],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":10,\"ns\":\"900\",\"observation\":{\"kind\":\"cancel-ignored\",\"request\":\"stop\",\"task\":\"ignores\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":11,\"ns\":\"1000\",\"observation\":{\"kind\":\"cancel-ack\",\"request\":\"stop\",\"task\":\"delayed\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":12,\"ns\":\"1100\",\"observation\":{\"kind\":\"settle\",\"task\":\"delayed\",\"outcome\":\"cancelled\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":13,\"ns\":\"1200\",\"observation\":{\"kind\":\"settle\",\"task\":\"audit\",\"outcome\":\"fulfilled\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":14,\"ns\":\"1300\",\"observation\":{\"kind\":\"await-end\",\"await\":\"await-audit\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":15,\"ns\":\"1400\",\"observation\":{\"kind\":\"settle\",\"task\":\"ignores\",\"outcome\":\"rejected\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":16,\"ns\":\"1500\",\"observation\":{\"kind\":\"settle\",\"task\":\"scope\",\"outcome\":\"fulfilled\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":17,\"ns\":\"1600\",\"observation\":{\"kind\":\"complete\"}}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:tasks-request-status:0:70",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "ea5beff286d78ede155466a6aee0cb6f552b26fc7ca0dfe05bf47720166a61e3",
+        "selectedDigest": "ea5beff286d78ede155466a6aee0cb6f552b26fc7ca0dfe05bf47720166a61e3",
+        "startByte": 0,
+        "endByte": 70,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"complete\",\"records\":17,\"bytes\":4981}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:tasks-partial:0:474",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "5f8ed439698bdc1346b8e5f7a32b580cb18e9d52eb68755e67139e6ba22ea311",
+        "selectedDigest": "5f8ed439698bdc1346b8e5f7a32b580cb18e9d52eb68755e67139e6ba22ea311",
+        "startByte": 0,
+        "endByte": 474,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"partial\",\"seq\":1,\"ns\":\"0\",\"observation\":{\"kind\":\"header\",\"clock\":\"independent-clock\",\"unit\":\"ns\",\"exclusions\":[\"No settlement supplied\"]}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"partial\",\"seq\":2,\"ns\":\"1\",\"observation\":{\"kind\":\"launch\",\"task\":\"open\",\"label\":\"Unresolved\",\"coordinator\":false,\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:tasks-partial-status:0:70",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "9762c894ae26faec05875b3ee11d776c7e4f196efd8e2524dd6bd1b0c72a58bb",
+        "selectedDigest": "9762c894ae26faec05875b3ee11d776c7e4f196efd8e2524dd6bd1b0c72a58bb",
+        "startByte": 0,
+        "endByte": 70,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"incomplete\",\"records\":2,\"bytes\":474}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "tasks",
+        "title": "Cancellation is not settlement",
+        "takeaway": "Follow requests, acknowledgments, awaits and independent task relationships.",
+        "inspections": [
+          {
+            "section": "tasks",
+            "label": "Inspect the full production reader"
+          }
+        ]
+      }
+    ]
+  }
+}
