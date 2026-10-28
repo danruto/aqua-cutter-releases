@@ -1,5 +1,5 @@
 {
   "manifestVersion": 1,
-  "rendererVersion": "1.2.1",
-  "manifest": "releases/1.2.1/manifest.json"
+  "rendererVersion": "2.0.0",
+  "manifest": "releases/2.0.0/manifest.json"
 }
