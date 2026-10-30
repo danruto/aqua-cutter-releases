@@ -1,0 +1,453 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic public surface delta",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "surface",
+      "type": "contracts",
+      "title": "Synthetic public surface delta",
+      "reason": "Independent native-shaped compiler outcomes, not runtime compatibility.",
+      "contracts": [
+        {
+          "id": "scope",
+          "title": "Synthetic scope",
+          "spec": "Authored declarations and consumer outcomes only; no compiler execution claimed."
+        }
+      ],
+      "surface": {
+        "before": {
+          "state": "complete",
+          "diagnostics": [],
+          "exports": [
+            {
+              "key": "ts:api.ts:quote:declaration",
+              "name": "quote",
+              "owner": "api.ts",
+              "kind": "declaration",
+              "signature": "export function quote(n: number): number;",
+              "sourceIdentity": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:before",
+              "path": "quote.ts",
+              "sha256": "22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00",
+              "startByte": 0,
+              "endByte": 41,
+              "excerpt": "export function quote(n: number): number;",
+              "evidence": "artifact:de000000000000000000000000000000:before-quote:0:41"
+            },
+            {
+              "key": "ts:api.ts:legacy:declaration",
+              "name": "legacy",
+              "owner": "api.ts",
+              "kind": "declaration",
+              "signature": "export const legacy: boolean;",
+              "sourceIdentity": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:before",
+              "path": "legacy.ts",
+              "sha256": "51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee",
+              "startByte": 0,
+              "endByte": 29,
+              "excerpt": "export const legacy: boolean;",
+              "evidence": "artifact:de000000000000000000000000000000:before-legacy:0:29"
+            }
+          ]
+        },
+        "after": {
+          "state": "complete",
+          "diagnostics": [],
+          "exports": [
+            {
+              "key": "ts:api.ts:quote:declaration",
+              "name": "quote",
+              "owner": "api.ts",
+              "kind": "declaration",
+              "signature": "export function quote(n: string): number;",
+              "sourceIdentity": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:after",
+              "path": "quote.ts",
+              "sha256": "71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7",
+              "startByte": 0,
+              "endByte": 41,
+              "excerpt": "export function quote(n: string): number;",
+              "evidence": "artifact:de000000000000000000000000000000:after-quote:0:41"
+            },
+            {
+              "key": "ts:api.ts:helper:declaration",
+              "name": "helper",
+              "owner": "api.ts",
+              "kind": "declaration",
+              "signature": "export const helper: boolean;",
+              "sourceIdentity": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:after",
+              "path": "helper.ts",
+              "sha256": "25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c",
+              "startByte": 0,
+              "endByte": 29,
+              "excerpt": "export const helper: boolean;",
+              "evidence": "artifact:de000000000000000000000000000000:after-helper:0:29"
+            }
+          ]
+        },
+        "uses": [
+          {
+            "id": "request-client",
+            "direction": "request",
+            "before": "accepted",
+            "after": "rejected",
+            "evidence": [
+              "artifact:de000000000000000000000000000000:complete-before-result:0:1052",
+              "artifact:de000000000000000000000000000000:complete-after-result:0:1103"
+            ],
+            "diagnostics": {
+              "before": [],
+              "after": ["Synthetic TS2345: number is not assignable to string"]
+            }
+          },
+          {
+            "id": "dynamic-client",
+            "direction": "request",
+            "before": "accepted",
+            "after": "accepted",
+            "evidence": [
+              "artifact:de000000000000000000000000000000:complete-before-result:0:1052",
+              "artifact:de000000000000000000000000000000:complete-after-result:0:1103"
+            ],
+            "diagnostics": {
+              "before": [],
+              "after": []
+            }
+          },
+          {
+            "id": "reader",
+            "direction": "response",
+            "before": "accepted",
+            "after": "accepted",
+            "evidence": [
+              "artifact:de000000000000000000000000000000:complete-before-result:0:1052",
+              "artifact:de000000000000000000000000000000:complete-after-result:0:1103"
+            ],
+            "diagnostics": {
+              "before": [],
+              "after": []
+            }
+          },
+          {
+            "id": "unselected-dependency",
+            "direction": "other",
+            "before": "unknown",
+            "after": "unknown",
+            "evidence": [
+              "artifact:de000000000000000000000000000000:complete-before-result:0:1052",
+              "artifact:de000000000000000000000000000000:complete-after-result:0:1103"
+            ],
+            "diagnostics": {
+              "before": ["Dependency unavailable"],
+              "after": ["Dependency unavailable"]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:de000000000000000000000000000000",
+        "planDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:before",
+            "commit": "0000000000000000000000000000000000000000"
+          },
+          {
+            "id": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:after",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": [
+          "Authored synthetic controls; no native capture, integrity verification or execution is claimed"
+        ],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:de000000000000000000000000000000:before-quote:0:41",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00",
+        "selectedDigest": "22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00",
+        "startByte": 0,
+        "endByte": 41,
+        "body": "export function quote(n: number): number;",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:before"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:before-legacy:0:29",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee",
+        "selectedDigest": "51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee",
+        "startByte": 0,
+        "endByte": 29,
+        "body": "export const legacy: boolean;",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:before"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:complete-before-result:0:1052",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "893ed53713a43b55879c88cba2a3d6864b7c969bcac9ff9be63d5eb968c6040e",
+        "selectedDigest": "893ed53713a43b55879c88cba2a3d6864b7c969bcac9ff9be63d5eb968c6040e",
+        "startByte": 0,
+        "endByte": 1052,
+        "body": "{\"formatVersion\":\"1.0.0\",\"source\":\"before\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: number): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00\",\"startByte\":0,\"endByte\":41},\"artifact\":\"before-quote\"},{\"key\":\"ts:api.ts:legacy:declaration\",\"name\":\"legacy\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const legacy: boolean;\",\"site\":{\"path\":\"legacy.ts\",\"sha256\":\"51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee\",\"startByte\":0,\"endByte\":29},\"artifact\":\"before-legacy\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:complete-before-result-scenario:0:1151"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:before-quote:0:41"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:before-legacy:0:29"
+          }
+        ],
+        "transformation": "synthetic-surface-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:after-quote:0:41",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7",
+        "selectedDigest": "71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7",
+        "startByte": 0,
+        "endByte": 41,
+        "body": "export function quote(n: string): number;",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:after"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:after-helper:0:29",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c",
+        "selectedDigest": "25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c",
+        "startByte": 0,
+        "endByte": 29,
+        "body": "export const helper: boolean;",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:after"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:complete-after-result:0:1103",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "fa3541c376d915f409e5241bb701656a7a74de449155ee98af9bf55563e07f3a",
+        "selectedDigest": "fa3541c376d915f409e5241bb701656a7a74de449155ee98af9bf55563e07f3a",
+        "startByte": 0,
+        "endByte": 1103,
+        "body": "{\"formatVersion\":\"1.0.0\",\"source\":\"after\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: string): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7\",\"startByte\":0,\"endByte\":41},\"artifact\":\"after-quote\"},{\"key\":\"ts:api.ts:helper:declaration\",\"name\":\"helper\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const helper: boolean;\",\"site\":{\"path\":\"helper.ts\",\"sha256\":\"25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c\",\"startByte\":0,\"endByte\":29},\"artifact\":\"after-helper\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"rejected\",\"diagnostics\":[\"Synthetic TS2345: number is not assignable to string\"]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:complete-after-result-scenario:0:1202"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:after-quote:0:41"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:after-helper:0:29"
+          }
+        ],
+        "transformation": "synthetic-surface-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:partial-before-result:0:1052",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "893ed53713a43b55879c88cba2a3d6864b7c969bcac9ff9be63d5eb968c6040e",
+        "selectedDigest": "893ed53713a43b55879c88cba2a3d6864b7c969bcac9ff9be63d5eb968c6040e",
+        "startByte": 0,
+        "endByte": 1052,
+        "body": "{\"formatVersion\":\"1.0.0\",\"source\":\"before\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: number): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00\",\"startByte\":0,\"endByte\":41},\"artifact\":\"before-quote\"},{\"key\":\"ts:api.ts:legacy:declaration\",\"name\":\"legacy\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const legacy: boolean;\",\"site\":{\"path\":\"legacy.ts\",\"sha256\":\"51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee\",\"startByte\":0,\"endByte\":29},\"artifact\":\"before-legacy\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:partial-before-result-scenario:0:1151"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:before-quote:0:41"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:before-legacy:0:29"
+          }
+        ],
+        "transformation": "synthetic-surface-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:partial-after-result:0:1243",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "21a1cb7e5236b0cfe1cb894c94e58a1f6d363eb5b355ba78eb9d2b5af8aad028",
+        "selectedDigest": "21a1cb7e5236b0cfe1cb894c94e58a1f6d363eb5b355ba78eb9d2b5af8aad028",
+        "startByte": 0,
+        "endByte": 1243,
+        "body": "{\"formatVersion\":\"1.0.0\",\"source\":\"after\",\"state\":\"partial\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: string): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7\",\"startByte\":0,\"endByte\":41},\"artifact\":\"after-quote\"},{\"key\":\"ts:api.ts:helper:declaration\",\"name\":\"helper\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const helper: boolean;\",\"site\":{\"path\":\"helper.ts\",\"sha256\":\"25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c\",\"startByte\":0,\"endByte\":29},\"artifact\":\"after-helper\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"rejected\",\"diagnostics\":[\"Synthetic TS2345: number is not assignable to string\"]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[{\"code\":\"boundary\",\"path\":\"api.ts\",\"message\":\"Synthetic recoverable unresolved declaration type; missing legacy remains unconfirmed absence\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:partial-after-result-scenario:0:1342"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:after-quote:0:41"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:after-helper:0:29"
+          }
+        ],
+        "transformation": "synthetic-surface-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:complete-before-result-scenario:0:1151",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "f642ded7ec32e92643ebf58e615d3d3e464d6db04264c2c2826b248cc744f4b6",
+        "selectedDigest": "f642ded7ec32e92643ebf58e615d3d3e464d6db04264c2c2826b248cc744f4b6",
+        "startByte": 0,
+        "endByte": 1151,
+        "body": "{\"qualification\":\"Manually precomputed synthetic compiler fixture; no compiler executed\",\"result\":{\"formatVersion\":\"1.0.0\",\"source\":\"before\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: number): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00\",\"startByte\":0,\"endByte\":41},\"artifact\":\"before-quote\"},{\"key\":\"ts:api.ts:legacy:declaration\",\"name\":\"legacy\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const legacy: boolean;\",\"site\":{\"path\":\"legacy.ts\",\"sha256\":\"51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee\",\"startByte\":0,\"endByte\":29},\"artifact\":\"before-legacy\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:complete-after-result-scenario:0:1202",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "4b938fa899ba2eff9d1d41f48819b0ef303caa74860e3d13f536d27ea3e9d335",
+        "selectedDigest": "4b938fa899ba2eff9d1d41f48819b0ef303caa74860e3d13f536d27ea3e9d335",
+        "startByte": 0,
+        "endByte": 1202,
+        "body": "{\"qualification\":\"Manually precomputed synthetic compiler fixture; no compiler executed\",\"result\":{\"formatVersion\":\"1.0.0\",\"source\":\"after\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: string): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7\",\"startByte\":0,\"endByte\":41},\"artifact\":\"after-quote\"},{\"key\":\"ts:api.ts:helper:declaration\",\"name\":\"helper\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const helper: boolean;\",\"site\":{\"path\":\"helper.ts\",\"sha256\":\"25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c\",\"startByte\":0,\"endByte\":29},\"artifact\":\"after-helper\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"rejected\",\"diagnostics\":[\"Synthetic TS2345: number is not assignable to string\"]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:partial-before-result-scenario:0:1151",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "f642ded7ec32e92643ebf58e615d3d3e464d6db04264c2c2826b248cc744f4b6",
+        "selectedDigest": "f642ded7ec32e92643ebf58e615d3d3e464d6db04264c2c2826b248cc744f4b6",
+        "startByte": 0,
+        "endByte": 1151,
+        "body": "{\"qualification\":\"Manually precomputed synthetic compiler fixture; no compiler executed\",\"result\":{\"formatVersion\":\"1.0.0\",\"source\":\"before\",\"state\":\"complete\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: number): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"22947611bd24dcaa721cf3798c46ab157439ff6d979e45a37b2c6141969dbc00\",\"startByte\":0,\"endByte\":41},\"artifact\":\"before-quote\"},{\"key\":\"ts:api.ts:legacy:declaration\",\"name\":\"legacy\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const legacy: boolean;\",\"site\":{\"path\":\"legacy.ts\",\"sha256\":\"51202025cca054d750b3e5f73fdc478f48f64e3462d89f2d04250a963fd8b5ee\",\"startByte\":0,\"endByte\":29},\"artifact\":\"before-legacy\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[]}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:partial-after-result-scenario:0:1342",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "6ec64c7447043105294e7d97b072d6951777943da5e78d595d65631b4833738b",
+        "selectedDigest": "6ec64c7447043105294e7d97b072d6951777943da5e78d595d65631b4833738b",
+        "startByte": 0,
+        "endByte": 1342,
+        "body": "{\"qualification\":\"Manually precomputed synthetic compiler fixture; no compiler executed\",\"result\":{\"formatVersion\":\"1.0.0\",\"source\":\"after\",\"state\":\"partial\",\"exports\":[{\"key\":\"ts:api.ts:quote:declaration\",\"name\":\"quote\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export function quote(n: string): number;\",\"site\":{\"path\":\"quote.ts\",\"sha256\":\"71d40324ce992dd2c289b730ae178b50e5e35a9dd422360560295db4a31526e7\",\"startByte\":0,\"endByte\":41},\"artifact\":\"after-quote\"},{\"key\":\"ts:api.ts:helper:declaration\",\"name\":\"helper\",\"owner\":\"api.ts\",\"kind\":\"declaration\",\"signature\":\"export const helper: boolean;\",\"site\":{\"path\":\"helper.ts\",\"sha256\":\"25421fcf7a1df8d9d2a2f3b6e5b772047ca88c447d9cf493ee25dd5e70034c3c\",\"startByte\":0,\"endByte\":29},\"artifact\":\"after-helper\"}],\"consumers\":[{\"id\":\"request-client\",\"direction\":\"request\",\"state\":\"rejected\",\"diagnostics\":[\"Synthetic TS2345: number is not assignable to string\"]},{\"id\":\"dynamic-client\",\"direction\":\"request\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"reader\",\"direction\":\"response\",\"state\":\"accepted\",\"diagnostics\":[]},{\"id\":\"unselected-dependency\",\"direction\":\"other\",\"state\":\"unknown\",\"diagnostics\":[\"Dependency unavailable\"]}],\"diagnostics\":[{\"code\":\"boundary\",\"path\":\"api.ts\",\"message\":\"Synthetic recoverable unresolved declaration type; missing legacy remains unconfirmed absence\"}]}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "surface",
+        "title": "Public shape and consumer acceptance differ",
+        "takeaway": "Apply the supplied candidate; partial inventories do not prove absence.",
+        "inspections": [
+          {
+            "section": "surface",
+            "label": "Inspect the full production reader"
+          }
+        ]
+      }
+    ]
+  }
+}

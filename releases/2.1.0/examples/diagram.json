@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "2.1.0",
+  "title": "Entity relationship diagram",
+  "lead": "Synthetic example for reviewing one built-in diagram type in the production reader.",
+  "changes": ["Inspect the diagram reader", "Follow the Tour chapter and return"],
+  "references": [
+    {
+      "label": "Synthetic example",
+      "value": "Fixed er variant"
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "diagram",
+        "title": "Order entities",
+        "takeaway": "A customer places orders.",
+        "inspections": [
+          {
+            "section": "diagram",
+            "label": "Inspect Order entities"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "diagram",
+      "type": "diagram",
+      "title": "Order entities",
+      "reason": "Shows a Entity relationship diagram through the shared reader.",
+      "diagram": {
+        "kind": "er",
+        "source": "erDiagram\n  CUSTOMER ||--o{ ORDER : places\n  ORDER ||--|{ LINE_ITEM : contains\n  PRODUCT |o..o{ LINE_ITEM : describes\n  CUSTOMER[\"Customer account\"] {\n    string id PK\n    string email UK \"login address\"\n  }\n  ORDER {\n    string id PK\n    string customerId FK\n  }\n  LINE_ITEM {\n    string orderId PK, FK\n    int quantity\n  }",
+        "description": "Entity relationship diagram: customers place orders containing line items.",
+        "steps": [
+          "A customer places orders.",
+          "Each order contains line items.",
+          "Products are referenced."
+        ],
+        "nodeChanges": [
+          {
+            "node": "PRODUCT",
+            "status": "added"
+          }
+        ],
+        "edgeChanges": [
+          {
+            "edge": {
+              "from": "PRODUCT",
+              "to": "LINE_ITEM",
+              "label": "describes",
+              "occurrence": 0
+            },
+            "status": "added"
+          }
+        ],
+        "initialFocus": {
+          "kind": "node",
+          "node": "CUSTOMER"
+        }
+      }
+    },
+    {
+      "id": "diagram-tour",
+      "type": "tour",
+      "title": "Diagram tour",
+      "reason": "A section-level chapter that opens the diagram reader and returns.",
+      "chapters": [
+        {
+          "id": "open-diagram",
+          "title": "Order entities",
+          "body": "Entity relationship diagram: customers place orders containing line items.",
+          "target": "diagram"
+        }
+      ]
+    }
+  ]
+}

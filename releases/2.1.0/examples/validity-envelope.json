@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic validity envelope",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "validity",
+      "type": "contracts",
+      "title": "Synthetic validity envelope",
+      "reason": "Precomputed selected corpus only; no schema compiler runs in the browser.",
+      "contracts": [
+        {
+          "id": "old-provider",
+          "title": "old-provider",
+          "kind": "json",
+          "spec": "{\"$id\":\"https://selected.invalid/old-provider.json\",\"type\":\"object\",\"required\":[\"count\"],\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":8}}}"
+        },
+        {
+          "id": "new-provider",
+          "title": "new-provider",
+          "kind": "json",
+          "spec": "{\"$id\":\"https://selected.invalid/new-provider.json\",\"type\":\"object\",\"required\":[\"count\"],\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":2,\"maximum\":8}}}"
+        },
+        {
+          "id": "new-producer",
+          "title": "new-producer",
+          "kind": "json",
+          "spec": "{\"$id\":\"https://selected.invalid/new-producer.json\",\"type\":\"object\",\"required\":[\"phase\"],\"properties\":{\"phase\":{\"type\":\"string\",\"enum\":[\"ready\",\"queued\",\"busy\"]}}}"
+        },
+        {
+          "id": "old-reader",
+          "title": "old-reader",
+          "kind": "json",
+          "spec": "{\"$id\":\"https://selected.invalid/old-reader.json\",\"type\":\"object\",\"required\":[\"phase\"],\"properties\":{\"phase\":{\"type\":\"string\",\"enum\":[\"ready\",\"queued\"]}}}"
+        },
+        {
+          "id": "intersection",
+          "title": "intersection",
+          "kind": "json",
+          "spec": "{\"allOf\":[{\"$ref\":\"https://selected.invalid/new-producer.json\"},{\"$ref\":\"https://selected.invalid/old-reader.json\"}]}"
+        }
+      ],
+      "validity": {
+        "intentEvidence": "artifact:de000000000000000000000000000000:main-intent:0:1925",
+        "reportEvidence": "artifact:de000000000000000000000000000000:main-report:0:5595",
+        "pairs": {
+          "request": {
+            "oldProvider": "old-provider",
+            "newProvider": "new-provider"
+          },
+          "response": {
+            "newProducer": "new-producer",
+            "oldReader": "old-reader"
+          }
+        },
+        "alternatives": [
+          {
+            "id": "contract-intersection",
+            "newProducer": "intersection"
+          }
+        ],
+        "diagramProperties": {
+          "request": "count",
+          "response": "phase"
+        },
+        "schemas": [
+          {
+            "id": "old-provider",
+            "dialect": "2020-12",
+            "state": "ready",
+            "evidence": "artifact:de000000000000000000000000000000:old-provider:0:155"
+          },
+          {
+            "id": "new-provider",
+            "dialect": "2020-12",
+            "state": "ready",
+            "evidence": "artifact:de000000000000000000000000000000:new-provider:0:155"
+          },
+          {
+            "id": "new-producer",
+            "dialect": "2020-12",
+            "state": "ready",
+            "evidence": "artifact:de000000000000000000000000000000:new-producer:0:163"
+          },
+          {
+            "id": "old-reader",
+            "dialect": "2020-12",
+            "state": "ready",
+            "evidence": "artifact:de000000000000000000000000000000:old-reader:0:154"
+          },
+          {
+            "id": "intersection",
+            "dialect": "2020-12",
+            "state": "ready",
+            "evidence": "artifact:de000000000000000000000000000000:intersection:0:117"
+          }
+        ],
+        "witnesses": [
+          {
+            "id": "small",
+            "direction": "request",
+            "origin": "supplied",
+            "decode": "decoded",
+            "evidence": "artifact:de000000000000000000000000000000:small:0:11"
+          },
+          {
+            "id": "request-observed",
+            "direction": "request",
+            "origin": "handler-request",
+            "decode": "decoded",
+            "evidence": "artifact:de000000000000000000000000000000:request-observed:0:11",
+            "metadataEvidence": "artifact:de000000000000000000000000000000:request-metadata:0:220"
+          },
+          {
+            "id": "precision",
+            "direction": "request",
+            "origin": "supplied",
+            "decode": "unsupported-precision",
+            "evidence": "artifact:de000000000000000000000000000000:precision:0:26"
+          },
+          {
+            "id": "ready",
+            "direction": "response",
+            "origin": "supplied",
+            "decode": "decoded",
+            "evidence": "artifact:de000000000000000000000000000000:ready:0:17"
+          },
+          {
+            "id": "response-observed",
+            "direction": "response",
+            "origin": "handler-response",
+            "decode": "decoded",
+            "evidence": "artifact:de000000000000000000000000000000:response-observed:0:16",
+            "metadataEvidence": "artifact:de000000000000000000000000000000:response-metadata:0:222"
+          },
+          {
+            "id": "custom-codec",
+            "direction": "response",
+            "origin": "handler-response",
+            "decode": "malformed",
+            "evidence": "artifact:de000000000000000000000000000000:custom-codec:0:10",
+            "metadataEvidence": "artifact:de000000000000000000000000000000:codec-metadata:0:201"
+          }
+        ],
+        "evaluations": [
+          {
+            "witness": "small",
+            "schema": "old-provider",
+            "result": "valid"
+          },
+          {
+            "witness": "small",
+            "schema": "new-provider",
+            "result": "invalid",
+            "error": {
+              "instancePath": "/count",
+              "schemaPath": "#/properties/count/minimum",
+              "keyword": "minimum"
+            }
+          },
+          {
+            "witness": "small",
+            "schema": "new-producer",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "small",
+            "schema": "old-reader",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "small",
+            "schema": "intersection",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "request-observed",
+            "schema": "old-provider",
+            "result": "valid"
+          },
+          {
+            "witness": "request-observed",
+            "schema": "new-provider",
+            "result": "valid"
+          },
+          {
+            "witness": "request-observed",
+            "schema": "new-producer",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "request-observed",
+            "schema": "old-reader",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "request-observed",
+            "schema": "intersection",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "precision",
+            "schema": "old-provider",
+            "result": "unavailable"
+          },
+          {
+            "witness": "precision",
+            "schema": "new-provider",
+            "result": "unavailable"
+          },
+          {
+            "witness": "precision",
+            "schema": "new-producer",
+            "result": "unavailable"
+          },
+          {
+            "witness": "precision",
+            "schema": "old-reader",
+            "result": "unavailable"
+          },
+          {
+            "witness": "precision",
+            "schema": "intersection",
+            "result": "unavailable"
+          },
+          {
+            "witness": "ready",
+            "schema": "old-provider",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "ready",
+            "schema": "new-provider",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "ready",
+            "schema": "new-producer",
+            "result": "valid"
+          },
+          {
+            "witness": "ready",
+            "schema": "old-reader",
+            "result": "valid"
+          },
+          {
+            "witness": "ready",
+            "schema": "intersection",
+            "result": "valid"
+          },
+          {
+            "witness": "response-observed",
+            "schema": "old-provider",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "response-observed",
+            "schema": "new-provider",
+            "result": "invalid",
+            "error": {
+              "instancePath": "",
+              "schemaPath": "#/required",
+              "keyword": "required"
+            }
+          },
+          {
+            "witness": "response-observed",
+            "schema": "new-producer",
+            "result": "valid"
+          },
+          {
+            "witness": "response-observed",
+            "schema": "old-reader",
+            "result": "invalid",
+            "error": {
+              "instancePath": "/phase",
+              "schemaPath": "#/properties/phase/enum",
+              "keyword": "enum"
+            }
+          },
+          {
+            "witness": "response-observed",
+            "schema": "intersection",
+            "result": "invalid",
+            "error": {
+              "instancePath": "/phase",
+              "schemaPath": "https://selected.invalid/old-reader.json/properties/phase/enum",
+              "keyword": "enum"
+            }
+          },
+          {
+            "witness": "custom-codec",
+            "schema": "old-provider",
+            "result": "unavailable"
+          },
+          {
+            "witness": "custom-codec",
+            "schema": "new-provider",
+            "result": "unavailable"
+          },
+          {
+            "witness": "custom-codec",
+            "schema": "new-producer",
+            "result": "unavailable"
+          },
+          {
+            "witness": "custom-codec",
+            "schema": "old-reader",
+            "result": "unavailable"
+          },
+          {
+            "witness": "custom-codec",
+            "schema": "intersection",
+            "result": "unavailable"
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:de000000000000000000000000000000",
+        "planDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas",
+            "commit": "0000000000000000000000000000000000000000"
+          },
+          {
+            "id": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixtures",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": [
+          "Authored synthetic controls; no native capture, integrity verification or execution is claimed"
+        ],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:de000000000000000000000000000000:old-provider:0:155",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c",
+        "selectedDigest": "2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c",
+        "startByte": 0,
+        "endByte": 155,
+        "body": "{\"$id\":\"https://selected.invalid/old-provider.json\",\"type\":\"object\",\"required\":[\"count\"],\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":0,\"maximum\":8}}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:new-provider:0:155",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542",
+        "selectedDigest": "8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542",
+        "startByte": 0,
+        "endByte": 155,
+        "body": "{\"$id\":\"https://selected.invalid/new-provider.json\",\"type\":\"object\",\"required\":[\"count\"],\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":2,\"maximum\":8}}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:new-producer:0:163",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6",
+        "selectedDigest": "37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6",
+        "startByte": 0,
+        "endByte": 163,
+        "body": "{\"$id\":\"https://selected.invalid/new-producer.json\",\"type\":\"object\",\"required\":[\"phase\"],\"properties\":{\"phase\":{\"type\":\"string\",\"enum\":[\"ready\",\"queued\",\"busy\"]}}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:old-reader:0:154",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05",
+        "selectedDigest": "4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05",
+        "startByte": 0,
+        "endByte": 154,
+        "body": "{\"$id\":\"https://selected.invalid/old-reader.json\",\"type\":\"object\",\"required\":[\"phase\"],\"properties\":{\"phase\":{\"type\":\"string\",\"enum\":[\"ready\",\"queued\"]}}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:intersection:0:117",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3",
+        "selectedDigest": "be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3",
+        "startByte": 0,
+        "endByte": 117,
+        "body": "{\"allOf\":[{\"$ref\":\"https://selected.invalid/new-producer.json\"},{\"$ref\":\"https://selected.invalid/old-reader.json\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:schemas"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:small:0:11",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661",
+        "selectedDigest": "6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661",
+        "startByte": 0,
+        "endByte": 11,
+        "body": "{\"count\":1}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixtures"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:request-metadata:0:220",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "cc9b6cfce149e3e53648ddb354564efb4b037ba60ec1bce966dcca7d23e10c75",
+        "selectedDigest": "cc9b6cfce149e3e53648ddb354564efb4b037ba60ec1bce966dcca7d23e10c75",
+        "startByte": 0,
+        "endByte": 220,
+        "body": "{\"id\":\"request-observed\",\"language\":\"ts\",\"state\":\"complete\",\"requestArtifact\":\"request-observed\",\"responseArtifact\":\"request-observed-response\",\"status\":200,\"headers\":[{\"name\":\"content-type\",\"value\":\"application/json\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:request-observed:0:11",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "a5fb8eb97856970b61d9f466deb64f7659e835ee8ec5497003b78438fe888cad",
+        "selectedDigest": "a5fb8eb97856970b61d9f466deb64f7659e835ee8ec5497003b78438fe888cad",
+        "startByte": 0,
+        "endByte": 11,
+        "body": "{\"count\":4}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:precision:0:26",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "622c8e16f51719fd49b7d44ed42441c245d56d0bd903d891af054b10636de95b",
+        "selectedDigest": "622c8e16f51719fd49b7d44ed42441c245d56d0bd903d891af054b10636de95b",
+        "startByte": 0,
+        "endByte": 26,
+        "body": "{\"count\":9007199254740993}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixtures"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:ready:0:17",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "90593b5d5814c41932e1b8bef45de63949ecb021dde26d6bacf931324a67de23",
+        "selectedDigest": "90593b5d5814c41932e1b8bef45de63949ecb021dde26d6bacf931324a67de23",
+        "startByte": 0,
+        "endByte": 17,
+        "body": "{\"phase\":\"ready\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixtures"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:response-metadata:0:222",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "855733b1f835582c26d4169ee236d91d5425e157e34232a527de1dca63c047e5",
+        "selectedDigest": "855733b1f835582c26d4169ee236d91d5425e157e34232a527de1dca63c047e5",
+        "startByte": 0,
+        "endByte": 222,
+        "body": "{\"id\":\"response-observed\",\"language\":\"ts\",\"state\":\"complete\",\"requestArtifact\":\"response-observed-request\",\"responseArtifact\":\"response-observed\",\"status\":200,\"headers\":[{\"name\":\"content-type\",\"value\":\"application/json\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:response-observed:0:16",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "98d57916e96a823c6f1bc4ea49d2e0a99551719f213cfcbe139f18a3abb08673",
+        "selectedDigest": "98d57916e96a823c6f1bc4ea49d2e0a99551719f213cfcbe139f18a3abb08673",
+        "startByte": 0,
+        "endByte": 16,
+        "body": "{\"phase\":\"busy\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:codec-metadata:0:201",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "f88ca6d54c12868415b42263fb90fc15cf191d3da0da60a0fe6485b333f9d561",
+        "selectedDigest": "f88ca6d54c12868415b42263fb90fc15cf191d3da0da60a0fe6485b333f9d561",
+        "startByte": 0,
+        "endByte": 201,
+        "body": "{\"id\":\"custom-codec\",\"language\":\"ts\",\"state\":\"complete\",\"requestArtifact\":\"custom-codec-request\",\"responseArtifact\":\"custom-codec\",\"status\":200,\"headers\":[{\"name\":\"content-type\",\"value\":\"text/plain\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:custom-codec:0:10",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "0bbf1dc7c6df9c4a21ac7387545dd2f99f1dcf3296508e22848a54f3ed668e8b",
+        "selectedDigest": "0bbf1dc7c6df9c4a21ac7387545dd2f99f1dcf3296508e22848a54f3ed668e8b",
+        "startByte": 0,
+        "endByte": 10,
+        "body": "phase=busy",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:duplicate:0:32",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "0a605477461777ed0cc7550cf3e3963e594e7063afbf04929fda2b3a80f550d5",
+        "selectedDigest": "0a605477461777ed0cc7550cf3e3963e594e7063afbf04929fda2b3a80f550d5",
+        "startByte": 0,
+        "endByte": 32,
+        "body": "{\"phase\":\"ready\",\"phase\":\"busy\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixtures"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:binary-display:0:4",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "fe7cbcaad10cd2cf801edac36b34e40eafdf90feba4c30015fa525ebcf9ab975",
+        "selectedDigest": "fe7cbcaad10cd2cf801edac36b34e40eafdf90feba4c30015fa525ebcf9ab975",
+        "startByte": 0,
+        "endByte": 4,
+        "body": "ff00",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "omitted",
+            "originDigest": "ea5dbf9596d187e9500f23e9a680109475341cf4e81f7e043f7d97152c10772f",
+            "reason": "unselected"
+          }
+        ],
+        "transformation": "hex-utf8-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:failed-metadata:0:119",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "14dd81a4a1429ece866392fcfd01a249bbfa07facdc97a0cf40fb628c8edba02",
+        "selectedDigest": "14dd81a4a1429ece866392fcfd01a249bbfa07facdc97a0cf40fb628c8edba02",
+        "startByte": 0,
+        "endByte": 119,
+        "body": "{\"id\":\"failed-invocation\",\"language\":\"ts\",\"state\":\"failed\",\"requestArtifact\":\"failed-request\",\"issue\":\"handler-failed\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:main-intent:0:1925",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "08c38b536bb3b7506fb8ebea168a8708fdede2f59f4592aff26d1ae386b25811",
+        "selectedDigest": "08c38b536bb3b7506fb8ebea168a8708fdede2f59f4592aff26d1ae386b25811",
+        "startByte": 0,
+        "endByte": 1925,
+        "body": "{\"formatVersion\":\"1.0.0\",\"schemas\":[{\"id\":\"old-provider\",\"source\":\"schemas\",\"path\":\"old-provider.json\",\"artifact\":\"old-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-provider\",\"source\":\"schemas\",\"path\":\"new-provider.json\",\"artifact\":\"new-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-producer\",\"source\":\"schemas\",\"path\":\"new-producer.json\",\"artifact\":\"new-producer\",\"dialect\":\"2020-12\"},{\"id\":\"old-reader\",\"source\":\"schemas\",\"path\":\"old-reader.json\",\"artifact\":\"old-reader\",\"dialect\":\"2020-12\"},{\"id\":\"intersection\",\"source\":\"schemas\",\"path\":\"intersection.json\",\"artifact\":\"intersection\",\"dialect\":\"2020-12\"}],\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"witnesses\":[{\"id\":\"small\",\"direction\":\"request\",\"origin\":\"supplied\",\"artifact\":\"small\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"small.json\"}},{\"id\":\"request-observed\",\"direction\":\"request\",\"origin\":\"handler-request\",\"artifact\":\"request-observed\",\"body\":{\"kind\":\"output\",\"path\":\"request-observed.json\"},\"metadataArtifact\":\"request-metadata\"},{\"id\":\"precision\",\"direction\":\"request\",\"origin\":\"supplied\",\"artifact\":\"precision\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"precision.json\"}},{\"id\":\"ready\",\"direction\":\"response\",\"origin\":\"supplied\",\"artifact\":\"ready\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"ready.json\"}},{\"id\":\"response-observed\",\"direction\":\"response\",\"origin\":\"handler-response\",\"artifact\":\"response-observed\",\"body\":{\"kind\":\"output\",\"path\":\"response-observed.json\"},\"metadataArtifact\":\"response-metadata\"},{\"id\":\"custom-codec\",\"direction\":\"response\",\"origin\":\"handler-response\",\"artifact\":\"custom-codec\",\"body\":{\"kind\":\"output\",\"path\":\"custom-codec.json\"},\"metadataArtifact\":\"codec-metadata\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:main-report:0:5595",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "8d1f927b81b85135edbde3ee0abf30bfbaa8339f325357ccf490eedad0c29be9",
+        "selectedDigest": "8d1f927b81b85135edbde3ee0abf30bfbaa8339f325357ccf490eedad0c29be9",
+        "startByte": 0,
+        "endByte": 5595,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"partial\",\"intentArtifact\":\"main-intent\",\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"schemas\":[{\"id\":\"old-provider\",\"artifact\":\"old-provider\",\"sha256\":\"2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"artifact\":\"new-provider\",\"sha256\":\"8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"artifact\":\"new-producer\",\"sha256\":\"37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"artifact\":\"old-reader\",\"sha256\":\"4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"intersection\",\"artifact\":\"intersection\",\"sha256\":\"be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3\",\"dialect\":\"2020-12\",\"state\":\"ready\"}],\"witnesses\":[{\"id\":\"small\",\"artifact\":\"small\",\"sha256\":\"6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661\",\"direction\":\"request\",\"origin\":\"supplied\",\"decode\":\"decoded\"},{\"id\":\"request-observed\",\"artifact\":\"request-observed\",\"sha256\":\"a5fb8eb97856970b61d9f466deb64f7659e835ee8ec5497003b78438fe888cad\",\"direction\":\"request\",\"origin\":\"handler-request\",\"decode\":\"decoded\",\"metadataArtifact\":\"request-metadata\"},{\"id\":\"precision\",\"artifact\":\"precision\",\"sha256\":\"622c8e16f51719fd49b7d44ed42441c245d56d0bd903d891af054b10636de95b\",\"direction\":\"request\",\"origin\":\"supplied\",\"decode\":\"unsupported-precision\"},{\"id\":\"ready\",\"artifact\":\"ready\",\"sha256\":\"90593b5d5814c41932e1b8bef45de63949ecb021dde26d6bacf931324a67de23\",\"direction\":\"response\",\"origin\":\"supplied\",\"decode\":\"decoded\"},{\"id\":\"response-observed\",\"artifact\":\"response-observed\",\"sha256\":\"98d57916e96a823c6f1bc4ea49d2e0a99551719f213cfcbe139f18a3abb08673\",\"direction\":\"response\",\"origin\":\"handler-response\",\"decode\":\"decoded\",\"metadataArtifact\":\"response-metadata\"},{\"id\":\"custom-codec\",\"artifact\":\"custom-codec\",\"sha256\":\"0bbf1dc7c6df9c4a21ac7387545dd2f99f1dcf3296508e22848a54f3ed668e8b\",\"direction\":\"response\",\"origin\":\"handler-response\",\"decode\":\"malformed\",\"metadataArtifact\":\"codec-metadata\"}],\"issues\":[],\"evaluations\":[{\"witness\":\"small\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"small\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/count\",\"schemaPath\":\"#/properties/count/minimum\",\"keyword\":\"minimum\"}},{\"witness\":\"small\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"request-observed\",\"schema\":\"new-provider\",\"result\":\"valid\"},{\"witness\":\"request-observed\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"precision\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"ready\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"old-reader\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"intersection\",\"result\":\"valid\"},{\"witness\":\"response-observed\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"response-observed\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"response-observed\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"response-observed\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/phase\",\"schemaPath\":\"#/properties/phase/enum\",\"keyword\":\"enum\"}},{\"witness\":\"response-observed\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/phase\",\"schemaPath\":\"https://selected.invalid/old-reader.json/properties/phase/enum\",\"keyword\":\"enum\"}},{\"witness\":\"custom-codec\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"intersection\",\"result\":\"unavailable\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:main-report-scenario:0:3474"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:main-intent:0:1925"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-producer:0:163"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-reader:0:154"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:intersection:0:117"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:small:0:11"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:request-observed:0:11"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:request-metadata:0:220"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:precision:0:26"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:ready:0:17"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:response-observed:0:16"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:response-metadata:0:222"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:custom-codec:0:10"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:codec-metadata:0:201"
+          }
+        ],
+        "transformation": "synthetic-validity-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:failure-intent:0:1391",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "72174b3f224a9e235270775dec1bbcd639fa00c53826e8c3abf7d33ba7bf71d3",
+        "selectedDigest": "72174b3f224a9e235270775dec1bbcd639fa00c53826e8c3abf7d33ba7bf71d3",
+        "startByte": 0,
+        "endByte": 1391,
+        "body": "{\"formatVersion\":\"1.0.0\",\"schemas\":[{\"id\":\"old-provider\",\"source\":\"schemas\",\"path\":\"old-provider.json\",\"artifact\":\"old-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-provider\",\"source\":\"schemas\",\"path\":\"new-provider.json\",\"artifact\":\"new-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-producer\",\"source\":\"schemas\",\"path\":\"new-producer.json\",\"artifact\":\"new-producer\",\"dialect\":\"2020-12\"},{\"id\":\"old-reader\",\"source\":\"schemas\",\"path\":\"old-reader.json\",\"artifact\":\"old-reader\",\"dialect\":\"2020-12\"},{\"id\":\"intersection\",\"source\":\"schemas\",\"path\":\"intersection.json\",\"artifact\":\"intersection\",\"dialect\":\"2020-12\"}],\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"witnesses\":[{\"id\":\"duplicate\",\"direction\":\"response\",\"origin\":\"supplied\",\"artifact\":\"duplicate\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"duplicate.json\"}},{\"id\":\"binary\",\"direction\":\"response\",\"origin\":\"supplied\",\"artifact\":\"binary\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"binary.json\"}},{\"id\":\"handler-failed\",\"direction\":\"response\",\"origin\":\"handler-response\",\"artifact\":\"handler-failed\",\"body\":{\"kind\":\"output\",\"path\":\"handler-failed.json\"},\"metadataArtifact\":\"failed-metadata\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:failure-report:0:2972",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "d9dd195cfb3a07b675765db54518611c8b1d75094edb5179f04d967dbbcba388",
+        "selectedDigest": "d9dd195cfb3a07b675765db54518611c8b1d75094edb5179f04d967dbbcba388",
+        "startByte": 0,
+        "endByte": 2972,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"partial\",\"intentArtifact\":\"failure-intent\",\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"schemas\":[{\"id\":\"old-provider\",\"artifact\":\"old-provider\",\"sha256\":\"2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"artifact\":\"new-provider\",\"sha256\":\"8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"artifact\":\"new-producer\",\"sha256\":\"37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"artifact\":\"old-reader\",\"sha256\":\"4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"intersection\",\"artifact\":\"intersection\",\"sha256\":\"be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3\",\"dialect\":\"2020-12\",\"state\":\"ready\"}],\"witnesses\":[{\"id\":\"duplicate\",\"artifact\":\"duplicate\",\"sha256\":\"0a605477461777ed0cc7550cf3e3963e594e7063afbf04929fda2b3a80f550d5\",\"direction\":\"response\",\"origin\":\"supplied\",\"decode\":\"duplicate-field\"},{\"id\":\"binary\",\"artifact\":\"binary\",\"sha256\":\"ea5dbf9596d187e9500f23e9a680109475341cf4e81f7e043f7d97152c10772f\",\"direction\":\"response\",\"origin\":\"supplied\",\"decode\":\"invalid-utf8\",\"displayArtifact\":\"binary-display\"},{\"id\":\"handler-failed\",\"artifact\":\"handler-failed\",\"sha256\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"direction\":\"response\",\"origin\":\"handler-response\",\"decode\":\"unavailable\",\"metadataArtifact\":\"failed-metadata\"}],\"issues\":[{\"code\":\"capture-io-failed\",\"path\":\"handler-failed\"}],\"evaluations\":[{\"witness\":\"duplicate\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"intersection\",\"result\":\"unavailable\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:failure-report-scenario:0:1456"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:failure-intent:0:1391"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-producer:0:163"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-reader:0:154"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:intersection:0:117"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:duplicate:0:32"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:binary-display:0:4"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:failed-metadata:0:119"
+          }
+        ],
+        "transformation": "synthetic-validity-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:empty-intent:0:899",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "cbc6b5021f0cedc2712d3b5f1ca196c6c43d6eef6d009e4b7f308f16ccd91c7b",
+        "selectedDigest": "cbc6b5021f0cedc2712d3b5f1ca196c6c43d6eef6d009e4b7f308f16ccd91c7b",
+        "startByte": 0,
+        "endByte": 899,
+        "body": "{\"formatVersion\":\"1.0.0\",\"schemas\":[{\"id\":\"old-provider\",\"source\":\"schemas\",\"path\":\"old-provider.json\",\"artifact\":\"old-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-provider\",\"source\":\"schemas\",\"path\":\"new-provider.json\",\"artifact\":\"new-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-producer\",\"source\":\"schemas\",\"path\":\"new-producer.json\",\"artifact\":\"new-producer\",\"dialect\":\"2020-12\"},{\"id\":\"old-reader\",\"source\":\"schemas\",\"path\":\"old-reader.json\",\"artifact\":\"old-reader\",\"dialect\":\"2020-12\"},{\"id\":\"intersection\",\"source\":\"schemas\",\"path\":\"intersection.json\",\"artifact\":\"intersection\",\"dialect\":\"2020-12\"}],\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"witnesses\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:empty-report:0:1210",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "bad3e09ed67711e8eb4c5b4079ade45a648c5038dda29bb92fe4166ea1d68507",
+        "selectedDigest": "bad3e09ed67711e8eb4c5b4079ade45a648c5038dda29bb92fe4166ea1d68507",
+        "startByte": 0,
+        "endByte": 1210,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"partial\",\"intentArtifact\":\"empty-intent\",\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"count\",\"response\":\"phase\"},\"schemas\":[{\"id\":\"old-provider\",\"artifact\":\"old-provider\",\"sha256\":\"2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"artifact\":\"new-provider\",\"sha256\":\"8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"artifact\":\"new-producer\",\"sha256\":\"37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"artifact\":\"old-reader\",\"sha256\":\"4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"intersection\",\"artifact\":\"intersection\",\"sha256\":\"be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3\",\"dialect\":\"2020-12\",\"state\":\"ready\"}],\"witnesses\":[],\"issues\":[],\"evaluations\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:empty-report-scenario:0:336"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:empty-intent:0:899"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-producer:0:163"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-reader:0:154"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:intersection:0:117"
+          }
+        ],
+        "transformation": "synthetic-validity-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:unavailable-intent:0:1185",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "54ad08d62f95282a95e2535d503c790ec858aa667f822685eade8afbc2759061",
+        "selectedDigest": "54ad08d62f95282a95e2535d503c790ec858aa667f822685eade8afbc2759061",
+        "startByte": 0,
+        "endByte": 1185,
+        "body": "{\"formatVersion\":\"1.0.0\",\"schemas\":[{\"id\":\"old-provider\",\"source\":\"schemas\",\"path\":\"old-provider.json\",\"artifact\":\"old-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-provider\",\"source\":\"schemas\",\"path\":\"new-provider.json\",\"artifact\":\"new-provider\",\"dialect\":\"2020-12\"},{\"id\":\"new-producer\",\"source\":\"schemas\",\"path\":\"new-producer.json\",\"artifact\":\"new-producer\",\"dialect\":\"2020-12\"},{\"id\":\"old-reader\",\"source\":\"schemas\",\"path\":\"old-reader.json\",\"artifact\":\"old-reader\",\"dialect\":\"2020-12\"},{\"id\":\"intersection\",\"source\":\"schemas\",\"path\":\"intersection.json\",\"artifact\":\"intersection\",\"dialect\":\"2020-12\"}],\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"missing\",\"response\":\"missing\"},\"witnesses\":[{\"id\":\"small\",\"direction\":\"request\",\"origin\":\"supplied\",\"artifact\":\"small\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"small.json\"}},{\"id\":\"ready\",\"direction\":\"response\",\"origin\":\"supplied\",\"artifact\":\"ready\",\"body\":{\"kind\":\"source\",\"source\":\"fixtures\",\"path\":\"ready.json\"}}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:unavailable-report:0:2650",
+        "run": "run:de000000000000000000000000000000",
+        "role": "derived",
+        "originDigest": "14a0d76944e7f62a7b9f34af617b90e67fa4b2b494cfe464c1d024296374d8ff",
+        "selectedDigest": "14a0d76944e7f62a7b9f34af617b90e67fa4b2b494cfe464c1d024296374d8ff",
+        "startByte": 0,
+        "endByte": 2650,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"partial\",\"intentArtifact\":\"unavailable-intent\",\"pairs\":{\"request\":{\"oldProvider\":\"old-provider\",\"newProvider\":\"new-provider\"},\"response\":{\"newProducer\":\"new-producer\",\"oldReader\":\"old-reader\"}},\"alternatives\":[{\"id\":\"contract-intersection\",\"newProducer\":\"intersection\"}],\"diagramProperties\":{\"request\":\"missing\",\"response\":\"missing\"},\"schemas\":[{\"id\":\"old-provider\",\"artifact\":\"old-provider\",\"sha256\":\"2fbc1d479282f4798fe1d48f3378aaf1833508452c1eecdbca9b6f3a7927a06c\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"artifact\":\"new-provider\",\"sha256\":\"8d7088c5f6e367b829d0a67b8cdaa65751fc4e88b19cd890a478c5a252bda542\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"artifact\":\"new-producer\",\"sha256\":\"37ae1623370390768436e7953b4c569fa758ede1c87b491bfaafab73330d19a6\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"artifact\":\"old-reader\",\"sha256\":\"4ceab150b7360a7e6b1f5b439953a77637cfeac06ab58a794b10919efa79cb05\",\"dialect\":\"2020-12\",\"state\":\"ready\"},{\"id\":\"intersection\",\"artifact\":\"intersection\",\"sha256\":\"be53cc625908a1a9b0f6bb518cbebdd56b8e876db7cd435442575f330edf5cf3\",\"dialect\":\"2020-12\",\"state\":\"ready\"}],\"witnesses\":[{\"id\":\"small\",\"artifact\":\"small\",\"sha256\":\"6aea6dfe6561984cdc5c54ead84d47d2cf29e48253ae282aef237404adad4661\",\"direction\":\"request\",\"origin\":\"supplied\",\"decode\":\"decoded\"},{\"id\":\"ready\",\"artifact\":\"ready\",\"sha256\":\"90593b5d5814c41932e1b8bef45de63949ecb021dde26d6bacf931324a67de23\",\"direction\":\"response\",\"origin\":\"supplied\",\"decode\":\"decoded\"}],\"issues\":[],\"evaluations\":[{\"witness\":\"small\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"small\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/count\",\"schemaPath\":\"#/properties/count/minimum\",\"keyword\":\"minimum\"}},{\"witness\":\"small\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"old-reader\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"intersection\",\"result\":\"valid\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:unavailable-report-scenario:0:1424"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:unavailable-intent:0:1185"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-provider:0:155"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:new-producer:0:163"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:old-reader:0:154"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:intersection:0:117"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:small:0:11"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:de000000000000000000000000000000:ready:0:17"
+          }
+        ],
+        "transformation": "synthetic-validity-assembly-v1"
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:main-report-scenario:0:3474",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "11b799e0fde71cbb6d5b38cec03f0e8a58b91d9d7ff74c9e9f5a5e1b80abae44",
+        "selectedDigest": "11b799e0fde71cbb6d5b38cec03f0e8a58b91d9d7ff74c9e9f5a5e1b80abae44",
+        "startByte": 0,
+        "endByte": 3474,
+        "body": "{\"qualification\":\"Manually precomputed synthetic validity outcomes; no validator or handler executed\",\"schemaStates\":[{\"id\":\"old-provider\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"state\":\"ready\"},{\"id\":\"intersection\",\"state\":\"ready\"}],\"evaluations\":[{\"witness\":\"small\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"small\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/count\",\"schemaPath\":\"#/properties/count/minimum\",\"keyword\":\"minimum\"}},{\"witness\":\"small\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"request-observed\",\"schema\":\"new-provider\",\"result\":\"valid\"},{\"witness\":\"request-observed\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"request-observed\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"precision\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"precision\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"ready\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"old-reader\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"intersection\",\"result\":\"valid\"},{\"witness\":\"response-observed\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"response-observed\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"response-observed\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"response-observed\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/phase\",\"schemaPath\":\"#/properties/phase/enum\",\"keyword\":\"enum\"}},{\"witness\":\"response-observed\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/phase\",\"schemaPath\":\"https://selected.invalid/old-reader.json/properties/phase/enum\",\"keyword\":\"enum\"}},{\"witness\":\"custom-codec\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"custom-codec\",\"schema\":\"intersection\",\"result\":\"unavailable\"}],\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:failure-report-scenario:0:1456",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "c4c48a4db633f1743138bab9fc54e8ede181b7e8926005d71d01af26cb49f6f9",
+        "selectedDigest": "c4c48a4db633f1743138bab9fc54e8ede181b7e8926005d71d01af26cb49f6f9",
+        "startByte": 0,
+        "endByte": 1456,
+        "body": "{\"qualification\":\"Manually precomputed synthetic validity outcomes; no validator or handler executed\",\"schemaStates\":[{\"id\":\"old-provider\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"state\":\"ready\"},{\"id\":\"intersection\",\"state\":\"ready\"}],\"evaluations\":[{\"witness\":\"duplicate\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"duplicate\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"binary\",\"schema\":\"intersection\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"old-provider\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"new-provider\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"new-producer\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"old-reader\",\"result\":\"unavailable\"},{\"witness\":\"handler-failed\",\"schema\":\"intersection\",\"result\":\"unavailable\"}],\"issues\":[{\"code\":\"capture-io-failed\",\"path\":\"handler-failed\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:empty-report-scenario:0:336",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "533a519e6bc0b9430076eeb7a03ded084de67d468676696b42f95c90d731b1a4",
+        "selectedDigest": "533a519e6bc0b9430076eeb7a03ded084de67d468676696b42f95c90d731b1a4",
+        "startByte": 0,
+        "endByte": 336,
+        "body": "{\"qualification\":\"Manually precomputed synthetic validity outcomes; no validator or handler executed\",\"schemaStates\":[{\"id\":\"old-provider\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"state\":\"ready\"},{\"id\":\"intersection\",\"state\":\"ready\"}],\"evaluations\":[],\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:unavailable-report-scenario:0:1424",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "11420e87e4ce630baf57524045ef476a8b83b0723fb2aca82c9b34d560a63cd0",
+        "selectedDigest": "11420e87e4ce630baf57524045ef476a8b83b0723fb2aca82c9b34d560a63cd0",
+        "startByte": 0,
+        "endByte": 1424,
+        "body": "{\"qualification\":\"Manually precomputed synthetic validity outcomes; no validator or handler executed\",\"schemaStates\":[{\"id\":\"old-provider\",\"state\":\"ready\"},{\"id\":\"new-provider\",\"state\":\"ready\"},{\"id\":\"new-producer\",\"state\":\"ready\"},{\"id\":\"old-reader\",\"state\":\"ready\"},{\"id\":\"intersection\",\"state\":\"ready\"}],\"evaluations\":[{\"witness\":\"small\",\"schema\":\"old-provider\",\"result\":\"valid\"},{\"witness\":\"small\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"/count\",\"schemaPath\":\"#/properties/count/minimum\",\"keyword\":\"minimum\"}},{\"witness\":\"small\",\"schema\":\"new-producer\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"old-reader\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"small\",\"schema\":\"intersection\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"old-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-provider\",\"result\":\"invalid\",\"error\":{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\"}},{\"witness\":\"ready\",\"schema\":\"new-producer\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"old-reader\",\"result\":\"valid\"},{\"witness\":\"ready\",\"schema\":\"intersection\",\"result\":\"valid\"}],\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "validity",
+        "title": "Request and response roles are directional",
+        "takeaway": "Select witnesses in the table; markers and external labels show their positions. Corpus outcomes are not language inclusion.",
+        "inspections": [
+          {
+            "section": "validity",
+            "label": "Inspect the full production reader"
+          }
+        ]
+      }
+    ]
+  }
+}

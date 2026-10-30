@@ -1,0 +1,362 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic transaction protocol: committed",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "transactions",
+      "type": "transaction-conflict",
+      "title": "Synthetic transaction protocol: committed",
+      "reason": "Synthetic intent/results for reader inspection, not PostgreSQL execution, inferred access sets or an engine SSI graph.",
+      "state": "complete",
+      "cleanup": "confirmed",
+      "sessions": [
+        {
+          "id": "alpha",
+          "isolation": "serializable",
+          "readOnly": false,
+          "deferrable": false,
+          "outcome": "committed"
+        },
+        {
+          "id": "beta",
+          "isolation": "serializable",
+          "readOnly": false,
+          "deferrable": false,
+          "outcome": "committed"
+        }
+      ],
+      "declarations": [
+        {
+          "statement": "read-alpha",
+          "session": "alpha",
+          "reads": ["account-1"],
+          "writes": ["account-1"],
+          "witnesses": [
+            {
+              "key": "account-1",
+              "kind": "value",
+              "row": 0,
+              "column": 0
+            },
+            {
+              "key": "account-1",
+              "kind": "tuple-version",
+              "row": 0,
+              "column": 1
+            }
+          ],
+          "evidence": "artifact:03203300000000000000000000000000:intent:0:1352",
+          "sqlEvidence": "artifact:03203300000000000000000000000000:alpha-sql:0:55",
+          "parametersEvidence": "artifact:03203300000000000000000000000000:alpha-parameters:0:2",
+          "sourceIdentity": "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture",
+          "path": "alpha.sql",
+          "sha256": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44"
+        },
+        {
+          "statement": "read-beta",
+          "session": "beta",
+          "reads": ["account-1"],
+          "writes": [],
+          "witnesses": [
+            {
+              "key": "account-1",
+              "kind": "value",
+              "row": 0,
+              "column": 0
+            },
+            {
+              "key": "account-1",
+              "kind": "tuple-version",
+              "row": 0,
+              "column": 1
+            }
+          ],
+          "evidence": "artifact:03203300000000000000000000000000:intent:0:1352",
+          "sqlEvidence": "artifact:03203300000000000000000000000000:beta-sql:0:55",
+          "parametersEvidence": "artifact:03203300000000000000000000000000:beta-parameters:0:2",
+          "sourceIdentity": "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture",
+          "path": "beta.sql",
+          "sha256": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44"
+        }
+      ],
+      "observations": [
+        {
+          "seq": 1,
+          "kind": "opened",
+          "session": "alpha",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 2,
+          "kind": "sent",
+          "session": "alpha",
+          "statement": "native-begin-0",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 3,
+          "kind": "result",
+          "session": "alpha",
+          "statement": "native-begin-0",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 4,
+          "kind": "opened",
+          "session": "beta",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 5,
+          "kind": "sent",
+          "session": "beta",
+          "statement": "native-begin-1",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 6,
+          "kind": "result",
+          "session": "beta",
+          "statement": "native-begin-1",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 7,
+          "kind": "sent",
+          "session": "alpha",
+          "statement": "read-alpha",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 8,
+          "kind": "result",
+          "session": "alpha",
+          "statement": "read-alpha",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 9,
+          "kind": "sent",
+          "session": "beta",
+          "statement": "read-beta",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 10,
+          "kind": "result",
+          "session": "beta",
+          "statement": "read-beta",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 11,
+          "kind": "sent",
+          "session": "beta",
+          "statement": "native-action-4",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 12,
+          "kind": "result",
+          "session": "beta",
+          "statement": "native-action-4",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 13,
+          "kind": "sent",
+          "session": "alpha",
+          "statement": "native-action-6",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        },
+        {
+          "seq": 14,
+          "kind": "result",
+          "session": "alpha",
+          "statement": "native-action-6",
+          "evidence": "artifact:03203300000000000000000000000000:events:0:2268"
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:03203300000000000000000000000000",
+        "planDigest": "dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": ["Synthetic protocol data, not native execution or private verification"],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:03203300000000000000000000000000:alpha-sql:0:55",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44",
+        "selectedDigest": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44",
+        "startByte": 0,
+        "endByte": 55,
+        "body": "SELECT '42'::text AS value, '17'::text AS tuple_version",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:alpha-parameters:0:2",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "selectedDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "startByte": 0,
+        "endByte": 2,
+        "body": "[]",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:beta-sql:0:55",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44",
+        "selectedDigest": "8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44",
+        "startByte": 0,
+        "endByte": 55,
+        "body": "SELECT '42'::text AS value, '17'::text AS tuple_version",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:beta-parameters:0:2",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "selectedDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "startByte": 0,
+        "endByte": 2,
+        "body": "[]",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:intent:0:1352",
+        "run": "run:03203300000000000000000000000000",
+        "role": "authored",
+        "originDigest": "00a571db8c4db1e52c4c60b48e2b6f89f298c62d5aba54174de7eef138fd1570",
+        "selectedDigest": "00a571db8c4db1e52c4c60b48e2b6f89f298c62d5aba54174de7eef138fd1570",
+        "startByte": 0,
+        "endByte": 1352,
+        "body": "{\"formatVersion\":\"1.0.0\",\"source\":\"fixture\",\"sessions\":[{\"id\":\"alpha\",\"isolation\":\"serializable\",\"readOnly\":false,\"deferrable\":false},{\"id\":\"beta\",\"isolation\":\"serializable\",\"readOnly\":false,\"deferrable\":false}],\"statements\":[{\"id\":\"read-alpha\",\"session\":\"alpha\",\"file\":\"alpha.sql\",\"parameters\":\"alpha.json\",\"declaredReads\":[\"account-1\"],\"declaredWrites\":[\"account-1\"],\"witnesses\":[{\"key\":\"account-1\",\"kind\":\"value\",\"row\":0,\"column\":0},{\"key\":\"account-1\",\"kind\":\"tuple-version\",\"row\":0,\"column\":1}],\"sha256\":\"8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44\",\"sqlArtifact\":\"alpha-sql\",\"parametersArtifact\":\"alpha-parameters\"},{\"id\":\"read-beta\",\"session\":\"beta\",\"file\":\"beta.sql\",\"parameters\":\"beta.json\",\"declaredReads\":[\"account-1\"],\"declaredWrites\":[],\"witnesses\":[{\"key\":\"account-1\",\"kind\":\"value\",\"row\":0,\"column\":0},{\"key\":\"account-1\",\"kind\":\"tuple-version\",\"row\":0,\"column\":1}],\"sha256\":\"8da2b47644edb0a1c7f4a52ac8709eca5541864d36f810d281bb0dce49d9ec44\",\"sqlArtifact\":\"beta-sql\",\"parametersArtifact\":\"beta-parameters\"}],\"actions\":[{\"kind\":\"send\",\"statement\":\"read-alpha\"},{\"kind\":\"receive\",\"session\":\"alpha\"},{\"kind\":\"send\",\"statement\":\"read-beta\"},{\"kind\":\"receive\",\"session\":\"beta\"},{\"kind\":\"commit\",\"session\":\"beta\"},{\"kind\":\"receive\",\"session\":\"beta\"},{\"kind\":\"commit\",\"session\":\"alpha\"},{\"kind\":\"receive\",\"session\":\"alpha\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:events:0:2268",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "395453f590d60a94a13f2d4b5675ed31e68c14716944e619e4508a9db1b1be5f",
+        "selectedDigest": "395453f590d60a94a13f2d4b5675ed31e68c14716944e619e4508a9db1b1be5f",
+        "startByte": 0,
+        "endByte": 2268,
+        "body": "[{\"seq\":1,\"ns\":\"1000\",\"kind\":\"opened\",\"session\":\"alpha\",\"identity\":{\"backendPid\":100,\"backendStart\":\"2026-01-01 00:00:00+00\",\"bootId\":\"synthetic-boot\",\"startTicks\":\"1000\"}},{\"seq\":2,\"ns\":\"2000\",\"kind\":\"sent\",\"session\":\"alpha\",\"statement\":\"native-begin-0\"},{\"seq\":3,\"ns\":\"3000\",\"kind\":\"result\",\"session\":\"alpha\",\"statement\":\"native-begin-0\",\"result\":{\"status\":\"PGRES_COMMAND_OK\",\"commandTag\":\"BEGIN\",\"transactionStatus\":\"in-transaction\",\"columns\":[],\"rows\":[]}},{\"seq\":4,\"ns\":\"4000\",\"kind\":\"opened\",\"session\":\"beta\",\"identity\":{\"backendPid\":101,\"backendStart\":\"2026-01-01 00:00:00+00\",\"bootId\":\"synthetic-boot\",\"startTicks\":\"1001\"}},{\"seq\":5,\"ns\":\"5000\",\"kind\":\"sent\",\"session\":\"beta\",\"statement\":\"native-begin-1\"},{\"seq\":6,\"ns\":\"6000\",\"kind\":\"result\",\"session\":\"beta\",\"statement\":\"native-begin-1\",\"result\":{\"status\":\"PGRES_COMMAND_OK\",\"commandTag\":\"BEGIN\",\"transactionStatus\":\"in-transaction\",\"columns\":[],\"rows\":[]}},{\"seq\":7,\"ns\":\"7000\",\"kind\":\"sent\",\"session\":\"alpha\",\"statement\":\"read-alpha\"},{\"seq\":8,\"ns\":\"8000\",\"kind\":\"result\",\"session\":\"alpha\",\"statement\":\"read-alpha\",\"result\":{\"status\":\"PGRES_TUPLES_OK\",\"commandTag\":\"SELECT 1\",\"transactionStatus\":\"in-transaction\",\"columns\":[{\"name\":\"value\",\"typeOid\":25,\"format\":\"text\"},{\"name\":\"tuple_version\",\"typeOid\":25,\"format\":\"text\"}],\"rows\":[[\"42\",\"17\"]]}},{\"seq\":9,\"ns\":\"9000\",\"kind\":\"sent\",\"session\":\"beta\",\"statement\":\"read-beta\"},{\"seq\":10,\"ns\":\"10000\",\"kind\":\"result\",\"session\":\"beta\",\"statement\":\"read-beta\",\"result\":{\"status\":\"PGRES_TUPLES_OK\",\"commandTag\":\"SELECT 1\",\"transactionStatus\":\"in-transaction\",\"columns\":[{\"name\":\"value\",\"typeOid\":25,\"format\":\"text\"},{\"name\":\"tuple_version\",\"typeOid\":25,\"format\":\"text\"}],\"rows\":[[\"42\",\"17\"]]}},{\"seq\":11,\"ns\":\"11000\",\"kind\":\"sent\",\"session\":\"beta\",\"statement\":\"native-action-4\"},{\"seq\":12,\"ns\":\"12000\",\"kind\":\"result\",\"session\":\"beta\",\"statement\":\"native-action-4\",\"result\":{\"status\":\"PGRES_COMMAND_OK\",\"commandTag\":\"COMMIT\",\"transactionStatus\":\"idle\",\"columns\":[],\"rows\":[]}},{\"seq\":13,\"ns\":\"13000\",\"kind\":\"sent\",\"session\":\"alpha\",\"statement\":\"native-action-6\"},{\"seq\":14,\"ns\":\"14000\",\"kind\":\"result\",\"session\":\"alpha\",\"statement\":\"native-action-6\",\"result\":{\"status\":\"PGRES_COMMAND_OK\",\"commandTag\":\"COMMIT\",\"transactionStatus\":\"idle\",\"columns\":[],\"rows\":[]}}]",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:ownership:0:407",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "251a2248985ed0b528432450bba791fafcc6407bfde952b77640d0562c0da0ba",
+        "selectedDigest": "251a2248985ed0b528432450bba791fafcc6407bfde952b77640d0562c0da0ba",
+        "startByte": 0,
+        "endByte": 407,
+        "body": "{\"formatVersion\":\"1.0.0\",\"planDigest\":\"dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7\",\"runId\":\"03203300000000000000000000000000\",\"command\":\"synthetic\",\"token\":\"00000000000000000000000000000000\",\"resource\":\"postgres\",\"data\":\"/synthetic/data\",\"socket\":\"/synthetic/socket\",\"events\":[{\"seq\":1,\"kind\":\"allocated\",\"bootId\":\"synthetic-boot\"},{\"seq\":2,\"kind\":\"closed\",\"bootId\":\"synthetic-boot\"}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:capture:0:140",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "6a085c27980ee2afd11ba80bc87b45a94dd59a9a05b9eb1c6e76866cc895f4bb",
+        "selectedDigest": "6a085c27980ee2afd11ba80bc87b45a94dd59a9a05b9eb1c6e76866cc895f4bb",
+        "startByte": 0,
+        "endByte": 140,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"complete\",\"eventsArtifact\":\"events\",\"intentArtifact\":\"intent\",\"ownershipArtifact\":\"ownership\",\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "transactions",
+        "title": "Separate requests, acknowledgments and outcomes",
+        "takeaway": "Unknown COMMIT stays unknown without exact-xid resolution. Declared overlaps are not SSI edges.",
+        "inspections": [
+          {
+            "section": "transactions",
+            "label": "Inspect synthetic schedule and key matrix"
+          }
+        ]
+      }
+    ]
+  }
+}
