@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "2.1.0",
+  "title": "Native C4 architecture",
+  "lead": "Synthetic native C4 sources through the existing C4 reader, map, drills and companions.",
+  "changes": [
+    "Drill C1 → C2 → C3",
+    "Compare Before and After panes",
+    "Inspect a companion crossing"
+  ],
+  "references": [
+    {
+      "label": "Synthetic example",
+      "value": "Native C4 Context, Container and Component"
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "native-architecture",
+        "title": "Native C4 levels",
+        "takeaway": "Native C4 sources drill through declared levels like flowchart levels.",
+        "inspections": [
+          {
+            "section": "native-architecture",
+            "label": "Inspect native C4 levels"
+          }
+        ]
+      },
+      {
+        "section": "native-crossings",
+        "title": "Publication crossing",
+        "takeaway": "The admin publication is a separate exact connection with the same label.",
+        "inspections": [
+          {
+            "section": "native-crossings",
+            "label": "Inspect publication crossing"
+          }
+        ]
+      }
+    ]
+  },
+  "pins": [
+    {
+      "section": "native-crossings",
+      "architecture": "native-architecture",
+      "level": "containers",
+      "pane": "after",
+      "target": {
+        "kind": "edge",
+        "edge": {
+          "from": "admin",
+          "to": "queue",
+          "label": "publish",
+          "occurrence": 0
+        }
+      }
+    }
+  ],
+  "sections": [
+    {
+      "id": "native-architecture",
+      "type": "c4",
+      "title": "Native C4 levels",
+      "reason": "Native C4 Context, Container and Component sources with declared drills.",
+      "mode": "diff",
+      "levels": [
+        {
+          "id": "context",
+          "title": "System context",
+          "altitude": "c1",
+          "drills": [
+            {
+              "pane": "before",
+              "node": "shop",
+              "level": "containers"
+            },
+            {
+              "pane": "after",
+              "node": "shop",
+              "level": "containers"
+            },
+            {
+              "pane": "after",
+              "node": "reports",
+              "level": "reporting"
+            }
+          ],
+          "before": {
+            "kind": "c4",
+            "source": "C4Context\n  title Shop context\n  Person(customer, \"Customer\", \"Buys products\")\n  Enterprise_Boundary(company, \"Shop company\") {\n    System(shop, \"Shop\", \"Sells products online\")\n    System(reports, \"Reporting\", \"Summarises orders\")\n  }\n  System_Ext(provider, \"Payment provider\", \"Charges cards\")\n  Rel(customer, shop, \"Uses\")\n  Rel(shop, provider, \"Charges\", \"HTTPS\")\n  Rel(shop, reports, \"Sends orders\")",
+            "description": "Synthetic shop context before the change.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [],
+            "edgeChanges": [],
+            "initialFocus": {
+              "kind": "node",
+              "node": "shop"
+            }
+          },
+          "after": {
+            "kind": "c4",
+            "source": "C4Context\n  title Shop context\n  Person(customer, \"Customer\", \"Buys products\")\n  Enterprise_Boundary(company, \"Shop company\") {\n    System(shop, \"Shop\", \"Sells products online\")\n    System(reports, \"Reporting\", \"Summarises orders\")\n  }\n  System_Ext(provider, \"Payment provider\", \"Charges cards\")\n  Rel(customer, shop, \"Uses\")\n  Rel(shop, provider, \"Charges\", \"HTTPS\")\n  Rel(shop, reports, \"Sends orders\")",
+            "description": "Synthetic shop context after the change.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [
+              {
+                "node": "shop",
+                "status": "moved"
+              }
+            ],
+            "edgeChanges": []
+          }
+        },
+        {
+          "id": "containers",
+          "title": "Shop containers",
+          "altitude": "c2",
+          "drills": [
+            {
+              "pane": "after",
+              "node": "api",
+              "level": "components"
+            }
+          ],
+          "before": {
+            "kind": "c4",
+            "source": "C4Container\n  title Shop containers (before)\n  Container_Boundary(shop, \"Shop\") {\n    Container(api, \"API\", \"Go\", \"Accepts orders\")\n    ContainerDb(db, \"Database\", \"PostgreSQL\", \"Stores orders\")\n  }\n  Rel(api, db, \"Writes\", \"SQL\")",
+            "description": "Synthetic containers before the queue.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [],
+            "edgeChanges": [
+              {
+                "edge": {
+                  "from": "api",
+                  "to": "db",
+                  "label": "Writes",
+                  "occurrence": 0
+                },
+                "status": "removed"
+              }
+            ]
+          },
+          "after": {
+            "kind": "c4",
+            "source": "C4Container\n  title Shop containers (after)\n  Container_Boundary(shop, \"Shop\") {\n    Container(api, \"API\", \"Go\", \"Accepts orders\")\n    Container(admin, \"Admin app\", \"TypeScript\", \"Re-sends orders\")\n    ContainerQueue(queue, \"Order queue\", \"NATS\", \"Buffers orders\")\n    ContainerDb(db, \"Database\", \"PostgreSQL\", \"Stores orders\")\n  }\n  Rel(api, queue, \"publish\", \"NATS\")\n  Rel(admin, queue, \"publish\", \"NATS\")\n  Rel(queue, db, \"Writes\", \"SQL\")",
+            "description": "Synthetic containers where two senders publish to one queue.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [
+              {
+                "node": "queue",
+                "status": "added"
+              }
+            ],
+            "edgeChanges": [
+              {
+                "edge": {
+                  "from": "api",
+                  "to": "queue",
+                  "label": "publish",
+                  "occurrence": 0
+                },
+                "status": "added"
+              },
+              {
+                "edge": {
+                  "from": "admin",
+                  "to": "queue",
+                  "label": "publish",
+                  "occurrence": 0
+                },
+                "status": "added"
+              }
+            ],
+            "initialFocus": {
+              "kind": "edge",
+              "edge": {
+                "from": "admin",
+                "to": "queue",
+                "label": "publish",
+                "occurrence": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "components",
+          "title": "API components",
+          "altitude": "c3",
+          "drills": [],
+          "after": {
+            "kind": "c4",
+            "source": "C4Component\n  title API components\n  Container_Boundary(api, \"API\") {\n    Component(intake, \"Intake\", \"Go package\", \"Validates orders\")\n    Component(publisher, \"Publisher\", \"Go package\", \"Publishes orders\")\n  }\n  ContainerQueue(queue, \"Order queue\", \"NATS\")\n  Rel(intake, publisher, \"Hands over\")\n  Rel(publisher, queue, \"publish\")",
+            "description": "Synthetic API components; there is no Before side.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [
+              {
+                "node": "publisher",
+                "status": "added"
+              }
+            ],
+            "edgeChanges": []
+          }
+        },
+        {
+          "id": "reporting",
+          "title": "Reporting containers",
+          "altitude": "c2",
+          "drills": [],
+          "after": {
+            "kind": "c4",
+            "source": "C4Container\n  title Reporting containers\n  Container_Boundary(reports, \"Reporting\") {\n    Container(worker, \"Report worker\", \"Go\", \"Builds summaries\")\n    ContainerDb(warehouse, \"Warehouse\", \"DuckDB\", \"Stores summaries\")\n  }\n  Rel(worker, warehouse, \"Writes\")",
+            "description": "Synthetic reporting containers.",
+            "steps": [
+              "Read the native C4 source and its exact authored markers.",
+              "Drill only through the declared child levels."
+            ],
+            "nodeChanges": [],
+            "edgeChanges": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "native-crossings",
+      "type": "data-flow",
+      "title": "Publication crossing",
+      "reason": "An authored crossing on the admin app's native C4 publish relation.",
+      "architecture": "native-architecture",
+      "crossings": [
+        {
+          "id": "retry",
+          "level": "containers",
+          "pane": "after",
+          "edge": {
+            "from": "admin",
+            "to": "queue",
+            "label": "publish",
+            "occurrence": 0
+          },
+          "classification": "internal",
+          "data": "Accepted order",
+          "control": "Schema validation (authored)",
+          "note": "The same publish label on a second, distinct relation."
+        }
+      ]
+    }
+  ]
+}

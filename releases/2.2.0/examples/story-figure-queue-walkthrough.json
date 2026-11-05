@@ -1,0 +1,645 @@
+{
+  "schemaVersion": "2.2.0",
+  "title": "Eight jobs, three available workers",
+  "lead": "Authored mechanisms through one retained production figure reader; never captured execution.",
+  "changes": [
+    "Adding available workers changes illustrated capacity, not a measured speedup.",
+    "Inspect and return without resetting the selected beat."
+  ],
+  "references": [
+    {
+      "label": "Literal author note",
+      "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "figure",
+        "title": "Eight jobs, three available workers",
+        "takeaway": "Adding available workers changes illustrated capacity, not a measured speedup.",
+        "visual": {
+          "type": "figure",
+          "label": "Authored explanation",
+          "section": "figure"
+        },
+        "inspections": [
+          {
+            "section": "figure",
+            "label": "Inspect this figure"
+          },
+          {
+            "section": "supporting",
+            "label": "Inspect alternate figure"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "figure",
+      "type": "story-figure",
+      "title": "Eight jobs, three available workers",
+      "reason": "Supplied snapshots distinguish waiting, executing and completed jobs, without simulating a scheduler.",
+      "figure": {
+        "kind": "queue",
+        "id": "eight-jobs",
+        "title": "Eight jobs, three available workers",
+        "description": "Supplied snapshots distinguish waiting, executing and completed jobs, without simulating a scheduler.",
+        "claim": "Adding available workers changes illustrated capacity, not a measured speedup.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "tasks": [
+          {
+            "id": "job-1",
+            "label": "Job 1"
+          },
+          {
+            "id": "job-2",
+            "label": "Job 2"
+          },
+          {
+            "id": "job-3",
+            "label": "Job 3"
+          },
+          {
+            "id": "job-4",
+            "label": "Job 4"
+          },
+          {
+            "id": "job-5",
+            "label": "Job 5"
+          },
+          {
+            "id": "job-6",
+            "label": "Job 6"
+          },
+          {
+            "id": "job-7",
+            "label": "Job 7"
+          },
+          {
+            "id": "job-8",
+            "label": "Job 8"
+          }
+        ],
+        "workers": [
+          {
+            "id": "worker-1",
+            "label": "Worker 1"
+          },
+          {
+            "id": "worker-2",
+            "label": "Worker 2"
+          },
+          {
+            "id": "worker-3",
+            "label": "Worker 3"
+          }
+        ],
+        "beats": [
+          {
+            "id": "waiting",
+            "title": "Eight jobs wait",
+            "explanation": "One worker is available; no work has started in this snapshot.",
+            "available": ["worker-1"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "waiting"
+              },
+              {
+                "task": "job-2",
+                "state": "waiting"
+              },
+              {
+                "task": "job-3",
+                "state": "waiting"
+              },
+              {
+                "task": "job-4",
+                "state": "waiting"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "one",
+            "title": "One worker executes",
+            "explanation": "One job executes and seven wait.",
+            "available": ["worker-1"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-2",
+                "state": "waiting"
+              },
+              {
+                "task": "job-3",
+                "state": "waiting"
+              },
+              {
+                "task": "job-4",
+                "state": "waiting"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "three",
+            "title": "Three workers available",
+            "explanation": "Three distinct workers each execute one job.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-3",
+                "state": "running",
+                "worker": "worker-2"
+              },
+              {
+                "task": "job-4",
+                "state": "running",
+                "worker": "worker-3"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "later",
+            "title": "A later snapshot",
+            "explanation": "Four jobs are done, three execute and one waits. Intermediate processing is omitted.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "done"
+              },
+              {
+                "task": "job-3",
+                "state": "done"
+              },
+              {
+                "task": "job-4",
+                "state": "done"
+              },
+              {
+                "task": "job-5",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-6",
+                "state": "running",
+                "worker": "worker-2"
+              },
+              {
+                "task": "job-7",
+                "state": "running",
+                "worker": "worker-3"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "final",
+            "title": "Supplied completion",
+            "explanation": "All eight jobs are explicitly marked done. This is not an observation of a real run.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "done"
+              },
+              {
+                "task": "job-3",
+                "state": "done"
+              },
+              {
+                "task": "job-4",
+                "state": "done"
+              },
+              {
+                "task": "job-5",
+                "state": "done"
+              },
+              {
+                "task": "job-6",
+                "state": "done"
+              },
+              {
+                "task": "job-7",
+                "state": "done"
+              },
+              {
+                "task": "job-8",
+                "state": "done"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "supporting",
+      "type": "story-figure",
+      "title": "An incomplete queue",
+      "reason": "Supporting figure has no inline stop; inspection alone borrows it.",
+      "figure": {
+        "kind": "queue",
+        "id": "eight-jobs",
+        "title": "An incomplete queue",
+        "description": "Supplied snapshots distinguish waiting, executing and completed jobs, without simulating a scheduler.",
+        "claim": "Adding available workers changes illustrated capacity, not a measured speedup.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "tasks": [
+          {
+            "id": "job-1",
+            "label": "Job"
+          },
+          {
+            "id": "job-2",
+            "label": "Job"
+          },
+          {
+            "id": "job-3",
+            "label": "Job"
+          },
+          {
+            "id": "job-4",
+            "label": "Job"
+          },
+          {
+            "id": "job-5",
+            "label": "Job"
+          },
+          {
+            "id": "job-6",
+            "label": "Job"
+          },
+          {
+            "id": "job-7",
+            "label": "Job"
+          },
+          {
+            "id": "job-8",
+            "label": "Job"
+          }
+        ],
+        "workers": [
+          {
+            "id": "worker-1",
+            "label": "Worker 1"
+          },
+          {
+            "id": "worker-2",
+            "label": "Worker 2"
+          },
+          {
+            "id": "worker-3",
+            "label": "Worker 3"
+          }
+        ],
+        "beats": [
+          {
+            "id": "waiting",
+            "title": "Eight jobs wait",
+            "explanation": "One worker is available; no work has started in this snapshot.",
+            "available": ["worker-1"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "waiting"
+              },
+              {
+                "task": "job-2",
+                "state": "waiting"
+              },
+              {
+                "task": "job-3",
+                "state": "waiting"
+              },
+              {
+                "task": "job-4",
+                "state": "waiting"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "one",
+            "title": "One worker executes",
+            "explanation": "One job executes and seven wait.",
+            "available": ["worker-1"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-2",
+                "state": "waiting"
+              },
+              {
+                "task": "job-3",
+                "state": "waiting"
+              },
+              {
+                "task": "job-4",
+                "state": "waiting"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "three",
+            "title": "Three workers available",
+            "explanation": "Three distinct workers each execute one job.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-3",
+                "state": "running",
+                "worker": "worker-2"
+              },
+              {
+                "task": "job-4",
+                "state": "running",
+                "worker": "worker-3"
+              },
+              {
+                "task": "job-5",
+                "state": "waiting"
+              },
+              {
+                "task": "job-6",
+                "state": "waiting"
+              },
+              {
+                "task": "job-7",
+                "state": "waiting"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "later",
+            "title": "A later snapshot",
+            "explanation": "Four jobs are done, three execute and one waits. Intermediate processing is omitted.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "done"
+              },
+              {
+                "task": "job-3",
+                "state": "done"
+              },
+              {
+                "task": "job-4",
+                "state": "done"
+              },
+              {
+                "task": "job-5",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-6",
+                "state": "running",
+                "worker": "worker-2"
+              },
+              {
+                "task": "job-7",
+                "state": "running",
+                "worker": "worker-3"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          },
+          {
+            "id": "final",
+            "title": "Still incomplete",
+            "explanation": "The final authored snapshot still has waiting and running jobs; no future completion is predicted.",
+            "available": ["worker-1", "worker-2", "worker-3"],
+            "positions": [
+              {
+                "task": "job-1",
+                "state": "done"
+              },
+              {
+                "task": "job-2",
+                "state": "done"
+              },
+              {
+                "task": "job-3",
+                "state": "done"
+              },
+              {
+                "task": "job-4",
+                "state": "done"
+              },
+              {
+                "task": "job-5",
+                "state": "done"
+              },
+              {
+                "task": "job-6",
+                "state": "done"
+              },
+              {
+                "task": "job-7",
+                "state": "running",
+                "worker": "worker-1"
+              },
+              {
+                "task": "job-8",
+                "state": "waiting"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "figure-tour",
+      "type": "tour",
+      "title": "Figure tour",
+      "reason": "Reveal the section without playback or beat selection.",
+      "chapters": [
+        {
+          "id": "read-figure",
+          "title": "Read the mechanism",
+          "body": "Select any beat, inspect, return, then revisit this chapter. The selected beat stays yours.",
+          "target": "figure"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "c4",
+      "title": "Illustrated work boundary",
+      "reason": "Authored context for this mechanism, not an execution graph.",
+      "mode": "single",
+      "levels": [
+        {
+          "id": "context",
+          "altitude": "c1",
+          "title": "Work context",
+          "diagram": {
+            "kind": "flowchart",
+            "source": "flowchart LR\n reader[Reader] --> store[Object storage]",
+            "description": "A reader requests illustrated work from storage.",
+            "steps": ["Read the authored mechanism."],
+            "nodeChanges": [],
+            "edgeChanges": []
+          },
+          "drills": []
+        }
+      ]
+    }
+  ],
+  "pins": [
+    {
+      "section": "figure",
+      "architecture": "architecture",
+      "level": "context",
+      "pane": "single",
+      "target": {
+        "kind": "node",
+        "node": "store"
+      }
+    }
+  ]
+}
