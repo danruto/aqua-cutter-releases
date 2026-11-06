@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic critical path waterfall",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "waterfall",
+      "type": "trace",
+      "title": "Synthetic critical path waterfall",
+      "reason": "Observed-shaped intervals are authored controls, not native measurements.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Start] --> B[Finish]",
+        "description": "Authored context, separate from interval prerequisites."
+      },
+      "paths": [
+        {
+          "id": "context",
+          "label": "Authored context",
+          "steps": [
+            {
+              "node": "A",
+              "title": "Start",
+              "narration": "No execution inferred."
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "Authored only"
+        }
+      ],
+      "waterfall": {
+        "streams": [
+          {
+            "id": "request",
+            "clock": "synthetic-timing-clock",
+            "unit": "ns",
+            "state": "complete",
+            "exclusions": ["Authored synthetic intervals; not native measurement"],
+            "issues": [],
+            "operations": [
+              {
+                "id": "validate",
+                "label": "validate",
+                "lane": "request",
+                "startNs": "1000",
+                "endNs": "1010",
+                "prerequisites": [],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "endSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-request:0:2584",
+                  "artifact:de000000000000000000000000000000:source-0:0:18",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              },
+              {
+                "id": "query",
+                "label": "query",
+                "lane": "database",
+                "startNs": "1020",
+                "endNs": "1100",
+                "prerequisites": ["validate"],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "endSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-request:0:2584",
+                  "artifact:de000000000000000000000000000000:source-0:0:18",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              },
+              {
+                "id": "assets",
+                "label": "assets",
+                "lane": "network",
+                "startNs": "1025",
+                "endNs": "1060",
+                "prerequisites": ["validate"],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "endSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-request:0:2584",
+                  "artifact:de000000000000000000000000000000:source-0:0:18",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              },
+              {
+                "id": "compose",
+                "label": "compose",
+                "lane": "request",
+                "startNs": "1140",
+                "endNs": "1160",
+                "prerequisites": ["query", "assets"],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "endSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-request:0:2584",
+                  "artifact:de000000000000000000000000000000:source-0:0:18",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "partial",
+            "clock": "independent-clock",
+            "unit": "ns",
+            "state": "partial",
+            "exclusions": ["Missing ends"],
+            "issues": [
+              {
+                "code": "incomplete-protocol",
+                "path": "/events"
+              }
+            ],
+            "operations": [
+              {
+                "id": "open-first",
+                "label": "Open",
+                "lane": "worker",
+                "startNs": "100",
+                "prerequisites": [],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-partial:0:775",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              },
+              {
+                "id": "open-second",
+                "label": "Open",
+                "lane": "worker",
+                "startNs": "150",
+                "prerequisites": [],
+                "startSite": {
+                  "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+                  "path": "fixture.ts",
+                  "sha256": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+                  "startByte": 0,
+                  "endByte": 18,
+                  "excerpt": "await operation();",
+                  "sourceEvidence": "artifact:de000000000000000000000000000000:source-0:0:18"
+                },
+                "evidence": [
+                  "artifact:de000000000000000000000000000000:timing-partial:0:775",
+                  "artifact:de000000000000000000000000000000:source-0:0:18"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "invalid",
+            "state": "invalid",
+            "issues": [
+              {
+                "code": "source-mismatch",
+                "path": "/events/2/site"
+              }
+            ],
+            "operations": []
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:de000000000000000000000000000000",
+        "planDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": [
+          "Authored synthetic controls; no native capture, integrity verification or execution is claimed"
+        ],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:de000000000000000000000000000000:original-0:0:18",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:original-1:0:51",
+        "run": "run:de000000000000000000000000000000",
+        "role": "authored",
+        "originDigest": "bc838aed24136aa30144eb6c2186eca8f09c64428e475bb49581f01cb4b5c140",
+        "selectedDigest": "bc838aed24136aa30144eb6c2186eca8f09c64428e475bb49581f01cb4b5c140",
+        "startByte": 0,
+        "endByte": 51,
+        "body": "Authored synthetic timing observations, not capture",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:source-0:0:18",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:timing-request:0:2584",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "72a71bb6274ea0e4f0aac0383a1d70455058bf118cd9c8b2cea98e89830341e8",
+        "selectedDigest": "72a71bb6274ea0e4f0aac0383a1d70455058bf118cd9c8b2cea98e89830341e8",
+        "startByte": 0,
+        "endByte": 2584,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":1,\"ns\":\"0\",\"event\":{\"kind\":\"header\",\"clock\":\"synthetic-timing-clock\",\"unit\":\"ns\",\"exclusions\":[\"Authored synthetic intervals; not native measurement\"]}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":2,\"ns\":\"1000\",\"event\":{\"kind\":\"start\",\"id\":\"validate\",\"label\":\"validate\",\"lane\":\"request\",\"prerequisites\":[],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":3,\"ns\":\"1010\",\"event\":{\"kind\":\"end\",\"id\":\"validate\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":4,\"ns\":\"1020\",\"event\":{\"kind\":\"start\",\"id\":\"query\",\"label\":\"query\",\"lane\":\"database\",\"prerequisites\":[\"validate\"],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":5,\"ns\":\"1025\",\"event\":{\"kind\":\"start\",\"id\":\"assets\",\"label\":\"assets\",\"lane\":\"network\",\"prerequisites\":[\"validate\"],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":6,\"ns\":\"1060\",\"event\":{\"kind\":\"end\",\"id\":\"assets\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":7,\"ns\":\"1100\",\"event\":{\"kind\":\"end\",\"id\":\"query\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":8,\"ns\":\"1140\",\"event\":{\"kind\":\"start\",\"id\":\"compose\",\"label\":\"compose\",\"lane\":\"request\",\"prerequisites\":[\"query\",\"assets\"],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":9,\"ns\":\"1160\",\"event\":{\"kind\":\"end\",\"id\":\"compose\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"request\",\"seq\":10,\"ns\":\"1160\",\"event\":{\"kind\":\"complete\"}}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:timing-request-status:0:70",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "5275d7f7a3d1acdadf7240740c04937dc4fdb4ec74d45f01379c6e6041bca8e5",
+        "selectedDigest": "5275d7f7a3d1acdadf7240740c04937dc4fdb4ec74d45f01379c6e6041bca8e5",
+        "startByte": 0,
+        "endByte": 70,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"complete\",\"records\":10,\"bytes\":2584}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:timing-partial:0:775",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "2444a7f88739bb7b04305d4107e03cbc1fcd531a0b457142d3d45d9187f4f2e5",
+        "selectedDigest": "2444a7f88739bb7b04305d4107e03cbc1fcd531a0b457142d3d45d9187f4f2e5",
+        "startByte": 0,
+        "endByte": 775,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"partial\",\"seq\":1,\"ns\":\"0\",\"event\":{\"kind\":\"header\",\"clock\":\"independent-clock\",\"unit\":\"ns\",\"exclusions\":[\"Missing ends\"]}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"partial\",\"seq\":2,\"ns\":\"100\",\"event\":{\"kind\":\"start\",\"id\":\"open-first\",\"label\":\"Open\",\"lane\":\"worker\",\"prerequisites\":[],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"partial\",\"seq\":3,\"ns\":\"150\",\"event\":{\"kind\":\"start\",\"id\":\"open-second\",\"label\":\"Open\",\"lane\":\"worker\",\"prerequisites\":[],\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:de000000000000000000000000000000:timing-partial-status:0:70",
+        "run": "run:de000000000000000000000000000000",
+        "role": "raw",
+        "originDigest": "aee2ad4da2d573e36c9ed2d398fb4552e61142c42b8a7908b160bc16e558bb42",
+        "selectedDigest": "aee2ad4da2d573e36c9ed2d398fb4552e61142c42b8a7908b160bc16e558bb42",
+        "startByte": 0,
+        "endByte": 70,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"incomplete\",\"records\":3,\"bytes\":775}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "waterfall",
+        "title": "Measured gaps differ from model dependencies",
+        "takeaway": "Change one declared duration; the model does not replay execution.",
+        "inspections": [
+          {
+            "section": "waterfall",
+            "label": "Inspect the full production reader"
+          }
+        ]
+      }
+    ]
+  }
+}

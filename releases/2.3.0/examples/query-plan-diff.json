@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic query-plan protocol: timing-disabled",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "query-plan",
+      "type": "query-plan-diff",
+      "title": "Synthetic query-plan protocol: timing-disabled",
+      "reason": "Synthetic reader states only; these plan-shaped fields are not measurements or captured costs.",
+      "before": {
+        "mode": "analyzed",
+        "timing": false,
+        "captureState": "complete",
+        "issues": [],
+        "resultState": "captured",
+        "metadata": {
+          "serverVersion": "180006",
+          "queryDigest": "66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c",
+          "parametersDigest": "033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5",
+          "fixtureDigest": "49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302",
+          "settingsDigest": "0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5",
+          "catalogueDigest": "68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35",
+          "statisticsDigest": "c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60",
+          "role": "capture",
+          "planningMode": "auto"
+        },
+        "evidence": [
+          "artifact:03203300000000000000000000000000:before-plan:0:115",
+          "artifact:03203300000000000000000000000000:before-metadata:0:570",
+          "artifact:03203300000000000000000000000000:before-result:0:123",
+          "artifact:03203300000000000000000000000000:before-capture:0:842"
+        ],
+        "nodes": [
+          {
+            "id": "root",
+            "ordinal": 0,
+            "type": "Result",
+            "startupCost": 0,
+            "totalCost": 0.01,
+            "estimatedRows": 1,
+            "actual": {
+              "rows": 1,
+              "loops": 1
+            }
+          }
+        ],
+        "result": {
+          "mode": "ordered",
+          "artifact": "artifact:03203300000000000000000000000000:before-result:0:123",
+          "rows": 1,
+          "digest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2"
+        }
+      },
+      "after": {
+        "mode": "analyzed",
+        "timing": false,
+        "captureState": "complete",
+        "issues": [],
+        "resultState": "captured",
+        "metadata": {
+          "serverVersion": "180006",
+          "queryDigest": "66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c",
+          "parametersDigest": "033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5",
+          "fixtureDigest": "49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302",
+          "settingsDigest": "0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5",
+          "catalogueDigest": "68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35",
+          "statisticsDigest": "c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60",
+          "role": "capture",
+          "planningMode": "auto"
+        },
+        "evidence": [
+          "artifact:03203300000000000000000000000000:after-plan:0:115",
+          "artifact:03203300000000000000000000000000:after-metadata:0:570",
+          "artifact:03203300000000000000000000000000:after-result:0:123",
+          "artifact:03203300000000000000000000000000:after-capture:0:840"
+        ],
+        "nodes": [
+          {
+            "id": "root",
+            "ordinal": 0,
+            "type": "Result",
+            "startupCost": 0,
+            "totalCost": 0.01,
+            "estimatedRows": 1,
+            "actual": {
+              "rows": 1,
+              "loops": 1
+            }
+          }
+        ],
+        "result": {
+          "mode": "ordered",
+          "artifact": "artifact:03203300000000000000000000000000:after-result:0:123",
+          "rows": 1,
+          "digest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2"
+        }
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:03203300000000000000000000000000",
+        "planDigest": "dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:dc678a4c169caafbdb8d9a0f2be20b00886aec6b3ed39122a5cce7bb62dcf5c7:fixture",
+            "commit": "0000000000000000000000000000000000000000"
+          }
+        ],
+        "excludedInputs": ["Synthetic protocol data, not native execution or private verification"],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:03203300000000000000000000000000:before-plan:0:115",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "78e768e8d52bcfa6f5cfd44aba11dee9fe8c8bf1e77c11ab80c0cf50767db19a",
+        "selectedDigest": "78e768e8d52bcfa6f5cfd44aba11dee9fe8c8bf1e77c11ab80c0cf50767db19a",
+        "startByte": 0,
+        "endByte": 115,
+        "body": "[{\"Plan\":{\"Node Type\":\"Result\",\"Startup Cost\":0,\"Total Cost\":0.01,\"Plan Rows\":1,\"Actual Rows\":1,\"Actual Loops\":1}}]",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:before-metadata:0:570",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "5dfec98f996d53abb50d20c73518118cb7ab704a8496e05a1efd3854e4db177b",
+        "selectedDigest": "5dfec98f996d53abb50d20c73518118cb7ab704a8496e05a1efd3854e4db177b",
+        "startByte": 0,
+        "endByte": 570,
+        "body": "{\"serverVersion\":\"180006\",\"queryDigest\":\"66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c\",\"parametersDigest\":\"033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5\",\"fixtureDigest\":\"49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302\",\"settingsDigest\":\"0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5\",\"catalogueDigest\":\"68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35\",\"statisticsDigest\":\"c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60\",\"role\":\"capture\",\"planningMode\":\"auto\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:before-result:0:123",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2",
+        "selectedDigest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2",
+        "startByte": 0,
+        "endByte": 123,
+        "body": "{\"formatVersion\":\"1.0.0\",\"mode\":\"ordered\",\"columns\":[{\"name\":\"value\",\"typeOid\":25,\"format\":\"text\"}],\"rows\":[[\"synthetic\"]]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:before-capture:0:842",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "0e8da2487c630bcf496d0123ec70c7aee8776579f200518a5f892929d77298a0",
+        "selectedDigest": "0e8da2487c630bcf496d0123ec70c7aee8776579f200518a5f892929d77298a0",
+        "startByte": 0,
+        "endByte": 842,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"complete\",\"mode\":\"analyzed\",\"timing\":false,\"metadata\":{\"serverVersion\":\"180006\",\"queryDigest\":\"66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c\",\"parametersDigest\":\"033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5\",\"fixtureDigest\":\"49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302\",\"settingsDigest\":\"0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5\",\"catalogueDigest\":\"68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35\",\"statisticsDigest\":\"c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60\",\"role\":\"capture\",\"planningMode\":\"auto\"},\"planArtifact\":\"before-plan\",\"resultState\":\"captured\",\"resultArtifact\":\"before-result\",\"observations\":[{\"phase\":\"explain\",\"status\":\"PGRES_TUPLES_OK\",\"acknowledged\":true}],\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:after-plan:0:115",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "78e768e8d52bcfa6f5cfd44aba11dee9fe8c8bf1e77c11ab80c0cf50767db19a",
+        "selectedDigest": "78e768e8d52bcfa6f5cfd44aba11dee9fe8c8bf1e77c11ab80c0cf50767db19a",
+        "startByte": 0,
+        "endByte": 115,
+        "body": "[{\"Plan\":{\"Node Type\":\"Result\",\"Startup Cost\":0,\"Total Cost\":0.01,\"Plan Rows\":1,\"Actual Rows\":1,\"Actual Loops\":1}}]",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:after-metadata:0:570",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "5dfec98f996d53abb50d20c73518118cb7ab704a8496e05a1efd3854e4db177b",
+        "selectedDigest": "5dfec98f996d53abb50d20c73518118cb7ab704a8496e05a1efd3854e4db177b",
+        "startByte": 0,
+        "endByte": 570,
+        "body": "{\"serverVersion\":\"180006\",\"queryDigest\":\"66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c\",\"parametersDigest\":\"033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5\",\"fixtureDigest\":\"49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302\",\"settingsDigest\":\"0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5\",\"catalogueDigest\":\"68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35\",\"statisticsDigest\":\"c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60\",\"role\":\"capture\",\"planningMode\":\"auto\"}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:after-result:0:123",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2",
+        "selectedDigest": "d8f5119f21e28847366c946a08f5ed36d3bca2d90b48040df9789376770857a2",
+        "startByte": 0,
+        "endByte": 123,
+        "body": "{\"formatVersion\":\"1.0.0\",\"mode\":\"ordered\",\"columns\":[{\"name\":\"value\",\"typeOid\":25,\"format\":\"text\"}],\"rows\":[[\"synthetic\"]]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:03203300000000000000000000000000:after-capture:0:840",
+        "run": "run:03203300000000000000000000000000",
+        "role": "raw",
+        "originDigest": "7ed0b42df28ed9639caec529bcabeeb12d591ec6d31daabc77be0ba44cdae550",
+        "selectedDigest": "7ed0b42df28ed9639caec529bcabeeb12d591ec6d31daabc77be0ba44cdae550",
+        "startByte": 0,
+        "endByte": 840,
+        "body": "{\"formatVersion\":\"1.0.0\",\"state\":\"complete\",\"mode\":\"analyzed\",\"timing\":false,\"metadata\":{\"serverVersion\":\"180006\",\"queryDigest\":\"66c6932b6cbe1a316c97264f97274c5dd310918e5bacffa1faffd6edbf1b2e4c\",\"parametersDigest\":\"033cb5e4fb774379adf9b14071122ffe423830b8a494c7bcac91ced69dd339d5\",\"fixtureDigest\":\"49e27e8085990f980b41d5f22404d23b6c46a80fbd9d987f52b068ea18af1302\",\"settingsDigest\":\"0967115f2813a3541eaef77de9d9d5773f1c0c04314b0bbfe4ff3b3b1c55b5d5\",\"catalogueDigest\":\"68462bf3991f1299ae6d17471d75090e7cf50d6bec40f1072e349773c0b3fc35\",\"statisticsDigest\":\"c89d48709f5fe6e68a7484f6e81f8d537b821ddb4773936265262e7874780b60\",\"role\":\"capture\",\"planningMode\":\"auto\"},\"planArtifact\":\"after-plan\",\"resultState\":\"captured\",\"resultArtifact\":\"after-result\",\"observations\":[{\"phase\":\"explain\",\"status\":\"PGRES_TUPLES_OK\",\"acknowledged\":true}],\"issues\":[]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "query-plan",
+        "title": "Inspect supplied physical-plan evidence",
+        "takeaway": "Planner units are not elapsed time; separately executed witnesses have a narrow identity boundary.",
+        "inspections": [
+          {
+            "section": "query-plan",
+            "label": "Inspect synthetic native-plan reader"
+          }
+        ]
+      }
+    ]
+  }
+}

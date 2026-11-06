@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "2.2.0",
+  "title": "Read once from origin, then from cache",
+  "lead": "Authored mechanisms through one retained production figure reader; never captured execution.",
+  "changes": [
+    "The second read uses the supplied cache route without another origin visit.",
+    "Inspect and return without resetting the selected beat."
+  ],
+  "references": [
+    {
+      "label": "Literal author note",
+      "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "figure",
+        "title": "Read once from origin, then from cache",
+        "takeaway": "The second read uses the supplied cache route without another origin visit.",
+        "visual": {
+          "type": "figure",
+          "label": "Authored explanation",
+          "section": "figure"
+        },
+        "inspections": [
+          {
+            "section": "figure",
+            "label": "Inspect this figure"
+          },
+          {
+            "section": "supporting",
+            "label": "Inspect alternate figure"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "figure",
+      "type": "story-figure",
+      "title": "Read once from origin, then from cache",
+      "reason": "Explicit request occurrences follow directed routes. A stationary marker never travels.",
+      "figure": {
+        "kind": "flow",
+        "id": "cache-reads",
+        "title": "Read once from origin, then from cache",
+        "description": "Explicit request occurrences follow directed routes. A stationary marker never travels.",
+        "claim": "The second read uses the supplied cache route without another origin visit.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "places": [
+          {
+            "id": "reader",
+            "label": "Reader requesting a repository object"
+          },
+          {
+            "id": "origin",
+            "label": "Origin object store"
+          },
+          {
+            "id": "cache",
+            "label": "Local object cache"
+          }
+        ],
+        "links": [
+          {
+            "id": "origin-read",
+            "from": "reader",
+            "to": "origin",
+            "label": "First read"
+          },
+          {
+            "id": "fill",
+            "from": "origin",
+            "to": "cache",
+            "label": "Retain locally"
+          },
+          {
+            "id": "cached-read",
+            "from": "reader",
+            "to": "cache",
+            "label": "Repeated read"
+          },
+          {
+            "id": "return",
+            "from": "cache",
+            "to": "reader",
+            "label": "Local result"
+          }
+        ],
+        "tokens": [
+          {
+            "id": "first",
+            "label": "Read"
+          },
+          {
+            "id": "second",
+            "label": "Read"
+          },
+          {
+            "id": "marker",
+            "label": "Stationary"
+          }
+        ],
+        "beats": [
+          {
+            "id": "ready",
+            "title": "First request",
+            "explanation": "The first occurrence is at the reader; the second is not shown.",
+            "positions": [
+              {
+                "token": "first",
+                "at": "reader"
+              },
+              {
+                "token": "second",
+                "at": null
+              },
+              {
+                "token": "marker",
+                "at": "cache"
+              }
+            ]
+          },
+          {
+            "id": "origin",
+            "title": "Read from origin",
+            "explanation": "Only the first read visits the origin.",
+            "positions": [
+              {
+                "token": "first",
+                "at": "origin",
+                "via": "origin-read"
+              },
+              {
+                "token": "second",
+                "at": null
+              },
+              {
+                "token": "marker",
+                "at": "cache"
+              }
+            ]
+          },
+          {
+            "id": "filled",
+            "title": "Cache filled",
+            "explanation": "The first result reaches the cache. Another read appears at the reader.",
+            "positions": [
+              {
+                "token": "first",
+                "at": "cache",
+                "via": "fill"
+              },
+              {
+                "token": "second",
+                "at": "reader"
+              },
+              {
+                "token": "marker",
+                "at": "cache"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "Repeated local read",
+            "explanation": "\nThe second read travels directly to cache.\rNo second origin visit is authored.",
+            "positions": [
+              {
+                "token": "first",
+                "at": null
+              },
+              {
+                "token": "second",
+                "at": "cache",
+                "via": "cached-read"
+              },
+              {
+                "token": "marker",
+                "at": "cache"
+              }
+            ]
+          },
+          {
+            "id": "returned",
+            "title": "Local result returned",
+            "explanation": "The repeated read returns locally; the stationary marker has never moved.",
+            "positions": [
+              {
+                "token": "first",
+                "at": null
+              },
+              {
+                "token": "second",
+                "at": "reader",
+                "via": "return"
+              },
+              {
+                "token": "marker",
+                "at": "cache"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "supporting",
+      "type": "story-figure",
+      "title": "A stationary flow with repeated labels",
+      "reason": "Supporting figure has no inline stop; inspection alone borrows it.",
+      "figure": {
+        "kind": "flow",
+        "id": "stationary",
+        "title": "A stationary flow with repeated labels",
+        "description": "No links or travel are declared. One occurrence stays fixed while a separate occurrence appears and disappears.",
+        "claim": "Equal display labels do not connect two places or move the resident occurrence.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "places": [
+          {
+            "id": "store-a",
+            "label": "Storage with a deliberately long descriptive label that must wrap without truncation"
+          },
+          {
+            "id": "store-b",
+            "label": "Storage with a deliberately long descriptive label that must wrap without truncation"
+          }
+        ],
+        "links": [],
+        "tokens": [
+          {
+            "id": "resident",
+            "label": "Object"
+          },
+          {
+            "id": "transient",
+            "label": "Object"
+          }
+        ],
+        "beats": [
+          {
+            "id": "before",
+            "title": "Resident stays",
+            "explanation": "The resident is in store-a. A different occurrence is explicitly not shown.",
+            "positions": [
+              {
+                "token": "resident",
+                "at": "store-a"
+              },
+              {
+                "token": "transient",
+                "at": null
+              }
+            ]
+          },
+          {
+            "id": "shown",
+            "title": "Another occurrence appears",
+            "explanation": "The resident remains stationary; appearance in store-b is not a traversal from store-a.",
+            "positions": [
+              {
+                "token": "resident",
+                "at": "store-a"
+              },
+              {
+                "token": "transient",
+                "at": "store-b"
+              }
+            ]
+          },
+          {
+            "id": "hidden",
+            "title": "Another occurrence disappears",
+            "explanation": "Only the transient occurrence leaves the illustration. The resident never moves.",
+            "positions": [
+              {
+                "token": "resident",
+                "at": "store-a"
+              },
+              {
+                "token": "transient",
+                "at": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "figure-tour",
+      "type": "tour",
+      "title": "Figure tour",
+      "reason": "Reveal the section without playback or beat selection.",
+      "chapters": [
+        {
+          "id": "read-figure",
+          "title": "Read the mechanism",
+          "body": "Select any beat, inspect, return, then revisit this chapter. The selected beat stays yours.",
+          "target": "figure"
+        }
+      ]
+    }
+  ]
+}
