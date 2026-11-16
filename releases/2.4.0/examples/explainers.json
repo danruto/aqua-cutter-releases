@@ -1,0 +1,1265 @@
+{
+  "schemaVersion": "2.2.0",
+  "title": "Explainer components",
+  "lead": "Five authored explainers: a state stepper, a rollout phase map, a budget, a schema evolution diff and a knob table.",
+  "changes": [
+    "Each failure doubles the wait until the job is dead-lettered.",
+    "Each phase changes which store is written and read.",
+    "Parallel lookups take most of the wait off each request.",
+    "Removing the old fields only breaks consumers that never moved.",
+    "16 connections gave the lowest latency of the settings tested."
+  ],
+  "references": [],
+  "story": {
+    "stops": [
+      {
+        "section": "retry-backoff",
+        "title": "Step through the new retry schedule",
+        "takeaway": "Each failure doubles the wait until the job is dead-lettered.",
+        "inspections": [
+          {
+            "section": "retry-backoff",
+            "label": "Inspect the stepper"
+          }
+        ]
+      },
+      {
+        "section": "plan-migration",
+        "title": "Move plans without downtime",
+        "takeaway": "Each phase changes which store is written and read.",
+        "inspections": [
+          {
+            "section": "plan-migration",
+            "label": "Inspect the phase map"
+          }
+        ]
+      },
+      {
+        "section": "search-latency",
+        "title": "See where the time goes",
+        "takeaway": "Parallel lookups take most of the wait off each request.",
+        "inspections": [
+          {
+            "section": "search-latency",
+            "label": "Inspect the budget"
+          }
+        ]
+      },
+      {
+        "section": "subscription-model",
+        "title": "Check who breaks at each version",
+        "takeaway": "Removing the old fields only breaks consumers that never moved.",
+        "inspections": [
+          {
+            "section": "subscription-model",
+            "label": "Inspect the schema history"
+          }
+        ]
+      },
+      {
+        "section": "pool-size",
+        "title": "Pick the pool size",
+        "takeaway": "16 connections gave the lowest latency of the settings tested.",
+        "inspections": [
+          {
+            "section": "pool-size",
+            "label": "Inspect the knob table"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "retry-backoff",
+      "type": "state-stepper",
+      "title": "Retry scheduler: exponential backoff",
+      "reason": "This change replaces the fixed one-second retry delay with exponential backoff capped at eight seconds, so a failing job stops hammering its dependency. Step through one failing job and two healthy ones to see when each retry is scheduled.",
+      "initialStepper": "backoff",
+      "steppers": [
+        {
+          "id": "backoff",
+          "title": "After: exponential backoff",
+          "code": {
+            "language": "typescript",
+            "lines": [
+              "function enqueue(id: string, now: number): Job {",
+              "  return { id, attempt: 0, nextRun: now, state: \"queued\" };",
+              "}",
+              "",
+              "function scheduleRetry(job: Job, now: number): Job {",
+              "  const attempt = job.attempt + 1;",
+              "  if (attempt > MAX_ATTEMPTS) return { ...job, attempt, state: \"dead\" };",
+              "  const delay = Math.min(BASE_MS * 2 ** (attempt - 1), CAP_MS);",
+              "  return { ...job, attempt, nextRun: now + delay, state: \"waiting\" };",
+              "}",
+              "",
+              "function onSuccess(job: Job): void {",
+              "  queue.remove(job.id);",
+              "}"
+            ]
+          },
+          "columns": [
+            {
+              "id": "job",
+              "label": "Job"
+            },
+            {
+              "id": "attempt",
+              "label": "Attempt"
+            },
+            {
+              "id": "next-run",
+              "label": "Next run"
+            },
+            {
+              "id": "state",
+              "label": "State"
+            }
+          ],
+          "rowKey": "job",
+          "steps": [
+            {
+              "id": "queued",
+              "event": "Two jobs are queued",
+              "caption": "Both jobs start with attempt 0 and are due to run straight away.",
+              "at": "t = 0.0 s",
+              "lines": {
+                "from": 1,
+                "to": 2
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "0",
+                  "next-run": "0.0 s",
+                  "state": "queued"
+                },
+                {
+                  "job": "thumb-42",
+                  "attempt": "0",
+                  "next-run": "0.0 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "first-failure",
+              "event": "export-17 fails its first run",
+              "caption": "Attempt 1 waits BASE_MS × 2⁰ = 1 s, the same delay as before this change.",
+              "at": "t = 0.2 s",
+              "lines": {
+                "from": 6,
+                "to": 9
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "1",
+                  "next-run": "1.2 s",
+                  "state": "waiting"
+                },
+                {
+                  "job": "thumb-42",
+                  "attempt": "0",
+                  "next-run": "0.0 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "thumb-done",
+              "event": "thumb-42 succeeds",
+              "caption": "A successful job leaves the queue, so its row is removed.",
+              "at": "t = 0.4 s",
+              "lines": {
+                "from": 12,
+                "to": 13
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "1",
+                  "next-run": "1.2 s",
+                  "state": "waiting"
+                }
+              ]
+            },
+            {
+              "id": "second-failure",
+              "event": "export-17 fails again",
+              "caption": "Attempt 2 waits 2 s instead of 1 s. The gap between retries now doubles.",
+              "at": "t = 1.2 s",
+              "lines": {
+                "from": 8,
+                "to": 9
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "2",
+                  "next-run": "3.2 s",
+                  "state": "waiting"
+                }
+              ]
+            },
+            {
+              "id": "mail-queued",
+              "event": "mail-08 is queued",
+              "caption": "A new job joins the queue. It is not delayed by export-17's backoff.",
+              "at": "t = 1.5 s",
+              "lines": {
+                "from": 1,
+                "to": 2
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "2",
+                  "next-run": "3.2 s",
+                  "state": "waiting"
+                },
+                {
+                  "job": "mail-08",
+                  "attempt": "0",
+                  "next-run": "1.5 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "third-failure",
+              "event": "export-17 fails a third time",
+              "caption": "Attempt 3 waits 4 s.",
+              "at": "t = 3.2 s",
+              "lines": {
+                "from": 8,
+                "to": 9
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "3",
+                  "next-run": "7.2 s",
+                  "state": "waiting"
+                },
+                {
+                  "job": "mail-08",
+                  "attempt": "0",
+                  "next-run": "1.5 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "capped",
+              "event": "export-17 fails a fourth time",
+              "caption": "Attempt 4 would wait 8 s, which equals CAP_MS, so the cap holds the delay at 8 s.",
+              "at": "t = 7.2 s",
+              "lines": {
+                "from": 8,
+                "to": 9
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "4",
+                  "next-run": "15.2 s",
+                  "state": "waiting"
+                },
+                {
+                  "job": "mail-08",
+                  "attempt": "0",
+                  "next-run": "1.5 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "dead",
+              "event": "export-17 runs out of attempts",
+              "caption": "Attempt 5 is over MAX_ATTEMPTS (4), so the job is marked dead and gets no next run.",
+              "at": "t = 15.2 s",
+              "lines": {
+                "from": 6,
+                "to": 7
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "5",
+                  "next-run": "—",
+                  "state": "dead"
+                },
+                {
+                  "job": "mail-08",
+                  "attempt": "0",
+                  "next-run": "1.5 s",
+                  "state": "queued"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fixed-delay",
+          "title": "Before: fixed one-second delay",
+          "code": {
+            "language": "typescript",
+            "lines": [
+              "function scheduleRetry(job: Job, now: number): Job {",
+              "  const attempt = job.attempt + 1;",
+              "  if (attempt > MAX_ATTEMPTS) return { ...job, attempt, state: \"dead\" };",
+              "  return { ...job, attempt, nextRun: now + FIXED_MS, state: \"waiting\" };",
+              "}"
+            ]
+          },
+          "columns": [
+            {
+              "id": "job",
+              "label": "Job"
+            },
+            {
+              "id": "attempt",
+              "label": "Attempt"
+            },
+            {
+              "id": "next-run",
+              "label": "Next run"
+            },
+            {
+              "id": "state",
+              "label": "State"
+            }
+          ],
+          "steps": [
+            {
+              "id": "queued",
+              "event": "export-17 is queued",
+              "caption": "The job starts with attempt 0.",
+              "at": "t = 0.0 s",
+              "lines": {
+                "from": 1,
+                "to": 1
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "0",
+                  "next-run": "0.0 s",
+                  "state": "queued"
+                }
+              ]
+            },
+            {
+              "id": "first-failure",
+              "event": "export-17 fails",
+              "caption": "Every retry waits FIXED_MS = 1 s.",
+              "at": "t = 0.2 s",
+              "lines": {
+                "from": 2,
+                "to": 4
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "1",
+                  "next-run": "1.2 s",
+                  "state": "waiting"
+                }
+              ]
+            },
+            {
+              "id": "second-failure",
+              "event": "export-17 fails again",
+              "caption": "The second retry also waits 1 s, so a broken dependency gets a retry every second.",
+              "at": "t = 1.2 s",
+              "lines": {
+                "from": 2,
+                "to": 4
+              },
+              "rows": [
+                {
+                  "job": "export-17",
+                  "attempt": "2",
+                  "next-run": "2.2 s",
+                  "state": "waiting"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan-migration",
+      "type": "rollout",
+      "title": "Move plans to their own table",
+      "reason": "A user's single plan column becomes a subscriptions table without downtime.",
+      "rollouts": [
+        {
+          "id": "plan-to-subscriptions",
+          "title": "users.plan to subscriptions",
+          "map": {
+            "source": "flowchart LR\n  api[Accounts API] -->|plan| old[users.plan column]\n  api -->|subscription| new[subscriptions table]\n  job[Backfill job] -->|copy| new\n  billing[Billing readers] -->|read old| old\n  billing -->|read new| new"
+          },
+          "phases": [
+            {
+              "id": "dual-write",
+              "title": "Dual write",
+              "intent": "Every write lands in both stores.",
+              "invariant": "New writes reach both stores; reads still use the old column.",
+              "components": [
+                {
+                  "component": "Accounts API",
+                  "version": "api-41",
+                  "settings": "Write plan and subscription."
+                },
+                {
+                  "component": "Billing readers",
+                  "version": "billing-17",
+                  "settings": "Read users.plan."
+                }
+              ],
+              "gates": [
+                {
+                  "condition": "Mismatch log is empty for the previous phase.",
+                  "assessment": "met"
+                }
+              ],
+              "existingWork": "Existing plans keep being served from whichever store this phase reads.",
+              "newWork": "New plans follow this phase's write path.",
+              "verification": [
+                {
+                  "check": "Compare row counts and a sample of plans between both stores."
+                }
+              ],
+              "rollback": {
+                "mode": "switch-back",
+                "action": "Stop writing subscriptions.",
+                "boundary": "Any time; no reader depends on the new table yet.",
+                "existingWork": "Existing plans stay readable.",
+                "newWork": "New plans keep their last write path."
+              },
+              "paths": [
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "old",
+                    "label": "plan",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "new",
+                    "label": "subscription",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "job",
+                    "to": "new",
+                    "label": "copy",
+                    "occurrence": 0
+                  },
+                  "role": "off"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "old",
+                    "label": "read old",
+                    "occurrence": 0
+                  },
+                  "role": "read"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "new",
+                    "label": "read new",
+                    "occurrence": 0
+                  },
+                  "role": "off"
+                }
+              ]
+            },
+            {
+              "id": "backfill",
+              "title": "Backfill and shadow read",
+              "intent": "Copy old rows and compare both stores on every read.",
+              "invariant": "Shadow reads log mismatches; readers still answer from the old column.",
+              "components": [
+                {
+                  "component": "Accounts API",
+                  "version": "api-41",
+                  "settings": "Write plan and subscription."
+                },
+                {
+                  "component": "Billing readers",
+                  "version": "billing-17",
+                  "settings": "Read users.plan; shadow-read subscriptions."
+                }
+              ],
+              "gates": [
+                {
+                  "condition": "Mismatch log is empty for the previous phase.",
+                  "assessment": "unknown"
+                }
+              ],
+              "existingWork": "Existing plans keep being served from whichever store this phase reads.",
+              "newWork": "New plans follow this phase's write path.",
+              "verification": [
+                {
+                  "check": "Compare row counts and a sample of plans between both stores."
+                }
+              ],
+              "rollback": {
+                "mode": "switch-back",
+                "action": "Pause the backfill job and keep dual writes.",
+                "boundary": "Any time before the read flip.",
+                "existingWork": "Existing plans stay readable.",
+                "newWork": "New plans keep their last write path."
+              },
+              "paths": [
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "old",
+                    "label": "plan",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "new",
+                    "label": "subscription",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "job",
+                    "to": "new",
+                    "label": "copy",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "old",
+                    "label": "read old",
+                    "occurrence": 0
+                  },
+                  "role": "read"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "new",
+                    "label": "read new",
+                    "occurrence": 0
+                  },
+                  "role": "shadow"
+                }
+              ]
+            },
+            {
+              "id": "read-flip",
+              "title": "Read flip",
+              "intent": "Readers switch to the new table.",
+              "invariant": "Readers use subscriptions once mismatches stay at zero for 7 days.",
+              "components": [
+                {
+                  "component": "Accounts API",
+                  "version": "api-41",
+                  "settings": "Write plan and subscription."
+                },
+                {
+                  "component": "Billing readers",
+                  "version": "billing-17",
+                  "settings": "Read subscriptions."
+                }
+              ],
+              "gates": [
+                {
+                  "condition": "Mismatch log is empty for the previous phase.",
+                  "assessment": "unknown"
+                }
+              ],
+              "existingWork": "Existing plans keep being served from whichever store this phase reads.",
+              "newWork": "New plans follow this phase's write path.",
+              "verification": [
+                {
+                  "check": "Compare row counts and a sample of plans between both stores."
+                }
+              ],
+              "rollback": {
+                "mode": "switch-back",
+                "action": "Flip the read flag back to users.plan.",
+                "boundary": "While dual writes continue.",
+                "existingWork": "Existing plans stay readable.",
+                "newWork": "New plans keep their last write path."
+              },
+              "paths": [
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "old",
+                    "label": "plan",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "new",
+                    "label": "subscription",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "job",
+                    "to": "new",
+                    "label": "copy",
+                    "occurrence": 0
+                  },
+                  "role": "off"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "old",
+                    "label": "read old",
+                    "occurrence": 0
+                  },
+                  "role": "off"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "new",
+                    "label": "read new",
+                    "occurrence": 0
+                  },
+                  "role": "read"
+                }
+              ]
+            },
+            {
+              "id": "drop-old",
+              "title": "Drop the old column",
+              "intent": "Stop writing the column, then drop it.",
+              "invariant": "Only subscriptions is written and read. There is no way back after the drop.",
+              "components": [
+                {
+                  "component": "Accounts API",
+                  "version": "api-41",
+                  "settings": "Write subscription only."
+                },
+                {
+                  "component": "Billing readers",
+                  "version": "billing-17",
+                  "settings": "Read subscriptions."
+                }
+              ],
+              "gates": [
+                {
+                  "condition": "Mismatch log is empty for the previous phase.",
+                  "assessment": "unknown"
+                }
+              ],
+              "existingWork": "Existing plans keep being served from whichever store this phase reads.",
+              "newWork": "New plans follow this phase's write path.",
+              "verification": [
+                {
+                  "check": "Compare row counts and a sample of plans between both stores."
+                }
+              ],
+              "rollback": {
+                "mode": "unavailable",
+                "action": "None after the column is dropped.",
+                "boundary": "The drop is the point of no return.",
+                "existingWork": "Existing plans stay readable.",
+                "newWork": "New plans keep their last write path."
+              },
+              "paths": [
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "old",
+                    "label": "plan",
+                    "occurrence": 0
+                  },
+                  "role": "off"
+                },
+                {
+                  "edge": {
+                    "from": "api",
+                    "to": "new",
+                    "label": "subscription",
+                    "occurrence": 0
+                  },
+                  "role": "write"
+                },
+                {
+                  "edge": {
+                    "from": "billing",
+                    "to": "new",
+                    "label": "read new",
+                    "occurrence": 0
+                  },
+                  "role": "read"
+                }
+              ]
+            }
+          ],
+          "combinations": [
+            {
+              "id": "new-api-old-billing",
+              "title": "New API with old billing readers",
+              "components": [
+                {
+                  "component": "Accounts API",
+                  "version": "api-41",
+                  "settings": "Write plan and subscription."
+                },
+                {
+                  "component": "Billing readers",
+                  "version": "billing-17",
+                  "settings": "Read users.plan."
+                }
+              ],
+              "compatibility": "compatible",
+              "reason": "Dual writes keep the old column current."
+            }
+          ],
+          "releaseTogether": []
+        }
+      ]
+    },
+    {
+      "id": "search-latency",
+      "type": "budget",
+      "title": "Where the search page and agent turn spend their budget",
+      "reason": "Shows the arithmetic behind the claimed latency and token savings, so reviewers can check each figure.",
+      "initialBudget": "page-latency",
+      "budgets": [
+        {
+          "id": "page-latency",
+          "title": "Search page server latency",
+          "unit": "ms",
+          "baseline": "before",
+          "variants": [
+            {
+              "id": "before",
+              "label": "Before: serial profile lookups",
+              "parts": [
+                {
+                  "id": "auth",
+                  "label": "Auth check",
+                  "amount": 12,
+                  "count": 1,
+                  "basis": "measured"
+                },
+                {
+                  "id": "lookups",
+                  "label": "Profile lookups",
+                  "amount": 80,
+                  "count": 4,
+                  "basis": "measured",
+                  "note": "Four lookups run one after another, 80 ms each at p50."
+                },
+                {
+                  "id": "render",
+                  "label": "Render results",
+                  "amount": 20,
+                  "count": 1,
+                  "basis": "estimated"
+                }
+              ]
+            },
+            {
+              "id": "after",
+              "label": "After: parallel profile lookups",
+              "parts": [
+                {
+                  "id": "auth",
+                  "label": "Auth check",
+                  "amount": 12,
+                  "count": 1,
+                  "basis": "measured"
+                },
+                {
+                  "id": "lookups",
+                  "label": "Profile lookups",
+                  "amount": 80,
+                  "count": 1,
+                  "basis": "estimated",
+                  "note": "The four lookups run at once, so the wait is one lookup. Assumes the profile store keeps 80 ms under 4× concurrency."
+                },
+                {
+                  "id": "render",
+                  "label": "Render results",
+                  "amount": 20,
+                  "count": 1,
+                  "basis": "estimated"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "agent-tokens",
+          "title": "Billed input and output tokens for a 10-turn agent session",
+          "unit": "tokens",
+          "baseline": "no-cache",
+          "variants": [
+            {
+              "id": "no-cache",
+              "label": "No prompt caching",
+              "parts": [
+                {
+                  "id": "system-prompt",
+                  "label": "System prompt",
+                  "amount": 12000,
+                  "count": 10,
+                  "basis": "measured",
+                  "note": "The full 12,000-token prompt is sent and billed on every turn."
+                },
+                {
+                  "id": "history",
+                  "label": "Conversation history",
+                  "amount": 8000,
+                  "count": 10,
+                  "basis": "measured"
+                },
+                {
+                  "id": "output",
+                  "label": "Model output",
+                  "amount": 900,
+                  "count": 10,
+                  "basis": "measured"
+                }
+              ]
+            },
+            {
+              "id": "cached",
+              "label": "Prompt caching",
+              "parts": [
+                {
+                  "id": "cache-write",
+                  "label": "Cache write",
+                  "amount": 15000,
+                  "count": 1,
+                  "basis": "authored",
+                  "note": "First turn writes the prompt to the cache at 1.25× the base rate (12,000 × 1.25)."
+                },
+                {
+                  "id": "system-prompt",
+                  "label": "System prompt",
+                  "amount": 1200,
+                  "count": 9,
+                  "basis": "authored",
+                  "note": "Later turns read the cached prompt at 0.1× the base rate (12,000 × 0.1)."
+                },
+                {
+                  "id": "history",
+                  "label": "Conversation history",
+                  "amount": 8000,
+                  "count": 10,
+                  "basis": "measured"
+                },
+                {
+                  "id": "output",
+                  "label": "Model output",
+                  "amount": 900,
+                  "count": 10,
+                  "basis": "measured"
+                }
+              ]
+            },
+            {
+              "id": "cached-trimmed",
+              "label": "Prompt caching and trimmed history",
+              "parts": [
+                {
+                  "id": "cache-write",
+                  "label": "Cache write",
+                  "amount": 15000,
+                  "count": 1,
+                  "basis": "authored"
+                },
+                {
+                  "id": "system-prompt",
+                  "label": "System prompt",
+                  "amount": 1200,
+                  "count": 9,
+                  "basis": "authored"
+                },
+                {
+                  "id": "history",
+                  "label": "Conversation history",
+                  "amount": 3000,
+                  "count": 10,
+                  "basis": "estimated",
+                  "note": "Keeps the last three turns and a summary of older ones."
+                },
+                {
+                  "id": "output",
+                  "label": "Model output",
+                  "amount": 900,
+                  "count": 10,
+                  "basis": "measured"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "subscription-model",
+      "type": "schema-evolution",
+      "title": "Subscription model across releases",
+      "reason": "A single plan on the user becomes a list of subscriptions with a status. Pick a version to see which consumers still work.",
+      "initialEvolution": "user-subscriptions",
+      "evolutions": [
+        {
+          "id": "user-subscriptions",
+          "title": "User subscriptions",
+          "versions": [
+            {
+              "id": "v1",
+              "label": "v1"
+            },
+            {
+              "id": "v2",
+              "label": "v2"
+            },
+            {
+              "id": "v3",
+              "label": "v3"
+            }
+          ],
+          "fields": [
+            {
+              "id": "user-id",
+              "path": "user.id",
+              "status": {
+                "v1": "present",
+                "v2": "present",
+                "v3": "present"
+              }
+            },
+            {
+              "id": "plan",
+              "path": "user.plan",
+              "status": {
+                "v1": "present",
+                "v2": "deprecated",
+                "v3": "removed"
+              },
+              "note": "Kept in v2 as a mirror of the first subscription's plan."
+            },
+            {
+              "id": "plan-renews-at",
+              "path": "user.plan_renews_at",
+              "status": {
+                "v1": "present",
+                "v2": "renamed",
+                "v3": "removed"
+              },
+              "renamedTo": "subscription-renews-at"
+            },
+            {
+              "id": "legacy-coupon",
+              "path": "user.legacy_coupon",
+              "status": {
+                "v1": "present",
+                "v2": "removed",
+                "v3": "absent"
+              },
+              "note": "Coupons moved to the billing service in v2."
+            },
+            {
+              "id": "subscriptions",
+              "path": "user.subscriptions[]",
+              "status": {
+                "v1": "absent",
+                "v2": "added",
+                "v3": "present"
+              }
+            },
+            {
+              "id": "subscription-plan",
+              "path": "user.subscriptions[].plan",
+              "status": {
+                "v1": "absent",
+                "v2": "added",
+                "v3": "present"
+              }
+            },
+            {
+              "id": "subscription-renews-at",
+              "path": "user.subscriptions[].renews_at",
+              "status": {
+                "v1": "absent",
+                "v2": "added",
+                "v3": "present"
+              }
+            },
+            {
+              "id": "subscription-status",
+              "path": "user.subscriptions[].status",
+              "status": {
+                "v1": "absent",
+                "v2": "absent",
+                "v3": "added"
+              },
+              "note": "One of active, paused or cancelled."
+            }
+          ],
+          "consumers": [
+            {
+              "id": "billing-service",
+              "name": "Billing service",
+              "uses": [
+                "subscriptions",
+                "subscription-plan",
+                "subscription-renews-at"
+              ]
+            },
+            {
+              "id": "mobile-app",
+              "name": "Mobile app 4.2",
+              "uses": [
+                "plan",
+                "plan-renews-at"
+              ],
+              "note": "Still installed on older phones that cannot update."
+            },
+            {
+              "id": "admin-console",
+              "name": "Admin console",
+              "uses": [
+                "user-id",
+                "plan",
+                "legacy-coupon"
+              ]
+            },
+            {
+              "id": "data-export",
+              "name": "Data export",
+              "uses": [
+                "user-id",
+                "plan-renews-at"
+              ]
+            },
+            {
+              "id": "analytics-job",
+              "name": "Analytics job",
+              "uses": [
+                "subscription-status"
+              ],
+              "note": "Counts churn from cancelled subscriptions."
+            }
+          ]
+        },
+        {
+          "id": "orders-response",
+          "title": "Orders API response",
+          "versions": [
+            {
+              "id": "v2024",
+              "label": "2024-01"
+            },
+            {
+              "id": "v2025",
+              "label": "2025-06"
+            }
+          ],
+          "fields": [
+            {
+              "id": "order-id",
+              "path": "order.id",
+              "status": {
+                "v2024": "present",
+                "v2025": "present"
+              }
+            },
+            {
+              "id": "total",
+              "path": "order.total",
+              "status": {
+                "v2024": "present",
+                "v2025": "deprecated"
+              },
+              "note": "Decimal dollars as a float."
+            },
+            {
+              "id": "total-cents",
+              "path": "order.total_cents",
+              "status": {
+                "v2024": "absent",
+                "v2025": "added"
+              }
+            }
+          ],
+          "consumers": [
+            {
+              "id": "web-checkout",
+              "name": "Web checkout",
+              "uses": [
+                "order-id",
+                "total"
+              ]
+            },
+            {
+              "id": "partner-webhook",
+              "name": "Partner webhook",
+              "uses": [
+                "total-cents"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pool-size",
+      "type": "knob-table",
+      "title": "Database connection pool size",
+      "reason": "The pool size was raised from 8 to 16. This shows what each tested size did, so reviewers can see why 16 was picked over 32.",
+      "knobs": [
+        {
+          "id": "connection-pool",
+          "title": "Connection pool",
+          "setting": "Pool size",
+          "metrics": [
+            {
+              "id": "p95-latency",
+              "label": "p95 latency",
+              "unit": "ms",
+              "better": "lower"
+            },
+            {
+              "id": "error-rate",
+              "label": "Error rate",
+              "unit": "%",
+              "better": "lower"
+            }
+          ],
+          "points": [
+            {
+              "id": "size-4",
+              "value": "4",
+              "results": {
+                "p95-latency": 410,
+                "error-rate": 2.4
+              },
+              "basis": "measured",
+              "note": "Requests queued for a free connection; timeouts drove the errors."
+            },
+            {
+              "id": "size-8",
+              "value": "8",
+              "results": {
+                "p95-latency": 180,
+                "error-rate": 0.6
+              },
+              "basis": "measured",
+              "note": "The previous setting."
+            },
+            {
+              "id": "size-16",
+              "value": "16",
+              "results": {
+                "p95-latency": 62,
+                "error-rate": 0.1
+              },
+              "basis": "measured"
+            },
+            {
+              "id": "size-32",
+              "value": "32",
+              "results": {
+                "p95-latency": 64,
+                "error-rate": 0.1
+              },
+              "basis": "measured",
+              "note": "Database CPU rose 18% with no latency gain."
+            }
+          ],
+          "chosen": "size-16",
+          "rationale": "In the 30-minute load test at 400 requests per second, 16 connections removed the queueing seen at 8. Going to 32 gave no measurable gain and added database load, so 16 is the smallest size that holds the latency target."
+        },
+        {
+          "id": "export-batch",
+          "title": "Export batch size",
+          "setting": "Rows per batch",
+          "metrics": [
+            {
+              "id": "throughput",
+              "label": "Throughput",
+              "unit": "rows/s",
+              "better": "higher"
+            },
+            {
+              "id": "memory",
+              "label": "Peak memory",
+              "unit": "MB",
+              "better": "lower"
+            }
+          ],
+          "points": [
+            {
+              "id": "batch-500",
+              "value": "500",
+              "results": {
+                "throughput": 4200,
+                "memory": 140
+              },
+              "basis": "measured"
+            },
+            {
+              "id": "batch-2000",
+              "value": "2000",
+              "results": {
+                "throughput": 9800,
+                "memory": 310
+              },
+              "basis": "measured"
+            },
+            {
+              "id": "batch-10000",
+              "value": "10000",
+              "results": {
+                "throughput": 11500,
+                "memory": 1350
+              },
+              "basis": "estimated",
+              "note": "Not run in full; scaled from a 10-minute sample."
+            }
+          ],
+          "chosen": "batch-2000",
+          "rationale": "2000 rows more than doubles throughput over 500 and stays well inside the 512 MB worker limit. 10000 would exceed that limit."
+        }
+      ],
+      "initialKnob": "connection-pool"
+    }
+  ]
+}

@@ -1,0 +1,810 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Nested call-flow comparison (synthetic)",
+  "lead": "Authored demonstration data, not an acquisition or execution receipt.",
+  "changes": [
+    "Keep repeated static occurrences independently inspectable.",
+    "Retain uncertainty rather than inferring execution or moves."
+  ],
+  "references": [
+    {
+      "label": "Scope",
+      "value": "Synthetic source and authored call trees; no native helper or workload execution is claimed."
+    }
+  ],
+  "sections": [
+    {
+      "id": "call-flow",
+      "type": "call-flow-diff",
+      "title": "Setup gains a helper; repeated calls keep their own sites",
+      "reason": "Synthetic static syntax comparison. A call beneath a new helper is not a proven move or observed schedule.",
+      "before": [
+        {
+          "id": "root",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:boot:FunctionDeclaration",
+          "label": "export function boot(flag: boolean) ",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 42,
+            "endByte": 147
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 42,
+            "endByte": 78,
+            "line": 2,
+            "excerpt": "export function boot(flag: boolean) "
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:42:78"
+        },
+        {
+          "id": "root/0",
+          "parent": "root",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:init:FunctionDeclaration",
+          "label": "init()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 148,
+            "endByte": 166
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 82,
+            "endByte": 88,
+            "line": 3,
+            "excerpt": "init()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:82:88"
+        },
+        {
+          "id": "root/1",
+          "parent": "root",
+          "ordinal": 1,
+          "symbol": "ts:example/start.ts:connect:FunctionDeclaration",
+          "label": "connect()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 167,
+            "endByte": 204
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 92,
+            "endByte": 101,
+            "line": 4,
+            "excerpt": "connect()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:92:101"
+        },
+        {
+          "id": "root/1/0",
+          "parent": "root/1",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:resolveHost:FunctionDeclaration",
+          "label": "resolveHost()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 205,
+            "endByte": 230
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 188,
+            "endByte": 201,
+            "line": 11,
+            "excerpt": "resolveHost()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:188:201"
+        },
+        {
+          "id": "root/2",
+          "parent": "root",
+          "ordinal": 2,
+          "symbol": "ts:example/start.ts:connect:FunctionDeclaration",
+          "label": "connect()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 167,
+            "endByte": 204
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 105,
+            "endByte": 114,
+            "line": 5,
+            "excerpt": "connect()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:105:114"
+        },
+        {
+          "id": "root/2/0",
+          "parent": "root/2",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:resolveHost:FunctionDeclaration",
+          "label": "resolveHost()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 205,
+            "endByte": 230
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 188,
+            "endByte": 201,
+            "line": 11,
+            "excerpt": "resolveHost()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:188:201"
+        },
+        {
+          "id": "root/3",
+          "parent": "root",
+          "ordinal": 3,
+          "symbol": "ts:branch:if",
+          "label": "if (flag) {",
+          "kind": "branch",
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 118,
+            "endByte": 129,
+            "line": 6,
+            "excerpt": "if (flag) {"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:118:129"
+        },
+        {
+          "id": "root/3/0",
+          "parent": "root/3",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:save:FunctionDeclaration",
+          "label": "save()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "startByte": 231,
+            "endByte": 249
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "path": "example/start.ts",
+            "sha256": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+            "startByte": 134,
+            "endByte": 140,
+            "line": 7,
+            "excerpt": "save()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:134:140"
+        }
+      ],
+      "after": [
+        {
+          "id": "root",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:boot:FunctionDeclaration",
+          "label": "export function boot(flag: boolean) ",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 42,
+            "endByte": 151
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 42,
+            "endByte": 78,
+            "line": 2,
+            "excerpt": "export function boot(flag: boolean) "
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:42:78"
+        },
+        {
+          "id": "root/0",
+          "parent": "root",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:services:FunctionDeclaration",
+          "label": "services()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 152,
+            "endByte": 183
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 82,
+            "endByte": 92,
+            "line": 3,
+            "excerpt": "services()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:82:92"
+        },
+        {
+          "id": "root/0/0",
+          "parent": "root/0",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:init:FunctionDeclaration",
+          "label": "init()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 184,
+            "endByte": 202
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 174,
+            "endByte": 180,
+            "line": 10,
+            "excerpt": "init()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:174:180"
+        },
+        {
+          "id": "root/1",
+          "parent": "root",
+          "ordinal": 1,
+          "symbol": "ts:example/start.ts:connect:FunctionDeclaration",
+          "label": "connect()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 203,
+            "endByte": 240
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 96,
+            "endByte": 105,
+            "line": 4,
+            "excerpt": "connect()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:96:105"
+        },
+        {
+          "id": "root/1/0",
+          "parent": "root/1",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:resolveHost:FunctionDeclaration",
+          "label": "resolveHost()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 241,
+            "endByte": 266
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 224,
+            "endByte": 237,
+            "line": 12,
+            "excerpt": "resolveHost()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:224:237"
+        },
+        {
+          "id": "root/2",
+          "parent": "root",
+          "ordinal": 2,
+          "symbol": "ts:example/start.ts:connect:FunctionDeclaration",
+          "label": "connect()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 203,
+            "endByte": 240
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 109,
+            "endByte": 118,
+            "line": 5,
+            "excerpt": "connect()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:109:118"
+        },
+        {
+          "id": "root/2/0",
+          "parent": "root/2",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:resolveHost:FunctionDeclaration",
+          "label": "resolveHost()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 241,
+            "endByte": 266
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 224,
+            "endByte": 237,
+            "line": 12,
+            "excerpt": "resolveHost()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:224:237"
+        },
+        {
+          "id": "root/3",
+          "parent": "root",
+          "ordinal": 3,
+          "symbol": "ts:branch:if",
+          "label": "if (flag) {",
+          "kind": "branch",
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 122,
+            "endByte": 133,
+            "line": 6,
+            "excerpt": "if (flag) {"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:122:133"
+        },
+        {
+          "id": "root/3/0",
+          "parent": "root/3",
+          "ordinal": 0,
+          "symbol": "ts:example/start.ts:save:FunctionDeclaration",
+          "label": "save()",
+          "kind": "call",
+          "target": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "startByte": 267,
+            "endByte": 285
+          },
+          "site": {
+            "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "path": "example/start.ts",
+            "sha256": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+            "startByte": 138,
+            "endByte": 144,
+            "line": 7,
+            "excerpt": "save()"
+          },
+          "evidence": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:138:144"
+        }
+      ],
+      "matches": [
+        {
+          "before": "root",
+          "after": "root"
+        },
+        {
+          "before": "root/1",
+          "after": "root/1"
+        },
+        {
+          "before": "root/1/0",
+          "after": "root/1/0"
+        },
+        {
+          "before": "root/2",
+          "after": "root/2"
+        },
+        {
+          "before": "root/2/0",
+          "after": "root/2/0"
+        },
+        {
+          "before": "root/3",
+          "after": "root/3"
+        },
+        {
+          "before": "root/3/0",
+          "after": "root/3/0"
+        }
+      ]
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "planDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "state": "complete",
+        "sourceIdentities": [
+          {
+            "id": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before",
+            "commit": "cccccccccccccccccccccccccccccccccccccccc"
+          },
+          {
+            "id": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+            "commit": "cccccccccccccccccccccccccccccccccccccccc"
+          }
+        ],
+        "excludedInputs": [
+          "Dynamic dispatch, runtime scheduling and unselected dependencies are not captured."
+        ],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:42:78",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "a52528d6c63239f6e0ade079c1c61099b9e46c20fddfd3ac0d3acc79f4fe0e21",
+        "startByte": 42,
+        "endByte": 78,
+        "body": "export function boot(flag: boolean) ",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:82:88",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "c38ba39cea630681f6bdc6acc7eade251530622bc6f10dda7f1fd77af189a1df",
+        "startByte": 82,
+        "endByte": 88,
+        "body": "init()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:92:101",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "2d98cc8079d519d51394615c5f7c0db44a327ea4c9425f799e7609f6abf812af",
+        "startByte": 92,
+        "endByte": 101,
+        "body": "connect()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:188:201",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "3a48b7562bae22141386b7eaf8539cc16c641600984690f1e6f3cdf18b60c808",
+        "startByte": 188,
+        "endByte": 201,
+        "body": "resolveHost()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:105:114",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "2d98cc8079d519d51394615c5f7c0db44a327ea4c9425f799e7609f6abf812af",
+        "startByte": 105,
+        "endByte": 114,
+        "body": "connect()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:118:129",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "3576367f5d51698a442fc7833cf423dd048e392dba54a27f1b1334327e1a73e2",
+        "startByte": 118,
+        "endByte": 129,
+        "body": "if (flag) {",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:before-copy:134:140",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "12b7acc970bd98f67410fbf6277067bb200b17bdcbba31709e819b61b15630c3",
+        "selectedDigest": "9ebf2b1c06d5ee58f90766f54ed18f8f4000798666d5332b5f4029e85b4dcbc0",
+        "startByte": 134,
+        "endByte": 140,
+        "body": "save()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:42:78",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "a52528d6c63239f6e0ade079c1c61099b9e46c20fddfd3ac0d3acc79f4fe0e21",
+        "startByte": 42,
+        "endByte": 78,
+        "body": "export function boot(flag: boolean) ",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:82:92",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "bc6f53fc5ca8274fa0315a064d4db1632075163e7d68d82ac5c0156c68992a41",
+        "startByte": 82,
+        "endByte": 92,
+        "body": "services()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:174:180",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "c38ba39cea630681f6bdc6acc7eade251530622bc6f10dda7f1fd77af189a1df",
+        "startByte": 174,
+        "endByte": 180,
+        "body": "init()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:96:105",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "2d98cc8079d519d51394615c5f7c0db44a327ea4c9425f799e7609f6abf812af",
+        "startByte": 96,
+        "endByte": 105,
+        "body": "connect()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:224:237",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "3a48b7562bae22141386b7eaf8539cc16c641600984690f1e6f3cdf18b60c808",
+        "startByte": 224,
+        "endByte": 237,
+        "body": "resolveHost()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:109:118",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "2d98cc8079d519d51394615c5f7c0db44a327ea4c9425f799e7609f6abf812af",
+        "startByte": 109,
+        "endByte": 118,
+        "body": "connect()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:122:133",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "3576367f5d51698a442fc7833cf423dd048e392dba54a27f1b1334327e1a73e2",
+        "startByte": 122,
+        "endByte": 133,
+        "body": "if (flag) {",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      },
+      {
+        "id": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:138:144",
+        "run": "run:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "role": "raw",
+        "originDigest": "2b37032cdd302938f4a62d3777ce491fd764bab30151fe9e17e92e214c2aeae4",
+        "selectedDigest": "9ebf2b1c06d5ee58f90766f54ed18f8f4000798666d5332b5f4029e85b4dcbc0",
+        "startByte": 138,
+        "endByte": 144,
+        "body": "save()",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "static-calls"
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim:second-connect",
+        "text": "Inspect the second supplied static connect occurrence, not an invocation count.",
+        "sourceIdentity": "source:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb:after",
+        "scopeId": "static-calls",
+        "target": {
+          "section": "call-flow",
+          "item": "after:root/2"
+        }
+      }
+    ],
+    "links": [
+      {
+        "artifact": "artifact:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:after-copy:109:118",
+        "claim": "claim:second-connect",
+        "relation": "context"
+      }
+    ]
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "call-flow",
+        "title": "Keep caller context while reviewing setup",
+        "takeaway": "A new helper is not evidence of a global move.",
+        "body": "The complete reader preserves exact static sites and independent repeated occurrences. Inspect it only when you need the detailed comparison.",
+        "visual": {
+          "type": "compare",
+          "label": "Authored change summary",
+          "panes": [
+            {
+              "label": "Before",
+              "lines": ["Setup is a direct child."]
+            },
+            {
+              "label": "After",
+              "lines": ["A helper contains setup.", "Repeated connect sites remain independent."]
+            }
+          ]
+        },
+        "inspections": [
+          {
+            "section": "call-flow",
+            "label": "Inspect the nested static comparison"
+          }
+        ]
+      }
+    ]
+  }
+}

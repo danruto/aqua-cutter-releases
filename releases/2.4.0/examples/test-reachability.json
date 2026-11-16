@@ -1,0 +1,398 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Synthetic test reachability",
+  "lead": "Explicit synthetic production-reader controls, not native acquisition or authenticated execution.",
+  "changes": ["Inspect the complete retained reader; the story remains a compact authored brief."],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "No compiler, handler, database or workload was executed to produce this demo."
+    }
+  ],
+  "sections": [
+    {
+      "id": "reachability",
+      "type": "corpus",
+      "title": "Synthetic test reachability",
+      "reason": "Static possibilities, declared test observations and run-level coverage remain separate.",
+      "entries": [
+        {
+          "id": "totals",
+          "title": "Synthetic total",
+          "provenance": "Authored synthetic input, not an executed test",
+          "dependency": "No native test runner claimed",
+          "normalise": "None",
+          "input": "[1,2]",
+          "expected": "3"
+        }
+      ],
+      "reachability": {
+        "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+        "symbols": [
+          {
+            "id": "total",
+            "label": "calculateTotal"
+          },
+          {
+            "id": "authorize",
+            "label": "authorize"
+          },
+          {
+            "id": "plugin",
+            "label": "plugin"
+          },
+          {
+            "id": "absent",
+            "label": "No supplied path"
+          }
+        ],
+        "tests": [
+          {
+            "id": "totals",
+            "file": "total.test.ts",
+            "name": "calculates total",
+            "case": "totals",
+            "result": "pass"
+          },
+          {
+            "id": "auth",
+            "file": "auth_test.go",
+            "package": "example/auth_test",
+            "name": "TestAuthorize",
+            "result": "fail"
+          },
+          {
+            "id": "unrelated",
+            "file": "other.test.ts",
+            "name": "other",
+            "result": "unknown"
+          }
+        ],
+        "paths": [
+          {
+            "id": "o-0-0",
+            "test": "totals",
+            "kind": "observed",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": ["total"],
+            "candidates": [],
+            "state": "complete",
+            "evidence": [
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-total:0:739",
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18"
+            ]
+          },
+          {
+            "id": "s-0-0",
+            "test": "totals",
+            "kind": "static",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": ["authorize"],
+            "candidates": [],
+            "state": "complete",
+            "evidence": [
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-static:0:944",
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18"
+            ]
+          },
+          {
+            "id": "o-1-0",
+            "test": "totals",
+            "kind": "observed",
+            "sourceIdentity": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixture",
+            "symbols": ["authorize"],
+            "candidates": [],
+            "state": "complete",
+            "evidence": [
+              "artifact:ffffffffffffffffffffffffffffffff:reach-stale:0:743",
+              "artifact:ffffffffffffffffffffffffffffffff:source:0:18"
+            ]
+          },
+          {
+            "id": "o-2-0",
+            "test": "auth",
+            "kind": "observed",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": ["authorize"],
+            "candidates": [],
+            "state": "incomplete",
+            "evidence": [
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-partial:0:445",
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18"
+            ]
+          },
+          {
+            "id": "o-3-0",
+            "test": "auth",
+            "kind": "unresolved",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": [],
+            "candidates": ["plugin"],
+            "state": "complete",
+            "evidence": [
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-unresolved:0:743",
+              "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18"
+            ]
+          },
+          {
+            "id": "o-4-0",
+            "test": "unrelated",
+            "kind": "coverage",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": ["authorize"],
+            "candidates": [],
+            "state": "unattributed",
+            "evidence": ["artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:coverage:0:45"]
+          },
+          {
+            "id": "o-5-0",
+            "test": "unrelated",
+            "kind": "observed",
+            "sourceIdentity": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "symbols": ["total"],
+            "candidates": [],
+            "state": "source-mismatch",
+            "evidence": ["artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-mismatch:0:751"]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "planDigest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "state": "complete",
+        "sourceIdentities": [
+          {
+            "id": "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture",
+            "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ],
+        "excludedInputs": ["Authored synthetic display fixture; not native capture evidence"],
+        "tools": []
+      },
+      {
+        "id": "run:ffffffffffffffffffffffffffffffff",
+        "planDigest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "state": "complete",
+        "sourceIdentities": [
+          {
+            "id": "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixture",
+            "commit": "dddddddddddddddddddddddddddddddddddddddd"
+          }
+        ],
+        "excludedInputs": ["Authored synthetic display fixture; not native capture evidence"],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "authored",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:ffffffffffffffffffffffffffffffff:source:0:18",
+        "run": "run:ffffffffffffffffffffffffffffffff",
+        "role": "authored",
+        "originDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "selectedDigest": "e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9",
+        "startByte": 0,
+        "endByte": 18,
+        "body": "await operation();",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-total:0:739",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "774f6ac93b38603035e488bdff94cc2076c4f3025e00dc4ae814fa423f4b1c8d",
+        "selectedDigest": "774f6ac93b38603035e488bdff94cc2076c4f3025e00dc4ae814fa423f4b1c8d",
+        "startByte": 0,
+        "endByte": 739,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":1,\"kind\":\"header\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":2,\"kind\":\"test-start\",\"test\":\"totals\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":3,\"kind\":\"enter\",\"call\":\"call\",\"symbol\":\"total\",\"phase\":\"test\",\"test\":\"totals\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":4,\"kind\":\"leave\",\"call\":\"call\",\"phase\":\"test\",\"test\":\"totals\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":5,\"kind\":\"test-end\",\"test\":\"totals\",\"outcome\":\"pass\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":6,\"kind\":\"complete\"}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-static:0:944",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "derived",
+        "originDigest": "908bed84d1aa451c11408f23b4ecc0c64205bcb3622979a106a3bc4a800e3ee0",
+        "selectedDigest": "908bed84d1aa451c11408f23b4ecc0c64205bcb3622979a106a3bc4a800e3ee0",
+        "startByte": 0,
+        "endByte": 944,
+        "body": "{\"formatVersion\":\"1.0.0\",\"side\":\"before\",\"source\":\"fixture\",\"state\":\"complete\",\"issues\":[],\"diagnostics\":[],\"candidates\":[],\"tree\":[{\"id\":\"root\",\"ordinal\":0,\"symbol\":\"compiler-test\",\"label\":\"Synthetic selected declaration\",\"kind\":\"call\",\"evidence\":\"source\",\"target\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"startByte\":0,\"endByte\":18},\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18,\"line\":1,\"excerpt\":\"await operation();\"}},{\"id\":\"root/0\",\"parent\":\"root\",\"ordinal\":0,\"symbol\":\"compiler-authorize\",\"label\":\"Synthetic selected declaration\",\"kind\":\"call\",\"evidence\":\"source\",\"target\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"startByte\":0,\"endByte\":18},\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18,\"line\":1,\"excerpt\":\"await operation();\"}}]}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:source:0:18"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-static-scenario:0:1036"
+          }
+        ],
+        "transformation": "synthetic-static-tree-v1"
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-static-scenario:0:1036",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "authored",
+        "originDigest": "7d3d4f0838272da2be85b4ad0694930402f871714b8410e81f38003dd0ffd627",
+        "selectedDigest": "7d3d4f0838272da2be85b4ad0694930402f871714b8410e81f38003dd0ffd627",
+        "startByte": 0,
+        "endByte": 1036,
+        "body": "{\"qualification\":\"Manually precomputed synthetic static tree; no compiler executed\",\"tree\":{\"formatVersion\":\"1.0.0\",\"side\":\"before\",\"source\":\"fixture\",\"state\":\"complete\",\"issues\":[],\"diagnostics\":[],\"candidates\":[],\"tree\":[{\"id\":\"root\",\"ordinal\":0,\"symbol\":\"compiler-test\",\"label\":\"Synthetic selected declaration\",\"kind\":\"call\",\"evidence\":\"source\",\"target\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"startByte\":0,\"endByte\":18},\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18,\"line\":1,\"excerpt\":\"await operation();\"}},{\"id\":\"root/0\",\"parent\":\"root\",\"ordinal\":0,\"symbol\":\"compiler-authorize\",\"label\":\"Synthetic selected declaration\",\"kind\":\"call\",\"evidence\":\"source\",\"target\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"startByte\":0,\"endByte\":18},\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18,\"line\":1,\"excerpt\":\"await operation();\"}}]}}",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": []
+      },
+      {
+        "id": "artifact:ffffffffffffffffffffffffffffffff:reach-stale:0:743",
+        "run": "run:ffffffffffffffffffffffffffffffff",
+        "role": "raw",
+        "originDigest": "8fbdb87ce6702ac379c077f65c6f117da2094c3f3a5ba3f1ef2a3bb7c3c72154",
+        "selectedDigest": "8fbdb87ce6702ac379c077f65c6f117da2094c3f3a5ba3f1ef2a3bb7c3c72154",
+        "startByte": 0,
+        "endByte": 743,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":1,\"kind\":\"header\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":2,\"kind\":\"test-start\",\"test\":\"totals\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":3,\"kind\":\"enter\",\"call\":\"call\",\"symbol\":\"authorize\",\"phase\":\"test\",\"test\":\"totals\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":4,\"kind\":\"leave\",\"call\":\"call\",\"phase\":\"test\",\"test\":\"totals\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":5,\"kind\":\"test-end\",\"test\":\"totals\",\"outcome\":\"pass\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":6,\"kind\":\"complete\"}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-partial:0:445",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "90dba03bc6f3f5ec82e967210af9c73dfca13993baa770d4a4b487b26a8cf24b",
+        "selectedDigest": "90dba03bc6f3f5ec82e967210af9c73dfca13993baa770d4a4b487b26a8cf24b",
+        "startByte": 0,
+        "endByte": 445,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":1,\"kind\":\"header\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":2,\"kind\":\"test-start\",\"test\":\"auth\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":3,\"kind\":\"enter\",\"call\":\"call\",\"symbol\":\"authorize\",\"phase\":\"test\",\"test\":\"auth\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-unresolved:0:743",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "839e7919414e8278b046cbb49f15fdb403cc5d546b6b9adb81856584dca1a954",
+        "selectedDigest": "839e7919414e8278b046cbb49f15fdb403cc5d546b6b9adb81856584dca1a954",
+        "startByte": 0,
+        "endByte": 743,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":1,\"kind\":\"header\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":2,\"kind\":\"test-start\",\"test\":\"auth\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":3,\"kind\":\"enter\",\"call\":\"call\",\"symbol\":\"unselected-plugin\",\"phase\":\"test\",\"test\":\"auth\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"e91dca0284a34a2e9d2cf35181c1515e2be819a997a6e624335dbdbc008576d9\",\"startByte\":0,\"endByte\":18}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":4,\"kind\":\"leave\",\"call\":\"call\",\"phase\":\"test\",\"test\":\"auth\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":5,\"kind\":\"test-end\",\"test\":\"auth\",\"outcome\":\"fail\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":6,\"kind\":\"complete\"}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:coverage:0:45",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "541412af5f10a08ec120f1715b5980b63d9cf9775bc15e279cd9344682b28f66",
+        "selectedDigest": "541412af5f10a08ec120f1715b5980b63d9cf9775bc15e279cd9344682b28f66",
+        "startByte": 0,
+        "endByte": 45,
+        "body": "SF:fixture.ts\nDA:1,1\nLF:1\nLH:1\nend_of_record\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:reach-mismatch:0:751",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "4adbc216a95ec0da033a52300a729c576b5be7503e99f84a522ad204f6185555",
+        "selectedDigest": "4adbc216a95ec0da033a52300a729c576b5be7503e99f84a522ad204f6185555",
+        "startByte": 0,
+        "endByte": 751,
+        "body": "{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":1,\"kind\":\"header\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":2,\"kind\":\"test-start\",\"test\":\"unrelated\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":3,\"kind\":\"enter\",\"call\":\"call\",\"symbol\":\"total\",\"phase\":\"test\",\"test\":\"unrelated\",\"site\":{\"source\":\"fixture\",\"path\":\"fixture.ts\",\"sha256\":\"0000000000000000000000000000000000000000000000000000000000000000\",\"startByte\":0,\"endByte\":18}}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":4,\"kind\":\"leave\",\"call\":\"call\",\"phase\":\"test\",\"test\":\"unrelated\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":5,\"kind\":\"test-end\",\"test\":\"unrelated\",\"outcome\":\"pass\"}\n{\"formatVersion\":\"1.0.0\",\"stream\":\"synthetic\",\"seq\":6,\"kind\":\"complete\"}\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:fixture"
+        ],
+        "attribution": "mapped",
+        "inputs": []
+      }
+    ],
+    "claims": [],
+    "links": []
+  },
+  "story": {
+    "stops": [
+      {
+        "section": "reachability",
+        "title": "No supplied path is not a negative execution fact",
+        "takeaway": "Expand a test row to choose its evidence path; filter exact symbols and tests without losing stale or unattributed qualifications.",
+        "inspections": [
+          {
+            "section": "reachability",
+            "label": "Inspect the full production reader"
+          }
+        ]
+      }
+    ]
+  }
+}

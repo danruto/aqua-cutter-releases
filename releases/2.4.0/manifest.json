@@ -1,0 +1,23 @@
+{
+  "manifestVersion": 1,
+  "rendererVersion": "2.4.0",
+  "sourceCommit": "98814fdeb52ef6821bb7539f01059af68cf6006f",
+  "defaultSchemaVersion": "2.0.0",
+  "schemas": {
+    "2.0.0": "schema/walkthrough.v2.schema.json",
+    "2.1.0": "schema/walkthrough.2.1.0.schema.json",
+    "2.2.0": "schema/walkthrough.2.2.0.schema.json"
+  },
+  "readme": "README.md",
+  "authoringGuide": "authoring.md",
+  "assets": {
+    "js": {
+      "path": "renderer.js",
+      "integrity": "sha384-N552Jh9Mjh/JO2zpMDz5JoANtNYAzdqGDJZ3JYIwXa8jXiRbBKj+bQq5ooH8hMoi"
+    },
+    "css": {
+      "path": "renderer.css",
+      "integrity": "sha384-ODK0QmvW970sO2/IwPR7ut+LePmXLCOj6CmIblAix3M2+b/2P8j9VHEerOmlUYdj"
+    }
+  }
+}
