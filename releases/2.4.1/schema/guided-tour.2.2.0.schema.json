@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aqua-cutter-render.local/guided-tour.2.2.0.schema.json",
+  "title": "GuidedTourDocument220",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "tour"],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "2.2.0"
+    },
+    "tour": {
+      "$ref": "#/$defs/guidedTour"
+    }
+  },
+  "$defs": {
+    "guidedIdentifier": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z][a-z0-9-]*(?![\\s\\S])"
+    },
+    "guidedTitle": {
+      "type": "string",
+      "pattern": "\\S",
+      "maxUtf8Bytes": 256
+    },
+    "guidedCaption": {
+      "type": "string",
+      "pattern": "\\S",
+      "maxUtf8Bytes": 1024
+    },
+    "guidedStateValue": {
+      "type": "string",
+      "maxUtf8Bytes": 128
+    },
+    "guidedTour": {
+      "title": "GuidedTour",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "steps"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidedIdentifier"
+        },
+        "title": {
+          "$ref": "#/$defs/guidedTitle"
+        },
+        "timing": {
+          "$ref": "#/$defs/guidedTiming"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/guidedStep"
+          }
+        }
+      }
+    },
+    "guidedStep": {
+      "title": "GuidedStep",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "caption", "target"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/guidedIdentifier"
+        },
+        "title": {
+          "$ref": "#/$defs/guidedTitle"
+        },
+        "caption": {
+          "$ref": "#/$defs/guidedCaption"
+        },
+        "state": {
+          "type": "object",
+          "maxProperties": 16,
+          "propertyNames": {
+            "$ref": "#/$defs/guidedIdentifier"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/guidedStateValue"
+          }
+        },
+        "target": {
+          "$ref": "#/$defs/guidedIdentifier"
+        },
+        "press": {
+          "type": "boolean"
+        },
+        "after": {
+          "$ref": "#/$defs/guidedIdentifier"
+        },
+        "dwell": {
+          "$ref": "#/$defs/guidedDwell"
+        }
+      }
+    },
+    "guidedDwell": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 60000
+    },
+    "guidedTiming": {
+      "title": "GuidedTiming",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "autoplay": {
+          "type": "boolean"
+        },
+        "dwell": {
+          "$ref": "#/$defs/guidedDwell"
+        },
+        "press": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      }
+    }
+  }
+}

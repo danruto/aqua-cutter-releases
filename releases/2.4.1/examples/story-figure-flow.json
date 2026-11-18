@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "2.2.0",
+  "figure": {
+    "kind": "flow",
+    "id": "cache-reads",
+    "title": "Read once from origin, then from cache",
+    "description": "Explicit request occurrences follow directed routes. A stationary marker never travels.",
+    "claim": "The second read uses the supplied cache route without another origin visit.",
+    "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+    "references": [
+      {
+        "label": "Literal author note",
+        "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+      }
+    ],
+    "places": [
+      {
+        "id": "reader",
+        "label": "Reader requesting a repository object"
+      },
+      {
+        "id": "origin",
+        "label": "Origin object store"
+      },
+      {
+        "id": "cache",
+        "label": "Local object cache"
+      }
+    ],
+    "links": [
+      {
+        "id": "origin-read",
+        "from": "reader",
+        "to": "origin",
+        "label": "First read"
+      },
+      {
+        "id": "fill",
+        "from": "origin",
+        "to": "cache",
+        "label": "Retain locally"
+      },
+      {
+        "id": "cached-read",
+        "from": "reader",
+        "to": "cache",
+        "label": "Repeated read"
+      },
+      {
+        "id": "return",
+        "from": "cache",
+        "to": "reader",
+        "label": "Local result"
+      }
+    ],
+    "tokens": [
+      {
+        "id": "first",
+        "label": "Read"
+      },
+      {
+        "id": "second",
+        "label": "Read"
+      },
+      {
+        "id": "marker",
+        "label": "Stationary"
+      }
+    ],
+    "beats": [
+      {
+        "id": "ready",
+        "title": "First request",
+        "explanation": "The first occurrence is at the reader; the second is not shown.",
+        "positions": [
+          {
+            "token": "first",
+            "at": "reader"
+          },
+          {
+            "token": "second",
+            "at": null
+          },
+          {
+            "token": "marker",
+            "at": "cache"
+          }
+        ]
+      },
+      {
+        "id": "origin",
+        "title": "Read from origin",
+        "explanation": "Only the first read visits the origin.",
+        "positions": [
+          {
+            "token": "first",
+            "at": "origin",
+            "via": "origin-read"
+          },
+          {
+            "token": "second",
+            "at": null
+          },
+          {
+            "token": "marker",
+            "at": "cache"
+          }
+        ]
+      },
+      {
+        "id": "filled",
+        "title": "Cache filled",
+        "explanation": "The first result reaches the cache. Another read appears at the reader.",
+        "positions": [
+          {
+            "token": "first",
+            "at": "cache",
+            "via": "fill"
+          },
+          {
+            "token": "second",
+            "at": "reader"
+          },
+          {
+            "token": "marker",
+            "at": "cache"
+          }
+        ]
+      },
+      {
+        "id": "local",
+        "title": "Repeated local read",
+        "explanation": "\nThe second read travels directly to cache.\rNo second origin visit is authored.",
+        "positions": [
+          {
+            "token": "first",
+            "at": null
+          },
+          {
+            "token": "second",
+            "at": "cache",
+            "via": "cached-read"
+          },
+          {
+            "token": "marker",
+            "at": "cache"
+          }
+        ]
+      },
+      {
+        "id": "returned",
+        "title": "Local result returned",
+        "explanation": "The repeated read returns locally; the stationary marker has never moved.",
+        "positions": [
+          {
+            "token": "first",
+            "at": null
+          },
+          {
+            "token": "second",
+            "at": "reader",
+            "via": "return"
+          },
+          {
+            "token": "marker",
+            "at": "cache"
+          }
+        ]
+      }
+    ]
+  }
+}

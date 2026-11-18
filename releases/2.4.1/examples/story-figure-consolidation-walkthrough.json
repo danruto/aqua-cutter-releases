@@ -1,0 +1,856 @@
+{
+  "schemaVersion": "2.2.0",
+  "title": "Twelve copies, six unique objects",
+  "lead": "Authored mechanisms through one retained production figure reader; never captured execution.",
+  "changes": [
+    "Six object identities survive while twelve illustrated copies become six.",
+    "Inspect and return without resetting the selected beat."
+  ],
+  "references": [
+    {
+      "label": "Literal author note",
+      "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "figure",
+        "title": "Twelve copies, six unique objects",
+        "takeaway": "Six object identities survive while twelve illustrated copies become six.",
+        "visual": {
+          "type": "figure",
+          "label": "Authored explanation",
+          "section": "figure"
+        },
+        "inspections": [
+          {
+            "section": "figure",
+            "label": "Inspect this figure"
+          },
+          {
+            "section": "supporting",
+            "label": "Inspect alternate figure"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "figure",
+      "type": "story-figure",
+      "title": "Twelve copies, six unique objects",
+      "reason": "Conceptual groups align copies before explicitly removing duplicates and repacking survivors.",
+      "figure": {
+        "kind": "consolidation",
+        "id": "repacking",
+        "title": "Twelve copies, six unique objects",
+        "description": "Conceptual groups align copies before explicitly removing duplicates and repacking survivors.",
+        "claim": "Six object identities survive while twelve illustrated copies become six.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "objects": [
+          {
+            "id": "object-1",
+            "label": "Object 1"
+          },
+          {
+            "id": "object-2",
+            "label": "Object 2"
+          },
+          {
+            "id": "object-3",
+            "label": "Object 3"
+          },
+          {
+            "id": "object-4",
+            "label": "Object 4"
+          },
+          {
+            "id": "object-5",
+            "label": "Object 5"
+          },
+          {
+            "id": "object-6",
+            "label": "Object 6"
+          }
+        ],
+        "copies": [
+          {
+            "id": "copy-1",
+            "object": "object-1"
+          },
+          {
+            "id": "copy-2",
+            "object": "object-2"
+          },
+          {
+            "id": "copy-3",
+            "object": "object-3"
+          },
+          {
+            "id": "copy-4",
+            "object": "object-4"
+          },
+          {
+            "id": "copy-5",
+            "object": "object-5"
+          },
+          {
+            "id": "copy-6",
+            "object": "object-6"
+          },
+          {
+            "id": "copy-7",
+            "object": "object-1"
+          },
+          {
+            "id": "copy-8",
+            "object": "object-2"
+          },
+          {
+            "id": "copy-9",
+            "object": "object-3"
+          },
+          {
+            "id": "copy-10",
+            "object": "object-4"
+          },
+          {
+            "id": "copy-11",
+            "object": "object-5"
+          },
+          {
+            "id": "copy-12",
+            "object": "object-6"
+          }
+        ],
+        "containers": [
+          {
+            "id": "old-a",
+            "label": "Old pack A",
+            "kind": "pack"
+          },
+          {
+            "id": "old-b",
+            "label": "Old pack B",
+            "kind": "pack"
+          },
+          {
+            "id": "group-object-1",
+            "label": "Object 1",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-2",
+            "label": "Object 2",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-3",
+            "label": "Object 3",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-4",
+            "label": "Object 4",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-5",
+            "label": "Object 5",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-6",
+            "label": "Object 6",
+            "kind": "group"
+          },
+          {
+            "id": "new-pack",
+            "label": "Repacked objects",
+            "kind": "pack"
+          }
+        ],
+        "beats": [
+          {
+            "id": "original",
+            "title": "Two old packs",
+            "explanation": "Each object has two separately identified copies.",
+            "visibleContainers": ["old-a", "old-b"],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-2",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-3",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-4",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-5",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-6",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-7",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-8",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-9",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-10",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-11",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-12",
+                "at": "old-b"
+              }
+            ]
+          },
+          {
+            "id": "aligned",
+            "title": "Align by immutable identity",
+            "explanation": "These are conceptual groups, not six additional stored packs. Equal labels do not establish identity.",
+            "visibleContainers": [
+              "group-object-1",
+              "group-object-2",
+              "group-object-3",
+              "group-object-4",
+              "group-object-5",
+              "group-object-6"
+            ],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-2",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-3",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-4",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-5",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-6",
+                "at": "group-object-6"
+              },
+              {
+                "copy": "copy-7",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-8",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-9",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-10",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-11",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-12",
+                "at": "group-object-6"
+              }
+            ]
+          },
+          {
+            "id": "deduplicated",
+            "title": "Remove duplicate copies",
+            "explanation": "Only the second copy of each object is explicitly removed.",
+            "visibleContainers": [
+              "group-object-1",
+              "group-object-2",
+              "group-object-3",
+              "group-object-4",
+              "group-object-5",
+              "group-object-6"
+            ],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-2",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-3",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-4",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-5",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-6",
+                "at": "group-object-6"
+              },
+              {
+                "copy": "copy-7",
+                "at": null
+              },
+              {
+                "copy": "copy-8",
+                "at": null
+              },
+              {
+                "copy": "copy-9",
+                "at": null
+              },
+              {
+                "copy": "copy-10",
+                "at": null
+              },
+              {
+                "copy": "copy-11",
+                "at": null
+              },
+              {
+                "copy": "copy-12",
+                "at": null
+              }
+            ]
+          },
+          {
+            "id": "repacked",
+            "title": "One new pack",
+            "explanation": "\nAll six identities remain.\rRemoved copies stay null; rewind changes only this illustration.",
+            "visibleContainers": ["new-pack"],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-2",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-3",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-4",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-5",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-6",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-7",
+                "at": null
+              },
+              {
+                "copy": "copy-8",
+                "at": null
+              },
+              {
+                "copy": "copy-9",
+                "at": null
+              },
+              {
+                "copy": "copy-10",
+                "at": null
+              },
+              {
+                "copy": "copy-11",
+                "at": null
+              },
+              {
+                "copy": "copy-12",
+                "at": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "supporting",
+      "type": "story-figure",
+      "title": "Twelve copies, six unique objects",
+      "reason": "Supporting figure has no inline stop; inspection alone borrows it.",
+      "figure": {
+        "kind": "consolidation",
+        "id": "repacking",
+        "title": "Twelve copies, six unique objects",
+        "description": "Conceptual groups align copies before explicitly removing duplicates and repacking survivors.",
+        "claim": "Six object identities survive while twelve illustrated copies become six.",
+        "qualification": "Synthetic authored explanation, not observed execution or measured performance.",
+        "references": [
+          {
+            "label": "Literal author note",
+            "value": "\nIllustration only\rRetained <source> & inactive snapshots; no source is fetched."
+          }
+        ],
+        "objects": [
+          {
+            "id": "object-1",
+            "label": "Object"
+          },
+          {
+            "id": "object-2",
+            "label": "Object"
+          },
+          {
+            "id": "object-3",
+            "label": "Object"
+          },
+          {
+            "id": "object-4",
+            "label": "Object"
+          },
+          {
+            "id": "object-5",
+            "label": "Object"
+          },
+          {
+            "id": "object-6",
+            "label": "Object"
+          }
+        ],
+        "copies": [
+          {
+            "id": "copy-1",
+            "object": "object-1"
+          },
+          {
+            "id": "copy-2",
+            "object": "object-2"
+          },
+          {
+            "id": "copy-3",
+            "object": "object-3"
+          },
+          {
+            "id": "copy-4",
+            "object": "object-4"
+          },
+          {
+            "id": "copy-5",
+            "object": "object-5"
+          },
+          {
+            "id": "copy-6",
+            "object": "object-6"
+          },
+          {
+            "id": "copy-7",
+            "object": "object-1"
+          },
+          {
+            "id": "copy-8",
+            "object": "object-2"
+          },
+          {
+            "id": "copy-9",
+            "object": "object-3"
+          },
+          {
+            "id": "copy-10",
+            "object": "object-4"
+          },
+          {
+            "id": "copy-11",
+            "object": "object-5"
+          },
+          {
+            "id": "copy-12",
+            "object": "object-6"
+          }
+        ],
+        "containers": [
+          {
+            "id": "old-a",
+            "label": "Old pack A",
+            "kind": "pack"
+          },
+          {
+            "id": "old-b",
+            "label": "Old pack B",
+            "kind": "pack"
+          },
+          {
+            "id": "group-object-1",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-2",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-3",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-4",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-5",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "group-object-6",
+            "label": "Object",
+            "kind": "group"
+          },
+          {
+            "id": "new-pack",
+            "label": "Repacked objects",
+            "kind": "pack"
+          }
+        ],
+        "beats": [
+          {
+            "id": "original",
+            "title": "Two old packs",
+            "explanation": "Each object has two separately identified copies.",
+            "visibleContainers": ["old-a", "old-b"],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-2",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-3",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-4",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-5",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-6",
+                "at": "old-a"
+              },
+              {
+                "copy": "copy-7",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-8",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-9",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-10",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-11",
+                "at": "old-b"
+              },
+              {
+                "copy": "copy-12",
+                "at": "old-b"
+              }
+            ]
+          },
+          {
+            "id": "aligned",
+            "title": "Align by immutable identity",
+            "explanation": "These are conceptual groups, not six additional stored packs. Equal labels do not establish identity.",
+            "visibleContainers": [
+              "group-object-1",
+              "group-object-2",
+              "group-object-3",
+              "group-object-4",
+              "group-object-5",
+              "group-object-6"
+            ],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-2",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-3",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-4",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-5",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-6",
+                "at": "group-object-6"
+              },
+              {
+                "copy": "copy-7",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-8",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-9",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-10",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-11",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-12",
+                "at": "group-object-6"
+              }
+            ]
+          },
+          {
+            "id": "deduplicated",
+            "title": "Remove duplicate copies",
+            "explanation": "Only the second copy of each object is explicitly removed.",
+            "visibleContainers": [
+              "group-object-1",
+              "group-object-2",
+              "group-object-3",
+              "group-object-4",
+              "group-object-5",
+              "group-object-6"
+            ],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "group-object-1"
+              },
+              {
+                "copy": "copy-2",
+                "at": "group-object-2"
+              },
+              {
+                "copy": "copy-3",
+                "at": "group-object-3"
+              },
+              {
+                "copy": "copy-4",
+                "at": "group-object-4"
+              },
+              {
+                "copy": "copy-5",
+                "at": "group-object-5"
+              },
+              {
+                "copy": "copy-6",
+                "at": "group-object-6"
+              },
+              {
+                "copy": "copy-7",
+                "at": null
+              },
+              {
+                "copy": "copy-8",
+                "at": null
+              },
+              {
+                "copy": "copy-9",
+                "at": null
+              },
+              {
+                "copy": "copy-10",
+                "at": null
+              },
+              {
+                "copy": "copy-11",
+                "at": null
+              },
+              {
+                "copy": "copy-12",
+                "at": null
+              }
+            ]
+          },
+          {
+            "id": "repacked",
+            "title": "One new pack",
+            "explanation": "\nAll six identities remain.\rRemoved copies stay null; rewind changes only this illustration.",
+            "visibleContainers": ["new-pack"],
+            "positions": [
+              {
+                "copy": "copy-1",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-2",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-3",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-4",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-5",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-6",
+                "at": "new-pack"
+              },
+              {
+                "copy": "copy-7",
+                "at": null
+              },
+              {
+                "copy": "copy-8",
+                "at": null
+              },
+              {
+                "copy": "copy-9",
+                "at": null
+              },
+              {
+                "copy": "copy-10",
+                "at": null
+              },
+              {
+                "copy": "copy-11",
+                "at": null
+              },
+              {
+                "copy": "copy-12",
+                "at": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "figure-tour",
+      "type": "tour",
+      "title": "Figure tour",
+      "reason": "Reveal the section without playback or beat selection.",
+      "chapters": [
+        {
+          "id": "read-figure",
+          "title": "Read the mechanism",
+          "body": "Select any beat, inspect, return, then revisit this chapter. The selected beat stays yours.",
+          "target": "figure"
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "type": "c4",
+      "title": "Illustrated work boundary",
+      "reason": "Authored context for this mechanism, not an execution graph.",
+      "mode": "single",
+      "levels": [
+        {
+          "id": "context",
+          "altitude": "c1",
+          "title": "Work context",
+          "diagram": {
+            "kind": "flowchart",
+            "source": "flowchart LR\n reader[Reader] --> store[Object storage]",
+            "description": "A reader requests illustrated work from storage.",
+            "steps": ["Read the authored mechanism."],
+            "nodeChanges": [],
+            "edgeChanges": []
+          },
+          "drills": []
+        }
+      ]
+    }
+  ],
+  "pins": [
+    {
+      "section": "figure",
+      "architecture": "architecture",
+      "level": "context",
+      "pane": "single",
+      "target": {
+        "kind": "node",
+        "node": "store"
+      }
+    }
+  ]
+}

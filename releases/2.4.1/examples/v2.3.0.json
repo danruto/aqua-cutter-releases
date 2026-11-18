@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "2.3.0",
+  "title": "Tour diagram highlight",
+  "lead": "Start guided. Each chapter opens a diagram and highlights one table, row, connection or step, with the rest of the drawing dimmed.",
+  "changes": [
+    "Start guided, then step with Next or the arrow keys.",
+    "Check that the reader pans and zooms to each highlighted part.",
+    "Exit the tour and confirm the diagram is no longer dimmed."
+  ],
+  "references": [
+    {
+      "label": "Provenance",
+      "value": "Synthetic illustration; no engine run claimed."
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "flag-map",
+        "title": "Flag map",
+        "takeaway": "Synthetic diagram for the highlight demo; it is not execution evidence.",
+        "inspections": [
+          {
+            "section": "flag-map",
+            "label": "Inspect Flag map"
+          }
+        ]
+      },
+      {
+        "section": "pilot-gate",
+        "title": "Pilot gate",
+        "takeaway": "Synthetic diagram for the highlight demo; it is not execution evidence.",
+        "inspections": [
+          {
+            "section": "pilot-gate",
+            "label": "Inspect Pilot gate"
+          }
+        ]
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "highlight-tour",
+      "type": "tour",
+      "title": "Diagram highlight tour",
+      "reason": "Walks one entity map and one flow a part at a time. Authored narration only.",
+      "guided": true,
+      "chapters": [
+        {
+          "id": "flag-table",
+          "title": "The flag table",
+          "target": "flag-map",
+          "open": true,
+          "highlight": {
+            "kind": "node",
+            "node": "FLAG"
+          },
+          "hint": "Entity · FLAG",
+          "body": "Each flag is one row in this table. The rest of the map stays visible but quieter."
+        },
+        {
+          "id": "delivery-hours",
+          "title": "Delivery hours",
+          "target": "flag-map",
+          "open": true,
+          "highlight": {
+            "kind": "row",
+            "node": "FLAG",
+            "attribute": "rem-delivery-hours"
+          },
+          "hint": "Row · FLAG / rem-delivery-hours",
+          "body": "This row holds the delivery window. The tour points at the row itself, not at a row number."
+        },
+        {
+          "id": "tenant-key",
+          "title": "Tenant key",
+          "target": "flag-map",
+          "open": true,
+          "highlight": {
+            "kind": "row",
+            "node": "TENANT",
+            "attribute": "id"
+          },
+          "body": "Every flag belongs to one tenant, through this key."
+        },
+        {
+          "id": "gate-check",
+          "title": "The gate check",
+          "target": "pilot-gate",
+          "open": true,
+          "highlight": {
+            "kind": "edge",
+            "edge": {
+              "from": "read",
+              "to": "gate",
+              "label": "",
+              "occurrence": 0
+            }
+          },
+          "hint": "Connection · read → gate",
+          "body": "Settings flow from the read step into the gate on every new task."
+        },
+        {
+          "id": "fallback",
+          "title": "The fallback",
+          "target": "pilot-gate",
+          "open": true,
+          "highlight": {
+            "kind": "node",
+            "node": "fallback"
+          },
+          "body": "When the gate says no, the task keeps the existing behaviour."
+        }
+      ]
+    },
+    {
+      "id": "flag-map",
+      "type": "diagram",
+      "title": "Flag map",
+      "reason": "Synthetic diagram for the tour highlight demo; nothing here was executed.",
+      "diagram": {
+        "kind": "er",
+        "source": "erDiagram\n direction LR\n TENANT ||--o{ FLAG : owns\n FLAG ||--o{ AUDIT : records\n TENANT {\n  string id PK\n  string region\n }\n FLAG {\n  string id PK\n  string tenant FK \"owning tenant\"\n  int rem-delivery-hours \"delivery window\"\n  bool rem-pilot\n }\n AUDIT {\n  string id PK\n  string flag FK\n  datetime at\n }",
+        "description": "Synthetic flag tables; authored illustration, not a real database.",
+        "steps": ["Read each table, then follow its keys."],
+        "nodeChanges": [],
+        "edgeChanges": []
+      }
+    },
+    {
+      "id": "pilot-gate",
+      "type": "diagram",
+      "title": "Pilot gate",
+      "reason": "Synthetic diagram for the tour highlight demo; nothing here was executed.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\ntask[New task] --> read[Read settings once]\nread --> gate{Pilot on?}\ngate -->|yes| pilot[Pilot path]\ngate -->|no| fallback[Existing path]",
+        "description": "Synthetic pilot gate; authored illustration, not execution evidence.",
+        "steps": ["Follow a task from its settings read to its path."],
+        "nodeChanges": [],
+        "edgeChanges": []
+      }
+    }
+  ]
+}

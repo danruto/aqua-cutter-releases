@@ -1,0 +1,438 @@
+{
+  "schemaVersion": "2.0.0",
+  "title": "Inspect supplied evidence without inferring proof",
+  "lead": "Synthetic authored import: no native run, verification, remote retrieval or real source is claimed.",
+  "changes": [
+    "Compare exact source identities and declared scopes",
+    "Inspect typed links, partial capture and literal selected bytes"
+  ],
+  "references": [
+    {
+      "label": "Synthetic only",
+      "value": "All identities and records in this example are synthetic authored data."
+    }
+  ],
+  "evidence": {
+    "runs": [
+      {
+        "id": "run:dddddddddddddddddddddddddddddddd",
+        "planDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "state": "complete",
+        "sourceIdentities": [
+          {
+            "id": "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:before",
+            "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "id": "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after",
+            "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "snapshotDigest": "9999999999999999999999999999999999999999999999999999999999999999"
+          }
+        ],
+        "excludedInputs": ["Synthetic excluded input"],
+        "tools": [
+          {
+            "name": "synthetic-example-only",
+            "version": "not-an-executed-capture",
+            "sha256": "8888888888888888888888888888888888888888888888888888888888888888"
+          }
+        ]
+      },
+      {
+        "id": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "planDigest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "state": "incomplete",
+        "sourceIdentities": [
+          {
+            "id": "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after",
+            "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "snapshotDigest": "9999999999999999999999999999999999999999999999999999999999999999"
+          }
+        ],
+        "excludedInputs": [],
+        "tools": []
+      }
+    ],
+    "artifacts": [
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:old:0:21",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "e7cf0c649e652ac810c75c961b276af82bd1b003e6403965c42bf547d6fca81c",
+        "selectedDigest": "e7cf0c649e652ac810c75c961b276af82bd1b003e6403965c42bf547d6fca81c",
+        "startByte": 0,
+        "endByte": 21,
+        "body": "old selected example\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:before"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:current:0:28",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "fcab5bda2f92b588b8cc9de413b52092ad541c2babda1efb75ddda18d543953b",
+        "selectedDigest": "fcab5bda2f92b588b8cc9de413b52092ad541c2babda1efb75ddda18d543953b",
+        "startByte": 0,
+        "endByte": 28,
+        "body": "new selected counterexample\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:partial:0:24",
+        "run": "run:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "role": "raw",
+        "originDigest": "fe1c4e86f4d277642aef90fb0e0076e683cdc4dbc62f2aaf8d45ab75642654d9",
+        "selectedDigest": "fe1c4e86f4d277642aef90fb0e0076e683cdc4dbc62f2aaf8d45ab75642654d9",
+        "startByte": 0,
+        "endByte": 24,
+        "body": "partial selected stream\n",
+        "check": "matched",
+        "captureExtent": "partial",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:unmapped:0:24",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "f4f1ba40619f3be0057f98a0f037d0e6166d9f55aa1c2ed43b8101a60082dc40",
+        "selectedDigest": "f4f1ba40619f3be0057f98a0f037d0e6166d9f55aa1c2ed43b8101a60082dc40",
+        "startByte": 0,
+        "endByte": 24,
+        "body": "unmapped selected bytes\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [],
+        "attribution": "unattributed",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:multiple:0:28",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "17f805209a1815239a9c441d98027f9a68b2d97b7d980dcf0b9fe1e95085549d",
+        "selectedDigest": "17f805209a1815239a9c441d98027f9a68b2d97b7d980dcf0b9fe1e95085549d",
+        "startByte": 0,
+        "endByte": 28,
+        "body": "multi-source selected bytes\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:before",
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:scope:0:25",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "240d2859a2b0cac86896c32e5316ca5d0ddf148839236223123a45ce18bdd889",
+        "selectedDigest": "240d2859a2b0cac86896c32e5316ca5d0ddf148839236223123a45ce18bdd889",
+        "startByte": 0,
+        "endByte": 25,
+        "body": "different declared scope\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "another-review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:literal:0:68",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "authored",
+        "originDigest": "33eb154fb95742330977fca724028b20381bcb6ef975c7366117e0d6826c4821",
+        "selectedDigest": "33eb154fb95742330977fca724028b20381bcb6ef975c7366117e0d6826c4821",
+        "startByte": 0,
+        "endByte": 68,
+        "body": "\u003cscript>not executable\u003c/script> https://example.invalid/not-fetched\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:dddddddddddddddddddddddddddddddd:old:0:21"
+          },
+          {
+            "kind": "omitted",
+            "originDigest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "reason": "unselected"
+          }
+        ],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:ranges:0:6",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "dbea9325179efe46ea2add94f7b6b745ca983fabb208dc6d34aa064623d7ee23",
+        "selectedDigest": "b640e840b19d378660b32fb51ae18d67dccb4a8596a29e7bd72c1b2ae5928f41",
+        "startByte": 0,
+        "endByte": 6,
+        "body": "first\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:ranges:6:13",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "dbea9325179efe46ea2add94f7b6b745ca983fabb208dc6d34aa064623d7ee23",
+        "selectedDigest": "480c2336b410f1ad5f8bf1b28944490255804b65350c527787e74ebdd511e3a4",
+        "startByte": 6,
+        "endByte": 13,
+        "body": "second\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:derivative:0:6",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "derived",
+        "originDigest": "b640e840b19d378660b32fb51ae18d67dccb4a8596a29e7bd72c1b2ae5928f41",
+        "selectedDigest": "b640e840b19d378660b32fb51ae18d67dccb4a8596a29e7bd72c1b2ae5928f41",
+        "startByte": 0,
+        "endByte": 6,
+        "body": "first\n",
+        "check": "matched",
+        "captureExtent": "complete",
+        "selectionCoversBody": true,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [
+          {
+            "kind": "selected",
+            "artifact": "artifact:dddddddddddddddddddddddddddddddd:ranges:0:6"
+          },
+          {
+            "kind": "selected",
+            "artifact": "artifact:dddddddddddddddddddddddddddddddd:ranges:6:13"
+          },
+          {
+            "kind": "omitted",
+            "originDigest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "reason": "unselected"
+          }
+        ],
+        "scopeId": "review",
+        "transformation": "synthetic-first-line-v1"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:missing:0:0",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "selectedDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "startByte": 0,
+        "endByte": 0,
+        "body": "",
+        "check": "missing",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      },
+      {
+        "id": "artifact:dddddddddddddddddddddddddddddddd:mismatched:0:0",
+        "run": "run:dddddddddddddddddddddddddddddddd",
+        "role": "raw",
+        "originDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "selectedDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "startByte": 0,
+        "endByte": 0,
+        "body": "",
+        "check": "mismatched",
+        "captureExtent": "complete",
+        "selectionCoversBody": false,
+        "sourceIdentities": [
+          "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after"
+        ],
+        "attribution": "mapped",
+        "inputs": [],
+        "scopeId": "review"
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim:current",
+        "text": "Synthetic current revision claim; supplied refutation remains visible.",
+        "sourceIdentity": "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:after",
+        "scopeId": "review",
+        "target": {
+          "section": "evidence-trace"
+        }
+      },
+      {
+        "id": "claim:previous",
+        "text": "Synthetic previous revision claim, not a verified conclusion.",
+        "sourceIdentity": "source:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc:before",
+        "scopeId": "review",
+        "target": {
+          "section": "evidence-second"
+        }
+      }
+    ],
+    "links": [
+      {
+        "artifact": "artifact:dddddddddddddddddddddddddddddddd:old:0:21",
+        "claim": "claim:current",
+        "relation": "supports"
+      },
+      {
+        "artifact": "artifact:dddddddddddddddddddddddddddddddd:current:0:28",
+        "claim": "claim:current",
+        "relation": "refutes"
+      },
+      {
+        "artifact": "artifact:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:partial:0:24",
+        "claim": "claim:current",
+        "relation": "supports"
+      },
+      {
+        "artifact": "artifact:dddddddddddddddddddddddddddddddd:literal:0:68",
+        "claim": "claim:current",
+        "relation": "context"
+      },
+      {
+        "artifact": "artifact:dddddddddddddddddddddddddddddddd:old:0:21",
+        "claim": "claim:previous",
+        "relation": "supports"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "evidence-trace",
+      "type": "trace",
+      "title": "Equal-label target",
+      "reason": "Exact section identity, not the display label, owns inspection.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> B[Finish]",
+        "description": "Two synthetic nodes; MISSING is not present."
+      },
+      "paths": [
+        {
+          "id": "selected",
+          "label": "Selected illustrative path",
+          "steps": [
+            {
+              "title": "Receive",
+              "narration": "Literal authored step, not runtime observation.",
+              "node": "A"
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "Illustrative only."
+        }
+      ]
+    },
+    {
+      "id": "evidence-second",
+      "type": "trace",
+      "title": "Equal-label target",
+      "reason": "Exact section identity, not the display label, owns inspection.",
+      "diagram": {
+        "kind": "flowchart",
+        "source": "flowchart LR\nA[Receive] --> B[Finish]",
+        "description": "Two synthetic nodes; MISSING is not present."
+      },
+      "paths": [
+        {
+          "id": "selected",
+          "label": "Selected illustrative path",
+          "steps": [
+            {
+              "title": "Receive",
+              "narration": "Literal authored step, not runtime observation.",
+              "node": "A"
+            }
+          ],
+          "outcome": "ok",
+          "outcomeDescription": "Illustrative only."
+        }
+      ]
+    }
+  ],
+  "story": {
+    "stops": [
+      {
+        "section": "evidence-trace",
+        "title": "Current evidence",
+        "takeaway": "Inspect supplied records; relation and eligibility are not proof.",
+        "inspections": [
+          {
+            "section": "evidence-trace",
+            "label": "Inspect the exact target"
+          }
+        ]
+      },
+      {
+        "section": "evidence-second",
+        "title": "Previous evidence",
+        "takeaway": "Inspect supplied records; relation and eligibility are not proof.",
+        "inspections": [
+          {
+            "section": "evidence-second",
+            "label": "Inspect the exact target"
+          }
+        ]
+      }
+    ]
+  }
+}
